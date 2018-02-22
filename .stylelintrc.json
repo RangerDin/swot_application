@@ -1,0 +1,12 @@
+{
+    "extends": ["stylelint-config-standard", "stylelint-config-recommended-scss"],
+    "plugins": [
+        "stylelint-order",
+        "stylelint-scss"
+    ],
+    "rules": {
+        "indentation": 4,
+        "order/properties-alphabetical-order": true,
+        "scss/at-extend-no-missing-placeholder": true
+    }
+}
