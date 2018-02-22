@@ -1,0 +1,28 @@
+{
+  "name": "swot-application",
+  "version": "1.0.0",
+  "description": "Application for SWOT analysis",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon --watch webpack.config.babel.js --exec \"NODE_ENV=development webpack-dev-server --inline\"",
+    "build-dev": "NODE_ENV=development webpack",
+    "build": "NODE_ENV=production webpack --progress",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "h_type <din.ranger@yandex.ru>",
+  "license": "ISC",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "html-webpack-plugin": "^2.30.1",
+    "nodemon": "^1.15.1",
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.11.1",
+    "webpack-merge": "^4.1.1"
+  }
+}
