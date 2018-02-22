@@ -1,8 +1,10 @@
 import { h } from 'preact';
 
-const Footer  = () => (
-    <div>
-        Footer
+import style from './style';
+
+const Footer = () => (
+    <div className={style.footer}>
+        Made by h_type
     </div>
 );
 
