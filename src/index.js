@@ -4,6 +4,6 @@ import App from 'components/App';
 
 const init = () => {
     render(<App />, document.body);
-}
+};
 
 init();

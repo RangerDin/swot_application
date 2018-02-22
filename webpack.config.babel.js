@@ -21,7 +21,7 @@ const commonConfig = {
     entry: './index.js',
     output: {
         path: path.resolve(__dirname, 'public'),
-        publicPath: '/',
+        publicPath: '/'
     },
     module: {
         rules: [
@@ -48,7 +48,9 @@ const commonConfig = {
                             options: {
                                 sourceMap: isModeDevelopment,
                                 plugins: [
-                                    autoprefixer({ browsers: ['last 2 versions'] }),
+                                    autoprefixer({
+                                        browsers: ['last 2 versions']
+                                    }),
                                     cssnano()
                                 ]
                             }
@@ -57,7 +59,9 @@ const commonConfig = {
                             loader: 'sass-loader',
                             options: {
                                 sourceMap: isModeDevelopment,
-                                includePaths: [path.resolve(__dirname, './src/')]
+                                includePaths: [
+                                    path.resolve(__dirname, './src/')
+                                ]
                             }
                         }
                     ]
@@ -98,9 +102,7 @@ const productionConfig = {
     output: {
         filename: 'bundle.js'
     },
-    plugins: [
-        new webpack.optimize.UglifyJsPlugin()
-    ],
+    plugins: [new webpack.optimize.UglifyJsPlugin()],
     devtool: 'source-map'
 };
 

@@ -1,6 +1,14 @@
 @import 'components/style-constants.scss';
 
+body,
+html {
+    background: $app-background-color;
+    height: 100%;
+}
+
 .app {
-    background: $background-color;
-    display: flex;
+    color: $app-text-color;
+    font-family: $app-text-font-family;
+    max-width: $app-max-width;
+    min-height: 100%;
 }

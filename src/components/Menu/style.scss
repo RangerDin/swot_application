@@ -1,0 +1,29 @@
+@import 'components/style-constants';
+@import 'components/helpers';
+
+.menu {
+    @include clearfix;
+
+    border: solid $app-border-color;
+    border-width: 0 0 1px;
+    font-size: 16px;
+
+    &__item {
+        cursor: pointer;
+        display: block;
+        padding: 20px 20px;
+
+        &:hover {
+            background: $app-text-color;
+            color: $app-background-color;
+        }
+
+        &_left {
+            float: left;
+        }
+
+        &_right {
+            float: right;
+        }
+    }
+}
