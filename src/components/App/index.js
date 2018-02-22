@@ -1,7 +1,10 @@
 import { h } from 'preact';
 
+import style from './style';
+
+
 const App = () => (
-    <div>
+    <div class={style.app}>
         Preact App.
     </div>
 );
