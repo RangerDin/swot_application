@@ -1,6 +1,7 @@
 import { h } from 'preact';
 
 import style from './style';
+import 'normalize.css';
 
 
 const App = () => (
