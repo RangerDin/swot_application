@@ -14,8 +14,7 @@
   "dependencies": {
     "normalize.css": "^8.0.0",
     "preact": "^8.2.7",
-    "preact-compat": "^3.18.0",
-    "preact-router": "^2.6.0"
+    "preact-compat": "^3.18.0"
   },
   "devDependencies": {
     "autoprefixer": "^8.0.0",
