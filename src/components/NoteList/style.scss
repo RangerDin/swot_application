@@ -1,6 +1,6 @@
 @import 'components/style-constants';
 
-$note-list-header-height: 30px;
+$note-list-header-height: 35px;
 
 .note-list {
     display: inline-block;
@@ -50,8 +50,9 @@ $note-list-header-height: 30px;
 
     &__header {
         font-family: $app-header-font-family;
-        font-size: 24px;
+        font-size: 20px;
         height: $note-list-header-height;
+        line-height: $note-list-header-height;
         margin: 0;
         padding: 0;
         position: absolute;
@@ -139,7 +140,7 @@ $note-list-header-height: 30px;
 
     &__add {
         border: 0;
-        bottom: 10px;
+        bottom: 7.5px;
         color: $app-text-color;
         cursor: pointer;
         font-family: $app-header-font-family;
@@ -156,7 +157,7 @@ $note-list-header-height: 30px;
 
     &__notes {
         height: 100%;
-        width: 100%;
         overflow: auto;
+        width: 100%;
     }
 }
