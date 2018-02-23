@@ -1,0 +1,57 @@
+@import 'components/helpers';
+@import 'components/style-constants';
+
+.note {
+    @include clearfix;
+
+    margin-top: 10px;
+
+    &:first-child {
+        margin-top: 0;
+    }
+
+    &__input {
+        border: 0;
+        box-sizing: border-box;
+        color: $app-text-color;
+        display: block;
+        float: left;
+        font-family: $app-text-font-family;
+        font-size: 16px;
+        height: 35px;
+        padding: 5px 10px;
+        width: 88%;
+    }
+
+    &__close {
+        background: none;
+        border: 0;
+        box-sizing: border-box;
+        color: $app-text-color;
+        cursor: pointer;
+        display: block;
+        float: right;
+        font-size: 25px;
+        height: 35px;
+        line-height: 35px;
+        width: 10%;
+    }
+}
+
+.note-list {
+    &_strengths {
+        background: $strengths-background-color-light;
+    }
+
+    &_threats {
+        background: $threats-background-color-light;
+    }
+
+    &_opportunities {
+        background: $opportunities-background-color-light;
+    }
+
+    &_weaknesses {
+        background: $weaknesses-background-color-light;
+    }
+}

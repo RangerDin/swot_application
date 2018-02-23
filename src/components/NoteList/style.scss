@@ -1,0 +1,162 @@
+@import 'components/style-constants';
+
+$note-list-header-height: 30px;
+
+.note-list {
+    display: inline-block;
+    height: 49%;
+    position: absolute;
+    width: 49%;
+
+    &_strengths {
+        .note-list__widget {
+            background: $strengths-background-color;
+        }
+
+        .note-list__add {
+            background: $strengths-background-color-light;
+        }
+    }
+
+    &_threats {
+        .note-list__widget {
+            background: $threats-background-color;
+        }
+
+        .note-list__add {
+            background: $threats-background-color-light;
+        }
+    }
+
+    &_opportunities {
+        .note-list__widget {
+            background: $opportunities-background-color;
+        }
+
+        .note-list__add {
+            background: $opportunities-background-color-light;
+        }
+    }
+
+    &_weaknesses {
+        .note-list__widget {
+            background: $weaknesses-background-color;
+        }
+
+        .note-list__add {
+            background: $weaknesses-background-color-light;
+        }
+    }
+
+    &__header {
+        font-family: $app-header-font-family;
+        font-size: 24px;
+        height: $note-list-header-height;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        width: 100%;
+    }
+
+    &__widget {
+        left: 0;
+        padding: 10px 10px 40px;
+        position: absolute;
+        right: 0;
+    }
+
+    &:nth-child(1) {
+        left: 0;
+        top: 0;
+
+        .note-list__header {
+            left: 0;
+            text-align: left;
+            top: 0;
+        }
+
+        .note-list__widget {
+            bottom: 0;
+            top: $note-list-header-height;
+        }
+    }
+
+    &:nth-child(2) {
+        right: 0;
+        top: 0;
+
+        .note-list__header {
+            right: 0;
+            text-align: right;
+            top: 0;
+        }
+
+        .note-list__widget {
+            bottom: 0;
+            top: $note-list-header-height;
+        }
+    }
+
+    &:nth-child(3) {
+        bottom: 0;
+        left: 0;
+
+        .note-list__header {
+            bottom: 0;
+            left: 0;
+            text-align: left;
+        }
+
+        .note-list__widget {
+            bottom: $note-list-header-height;
+            top: 0;
+        }
+    }
+
+    &:nth-child(4) {
+        bottom: 0;
+        right: 0;
+
+        .note-list__header {
+            bottom: 0;
+            right: 0;
+            text-align: right;
+        }
+
+        .note-list__widget {
+            bottom: $note-list-header-height;
+            top: 0;
+        }
+    }
+
+    &__container {
+        box-sizing: border-box;
+        height: 100%;
+        padding: 5px 10px;
+        position: relative;
+        width: 100%;
+    }
+
+    &__add {
+        border: 0;
+        bottom: 10px;
+        color: $app-text-color;
+        cursor: pointer;
+        font-family: $app-header-font-family;
+        font-size: 24px;
+        height: 25px;
+        left: 0;
+        margin: 0 auto;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        right: 0;
+        width: 50px;
+    }
+
+    &__notes {
+        height: 100%;
+        width: 100%;
+        overflow: auto;
+    }
+}

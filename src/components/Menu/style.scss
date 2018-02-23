@@ -6,12 +6,17 @@
 
     border: solid $app-border-color;
     border-width: 0 0 1px;
+    box-sizing: border-box;
     font-size: 16px;
+    height: $header-height;
 
     &__item {
+        box-sizing: border-box;
         cursor: pointer;
-        display: block;
-        padding: 20px 20px;
+        display: inline-block;
+        height: $header-height;
+        line-height: $header-height;
+        padding: 0 20px;
 
         &:hover {
             background: $app-text-color;
