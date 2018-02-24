@@ -1,26 +1,42 @@
 @import 'components/helpers';
 @import 'components/style-constants';
 
+$note-button-width: 30px;
+
 .note {
     @include clearfix;
 
-    margin-top: 10px;
+    margin-top: 4px;
 
     &:first-child {
         margin-top: 0;
     }
 
-    &__input {
+    &__view-container {
+        padding-right: $note-button-width;
+        position: relative;
+    }
+
+    &__view {
         border: 0;
         box-sizing: border-box;
         color: $app-text-color;
         display: block;
-        float: left;
         font-family: $app-text-font-family;
         font-size: 16px;
-        height: 35px;
-        padding: 5px 10px;
-        width: 88%;
+        padding: 3px 8px;
+
+        &_editable {
+            height: 30px;
+            line-height: 24px;
+            min-height: 30px;
+            resize: vertical;
+            width: 100%;
+
+            &:focus {
+                border: 2px solid $app-text-color;
+            }
+        }
     }
 
     &__close {
@@ -30,11 +46,14 @@
         color: $app-text-color;
         cursor: pointer;
         display: block;
-        float: right;
-        font-size: 25px;
-        height: 35px;
-        line-height: 35px;
-        width: 10%;
+        font-size: 30px;
+        height: 30px;
+        line-height: 30px;
+        overflow: hidden;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: $note-button-width;
     }
 }
 

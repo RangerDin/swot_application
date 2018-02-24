@@ -4,7 +4,7 @@ import NoteList from 'components/NoteList';
 import style from './style';
 
 const exampleNotes = [
-    { id: 1, text: 'text 1', is_being_edited: false, is_active: false },
+    { id: 1, text: 'text 1', is_being_edited: true, is_active: false },
     { id: 2, text: 'text 2', is_being_edited: false, is_active: false },
     { id: 3, text: 'text 3', is_being_edited: false, is_active: false },
     { id: 4, text: 'text 4', is_being_edited: false, is_active: false },
