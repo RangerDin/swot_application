@@ -1,10 +1,11 @@
-import { h, Component } from 'preact';
+import { h } from 'preact';
+import { PureComponent } from 'preact-compat';
 
 import style from './style';
 import Note from 'components/Note';
 import { splitClasses } from 'utils/className';
 
-class NoteList extends Component {
+class NoteList extends PureComponent {
     constructor(props) {
         super(props);
         this.addNote = this.addNote.bind(this);

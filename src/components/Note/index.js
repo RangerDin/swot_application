@@ -1,4 +1,5 @@
 import { h, Component } from 'preact';
+import { PureComponent } from 'preact-compat';
 
 import style from './style';
 import { splitClasses } from 'utils/className';
@@ -7,7 +8,6 @@ class EditableNote extends Component {
     componentDidMount() {
         this.noteInput.focus();
     }
-
     render() {
         return (
             <textarea
@@ -34,7 +34,7 @@ const ReadOnlyNote = ({ className, children, onClick }) => (
     </div>
 );
 
-class Note extends Component {
+class Note extends PureComponent {
     constructor(props) {
         super(props);
         this.deleteNote = this.deleteNote.bind(this);
