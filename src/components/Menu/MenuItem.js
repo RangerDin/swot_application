@@ -1,9 +1,10 @@
 import { h } from 'preact';
 
 import style from './style';
+import { splitClasses } from 'utils/className';
 
 const MenuItem = ({ children, onClick, className }) => (
-    <div className={[style.menu__item, className].join(' ')} onClick={onClick}>
+    <div className={splitClasses([style.menu__item, className])} onClick={onClick}>
         {children}
     </div>
 );

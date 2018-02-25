@@ -24,17 +24,18 @@ $note-button-width: 30px;
         display: block;
         font-family: $app-text-font-family;
         font-size: 16px;
+        line-height: 24px;
+        min-height: 30px;
         padding: 3px 8px;
 
         &_editable {
             height: 30px;
-            line-height: 24px;
-            min-height: 30px;
             resize: vertical;
             width: 100%;
 
             &:focus {
                 border: 2px solid $app-text-color;
+                padding: 1px 6px;
             }
         }
     }
