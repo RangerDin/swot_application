@@ -37,33 +37,25 @@ const ReadOnlyNote = ({ listType, children, onClick }) => (
 );
 
 class Note extends PureComponent {
-    constructor(props) {
-        super(props);
-        this.deleteNote = this.deleteNote.bind(this);
-        this.activateNote = this.activateNote.bind(this);
-        this.deactivateNote = this.deactivateNote.bind(this);
-        this.changeNoteText = this.changeNoteText.bind(this);
-    }
-
-    deleteNote() {
+    deleteNote = () => {
         this.props.onDelete(this.props.listType, this.props.note.id);
-    }
+    };
 
-    activateNote() {
+    activateNote = () => {
         this.props.setActive(this.props.listType, this.props.note.id, true);
-    }
+    };
 
-    deactivateNote() {
+    deactivateNote = () => {
         this.props.setActive(this.props.listType, this.props.note.id, false);
-    }
+    };
 
-    changeNoteText(event) {
+    changeNoteText = event => {
         this.props.onChange(
             this.props.listType,
             this.props.note.id,
             event.target.value
         );
-    }
+    };
 
     render({ note, listType }) {
         return this.props.connectDragSource(

@@ -8,14 +8,9 @@ import { splitClasses } from 'utils/className';
 import { ItemTypes } from 'constants/dnd';
 
 class NoteList extends PureComponent {
-    constructor(props) {
-        super(props);
-        this.addNote = this.addNote.bind(this);
-    }
-
-    addNote() {
+    addNote = () => {
         this.props.onAdd(this.props.type);
-    }
+    };
 
     render({ type, notes, onDelete, setActive, onChange }) {
         return this.props.connectDropTarget(
