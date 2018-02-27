@@ -1,4 +1,6 @@
-export const STRENGTHS = 'strengths';
-export const THREATS = 'threats';
-export const OPPORTUNITIES = 'opportunities';
-export const WEAKNESSES = 'weaknesses';
+export const NOTE_LIST_TYPE = {
+    STRENGTHS: 'strengths',
+    THREATS: 'threats',
+    OPPORTUNITIES: 'opportunities',
+    WEAKNESSES: 'weaknesses'
+};

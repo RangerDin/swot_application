@@ -2,130 +2,78 @@ import { h, Component } from 'preact';
 
 import NoteList from 'components/NoteList';
 import style from './style';
-import Note from 'utils/note';
-import { STRENGTHS, THREATS, OPPORTUNITIES, WEAKNESSES } from 'constants/note';
-
-const noteLists = [
-    {
-        name: STRENGTHS,
-        className: 'note-list_strengths'
-    },
-    {
-        name: THREATS,
-        className: 'note-list_threats'
-    },
-    {
-        name: OPPORTUNITIES,
-        className: 'note-list_opportunities'
-    },
-    {
-        name: WEAKNESSES,
-        className: 'note-list_weaknesses'
-    }
-];
+import NoteListsService from 'services/noteLists';
 
 class Main extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            notes: {
-                [STRENGTHS]: [],
-                [THREATS]: [],
-                [OPPORTUNITIES]: [],
-                [WEAKNESSES]: []
-            },
-            idCounter: 0
-        };
+        this.state = NoteListsService.getInitialState();
 
         this.onAdd = this.onAdd.bind(this);
         this.onDelete = this.onDelete.bind(this);
         this.setActive = this.setActive.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.onMove = this.onMove.bind(this);
     }
 
-    onAdd(listName) {
-        const newNote = new Note(this.state.idCounter);
-        this.setState({
-            ...this.state,
-            notes: {
-                ...this.state.notes,
-                [listName]: this.state.notes[listName].concat([newNote])
-            },
-            idCounter: this.state.idCounter + 1
-        });
+    onAdd(listType) {
+        this.setState(NoteListsService.addNewNote(this.state, listType));
     }
 
-    onDelete(listName, id) {
-        const newNoteList = this.state.notes[listName].filter(
-            note => note.id !== id
+    onDelete(listType, noteId) {
+        this.setState(
+            NoteListsService.deleteNote(this.state, listType, noteId)
         );
-        this.setState({
-            ...this.state,
-            notes: {
-                ...this.state.notes,
-                [listName]: newNoteList
-            }
-        });
     }
 
-    getNoteIndexById(listName, id) {
-        return this.state.notes[listName].findIndex(note => note.id === id);
-    }
-
-    replaceNoteByIndex(listName, index, newNote) {
-        const newNoteList = [
-            ...this.state.notes[listName].slice(0, index),
-            newNote,
-            ...this.state.notes[listName].slice(index + 1)
-        ];
-
-        this.setState({
-            ...this.state,
-            notes: {
-                ...this.state.notes,
-                [listName]: newNoteList
-            }
-        });
-    }
-
-    setActive(listName, id, isActive) {
-        const indexOfNoteToReplace = this.getNoteIndexById(listName, id);
-        const noteToReplace = this.state.notes[listName][indexOfNoteToReplace];
-        const newNote = new Note(
-            noteToReplace.id,
-            noteToReplace.text,
-            isActive
+    setActive(listType, noteId, isActive) {
+        this.setState(
+            NoteListsService.setNoteActive(
+                this.state,
+                listType,
+                noteId,
+                isActive
+            )
         );
-
-        this.replaceNoteByIndex(listName, indexOfNoteToReplace, newNote);
     }
 
-    onChange(listName, id, newText) {
-        const indexOfNoteToReplace = this.getNoteIndexById(listName, id);
-        const noteToReplace = this.state.notes[listName][indexOfNoteToReplace];
-        const newNote = new Note(
-            noteToReplace.id,
-            newText,
-            noteToReplace.isBeingEdited
+    onMove(sourceListType, sourceNoteId, targetListType, targetNoteId) {
+        this.setState(
+            NoteListsService.moveNote(
+                this.state,
+                sourceListType,
+                sourceNoteId,
+                targetListType,
+                targetNoteId
+            )
         );
+    }
 
-        this.replaceNoteByIndex(listName, indexOfNoteToReplace, newNote);
+    onChange(noteListType, noteId, newText) {
+        this.setState(
+            NoteListsService.setNoteText(
+                this.state,
+                noteListType,
+                noteId,
+                newText
+            )
+        );
     }
 
     render(props, state) {
         return (
             <div className={style.main}>
-                {noteLists.map(list => (
+                {Object.keys(this.state.notes).map(listType => (
                     <NoteList
-                        key={list.name}
-                        name={list.name}
-                        className={list.className}
-                        notes={state.notes[list.name]}
+                        key={listType}
+                        type={listType}
+                        notes={state.notes[listType]}
                         onAdd={this.onAdd}
                         onDelete={this.onDelete}
                         setActive={this.setActive}
                         onChange={this.onChange}
+                        onMove={this.onMove}
                     />
                 ))}
             </div>

@@ -8,46 +8,6 @@ $note-list-header-height: 35px;
     position: absolute;
     width: 49%;
 
-    &_strengths {
-        .note-list__widget {
-            background: $strengths-background-color;
-        }
-
-        .note-list__add {
-            background: $strengths-background-color-light;
-        }
-    }
-
-    &_threats {
-        .note-list__widget {
-            background: $threats-background-color;
-        }
-
-        .note-list__add {
-            background: $threats-background-color-light;
-        }
-    }
-
-    &_opportunities {
-        .note-list__widget {
-            background: $opportunities-background-color;
-        }
-
-        .note-list__add {
-            background: $opportunities-background-color-light;
-        }
-    }
-
-    &_weaknesses {
-        .note-list__widget {
-            background: $weaknesses-background-color;
-        }
-
-        .note-list__add {
-            background: $weaknesses-background-color-light;
-        }
-    }
-
     &__header {
         font-family: $app-header-font-family;
         font-size: 20px;
@@ -160,5 +120,45 @@ $note-list-header-height: 35px;
         height: 100%;
         overflow: auto;
         width: 100%;
+    }
+}
+
+.strengths {
+    .note-list__widget {
+        background: $strengths-background-color;
+    }
+
+    .note-list__add {
+        background: $strengths-background-color-light;
+    }
+}
+
+.threats {
+    .note-list__widget {
+        background: $threats-background-color;
+    }
+
+    .note-list__add {
+        background: $threats-background-color-light;
+    }
+}
+
+.opportunities {
+    .note-list__widget {
+        background: $opportunities-background-color;
+    }
+
+    .note-list__add {
+        background: $opportunities-background-color-light;
+    }
+}
+
+.weaknesses {
+    .note-list__widget {
+        background: $weaknesses-background-color;
+    }
+
+    .note-list__add {
+        background: $weaknesses-background-color-light;
     }
 }

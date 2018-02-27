@@ -1,9 +1,11 @@
 import { h } from 'preact';
 import { PureComponent } from 'preact-compat';
+import { DropTarget } from 'preact-dnd';
 
 import style from './style';
 import Note from 'components/Note';
 import { splitClasses } from 'utils/className';
+import { ItemTypes } from 'constants/dnd';
 
 class NoteList extends PureComponent {
     constructor(props) {
@@ -12,24 +14,21 @@ class NoteList extends PureComponent {
     }
 
     addNote() {
-        this.props.onAdd(this.props.name);
+        this.props.onAdd(this.props.type);
     }
 
-    render({ name, className, notes, onDelete, setActive, onChange }) {
-        return (
-            <div
-                className={splitClasses([style['note-list'], style[className]])}
-            >
+    render({ type, notes, onDelete, setActive, onChange }) {
+        return this.props.connectDropTarget(
+            <div className={splitClasses([style['note-list'], style[type]])}>
                 <div className={style['note-list__container']}>
-                    <h3 className={style['note-list__header']}>{name}</h3>
+                    <h3 className={style['note-list__header']}>{type}</h3>
                     <div className={style['note-list__widget']}>
                         <div className={style['note-list__notes']}>
                             {notes.map(note => (
                                 <Note
                                     key={note.id}
-                                    className={className}
+                                    listType={type}
                                     note={note}
-                                    listName={name}
                                     onDelete={onDelete}
                                     setActive={setActive}
                                     onChange={onChange}
@@ -39,7 +38,7 @@ class NoteList extends PureComponent {
                         <button
                             className={splitClasses([
                                 style['note-list__add'],
-                                className
+                                style[type]
                             ])}
                             onClick={this.addNote}
                         >
@@ -52,4 +51,15 @@ class NoteList extends PureComponent {
     }
 }
 
-export default NoteList;
+const target = {
+    drop(props, monitor, component) {
+        const note = monitor.getItem();
+        props.onMove(note.listType, note.id, props.type);
+    }
+};
+
+const collect = (connect, monitor) => ({
+    connectDropTarget: connect.dropTarget()
+});
+
+export default DropTarget(ItemTypes.NOTE, target, collect)(NoteList);

@@ -58,20 +58,18 @@ $note-button-width: 30px;
     }
 }
 
-.note-list {
-    &_strengths {
-        background: $strengths-background-color-light;
-    }
+.strengths {
+    background: $strengths-background-color-light;
+}
 
-    &_threats {
-        background: $threats-background-color-light;
-    }
+.threats {
+    background: $threats-background-color-light;
+}
 
-    &_opportunities {
-        background: $opportunities-background-color-light;
-    }
+.opportunities {
+    background: $opportunities-background-color-light;
+}
 
-    &_weaknesses {
-        background: $weaknesses-background-color-light;
-    }
+.weaknesses {
+    background: $weaknesses-background-color-light;
 }

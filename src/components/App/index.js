@@ -1,4 +1,6 @@
 import { h } from 'preact';
+import { DragDropContext } from 'preact-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 import 'normalize.css';
 
 import style from './style';
@@ -14,4 +16,4 @@ const App = () => (
     </div>
 );
 
-export default App;
+export default DragDropContext(HTML5Backend)(App);

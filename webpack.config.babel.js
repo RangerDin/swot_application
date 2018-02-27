@@ -83,7 +83,11 @@ const commonConfig = {
     ],
     resolve: {
         extensions: ['.jsx', '.js', '.scss'],
-        modules: [path.resolve('./src'), path.resolve('./node_modules')]
+        modules: [path.resolve('./src'), path.resolve('./node_modules')],
+        alias: {
+            react: 'preact-compat',
+            'react-dom': 'preact-compat'
+        }
     }
 };
 
