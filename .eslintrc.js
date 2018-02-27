@@ -5,6 +5,7 @@ module.exports = {
         es6: true
     },
     extends: ['eslint:recommended', 'plugin:react/recommended', 'prettier'],
+    parser: 'babel-eslint',
     parserOptions: {
         ecmaFeatures: {
             experimentalObjectRestSpread: true,
