@@ -38,14 +38,14 @@ class Main extends Component {
         );
     }
 
-    onMove(sourceListType, sourceNoteId, targetListType, targetNoteId) {
+    onMove(sourceListType, sourceNoteId, targetListType, targetIndex) {
         this.setState(
             NoteListsService.moveNote(
                 this.state,
                 sourceListType,
                 sourceNoteId,
                 targetListType,
-                targetNoteId
+                targetIndex
             )
         );
     }

@@ -6,10 +6,10 @@ $note-button-width: 30px;
 .note {
     @include clearfix;
 
-    margin-top: 4px;
+    padding-top: 4px;
 
     &:first-child {
-        margin-top: 0;
+        padding-top: 0;
     }
 
     &__view-container {
@@ -55,6 +55,10 @@ $note-button-width: 30px;
         right: 0;
         top: 0;
         width: $note-button-width;
+    }
+
+    &_dragging {
+        opacity: 0.5;
     }
 }
 

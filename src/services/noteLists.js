@@ -107,25 +107,16 @@ export default class NoteListsService {
         sourceListType,
         sourceNoteId,
         targetListType,
-        targetNoteId
+        targetIndex
     ) {
         const sourceNote = this.getNote(state, sourceListType, sourceNoteId);
-        let targetNoteIndex;
 
-        if (targetNoteId !== undefined) {
-            targetNoteIndex = this.getNoteIndex(
-                state,
-                targetListType,
-                targetNoteId
-            );
-        } else {
+        if (targetIndex === undefined) {
             const targetNoteListLength = state.notes[targetListType].length;
             if (targetNoteListLength) {
-                targetNoteIndex =
-                    state.notes[targetListType][targetNoteListLength - 1].id +
-                    1;
+                targetIndex = targetNoteListLength - 1;
             } else {
-                targetNoteIndex = 0;
+                targetIndex = 0;
             }
         }
 
@@ -137,7 +128,7 @@ export default class NoteListsService {
         return this.insertNote(
             stateAfterDelete,
             targetListType,
-            targetNoteIndex,
+            targetIndex,
             sourceNote
         );
     }

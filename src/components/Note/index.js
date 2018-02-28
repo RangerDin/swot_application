@@ -1,40 +1,12 @@
-import { h, Component } from 'preact';
+import { h } from 'preact';
 import { PureComponent } from 'preact-compat';
-import { DragSource } from 'preact-dnd';
+import { DragSource, DropTarget } from 'preact-dnd';
 
 import style from './style';
+import EditableView from './EditableView';
+import ReadOnlyView from './ReadOnlyView';
 import { splitClasses } from 'utils/className';
 import { ItemTypes } from 'constants/dnd';
-
-class EditableNote extends Component {
-    componentDidMount() {
-        this.noteInput.focus();
-    }
-    render() {
-        return (
-            <textarea
-                className={splitClasses([
-                    style[this.props.listType],
-                    style.note__view,
-                    style.note__view_editable
-                ])}
-                ref={input => (this.noteInput = input)}
-                onBlur={this.props.onBlur}
-                onChange={this.props.onChange}
-                value={this.props.text}
-            />
-        );
-    }
-}
-
-const ReadOnlyNote = ({ listType, children, onClick }) => (
-    <div
-        className={splitClasses([style[listType], style.note__view])}
-        onClick={onClick}
-    >
-        {children}
-    </div>
-);
 
 class Note extends PureComponent {
     deleteNote = () => {
@@ -57,46 +29,85 @@ class Note extends PureComponent {
         );
     };
 
-    render({ note, listType }) {
+    getNoteClasses = isDragging => {
+        let noteClasses = [style.note];
+        if (isDragging) {
+            noteClasses = [style.note, style.note_dragging];
+        }
+
+        return splitClasses(noteClasses);
+    };
+
+    render({ note, listType, isDragging }) {
         return this.props.connectDragSource(
-            <div className={style.note}>
-                <div className={style['note__view-container']}>
-                    {note.isBeingEdited ? (
-                        <EditableNote
-                            listType={listType}
-                            onBlur={this.deactivateNote}
-                            onChange={this.changeNoteText}
-                            text={note.text}
-                        />
-                    ) : (
-                        <ReadOnlyNote
-                            listType={listType}
-                            onClick={this.activateNote}
+            this.props.connectDropTarget(
+                <div className={this.getNoteClasses(isDragging)}>
+                    <div className={style['note__view-container']}>
+                        {note.isBeingEdited ? (
+                            <EditableView
+                                listType={listType}
+                                onBlur={this.deactivateNote}
+                                onChange={this.changeNoteText}
+                                text={note.text}
+                            />
+                        ) : (
+                            <ReadOnlyView
+                                listType={listType}
+                                onClick={this.activateNote}
+                            >
+                                {note.text}
+                            </ReadOnlyView>
+                        )}
+                        <button
+                            className={style.note__close}
+                            onClick={this.deleteNote}
                         >
-                            {note.text}
-                        </ReadOnlyNote>
-                    )}
-                    <button
-                        className={style.note__close}
-                        onClick={this.deleteNote}
-                    >
-                        &times;
-                    </button>
+                            &times;
+                        </button>
+                    </div>
                 </div>
-            </div>
+            )
         );
     }
 }
+
+const target = {
+    hover(props, monitor) {
+        const movingNote = monitor.getItem();
+        if (movingNote.id === props.note.id) {
+            return;
+        }
+
+        props.onMove(
+            movingNote.listType,
+            movingNote.id,
+            props.listType,
+            props.index
+        );
+
+        /* note in "drag" state is not updated by itself,
+         * so we change its listType manually */
+        movingNote.listType = props.listType;
+    }
+};
+
+const collectTarget = connect => ({
+    connectDropTarget: connect.dropTarget()
+});
 
 const source = {
     beginDrag(props) {
         return {
             id: props.note.id,
-            listType: props.listType
+            listType: props.listType,
+            index: props.index
         };
     },
     canDrag(props) {
         return !props.note.isBeingEdited;
+    },
+    isDragging(props, monitor) {
+        return props.note.id === monitor.getItem().id;
     }
 };
 
@@ -105,4 +116,6 @@ const collectSource = (connect, monitor) => ({
     isDragging: monitor.isDragging()
 });
 
-export default DragSource(ItemTypes.NOTE, source, collectSource)(Note);
+export default DropTarget(ItemTypes.NOTE, target, collectTarget)(
+    DragSource(ItemTypes.NOTE, source, collectSource)(Note)
+);
