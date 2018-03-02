@@ -5,6 +5,7 @@ import { LeftMenuItem } from './MenuItem';
 import MenuLink from './MenuLink';
 import FileOpenButton from 'components/FileOpenButton';
 import FileService from 'services/file';
+import { splitClasses } from 'utils/className';
 
 const SAVED_FILE_NAME = 'swot.json';
 
@@ -25,7 +26,10 @@ class Menu extends Component {
             <div className={style.menu}>
                 <LeftMenuItem>
                     <FileOpenButton
-                        className={style.menu__content}
+                        className={splitClasses([
+                            style.menu__item_interactable,
+                            style.menu__item_padded
+                        ])}
                         onChange={this.onChange}
                     >
                         Open
@@ -33,7 +37,10 @@ class Menu extends Component {
                 </LeftMenuItem>
                 <LeftMenuItem>
                     <MenuLink
-                        className={style.menu__content}
+                        className={splitClasses([
+                            style.menu__item_interactable,
+                            style.menu__item_padded
+                        ])}
                         href={FileService.getSaveLink(notes)}
                         download={SAVED_FILE_NAME}
                     >

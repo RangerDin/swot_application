@@ -17,17 +17,23 @@
         height: $header-height;
         line-height: $header-height;
 
-        &:hover {
-            background: $app-text-color;
-            color: $app-background-color;
-        }
-
         &_left {
             float: left;
         }
 
         &_right {
             float: right;
+        }
+
+        &_interactable {
+            &:hover {
+                background: $app-text-color;
+                color: $app-background-color;
+            }
+        }
+
+        &_padded {
+            padding: 0 20px;
         }
     }
 
@@ -36,10 +42,11 @@
         display: inline-block;
         height: 100%;
         text-decoration: none;
-        width: 100%;
     }
 
-    &__content {
+    &__made-by {
+        color: $made-by-text-color;
+        font-size: 14px;
         padding: 0 20px;
     }
 }

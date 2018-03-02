@@ -6,7 +6,6 @@ import 'normalize.css';
 import style from './style';
 import Main from 'components/Main';
 import Menu from 'components/Menu';
-import Footer from 'components/Footer';
 import NoteListsService from 'services/noteLists';
 import FileService from 'services/file';
 
@@ -92,7 +91,6 @@ class App extends Component {
                     setNoteActive={this.setNoteActive}
                     setNoteText={this.setNoteText}
                 />
-                <Footer />
             </div>
         );
     }
