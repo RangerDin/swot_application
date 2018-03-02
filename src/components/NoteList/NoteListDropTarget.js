@@ -17,7 +17,7 @@ const target = {
     hover(props, monitor) {
         if (monitor.isOver({ shallow: true })) {
             const draggingNote = monitor.getItem();
-            props.onMove(draggingNote.listType, draggingNote.id, props.type);
+            props.moveNote(draggingNote.listType, draggingNote.id, props.type);
 
             /* note in "drag" state is not updated by itself,
              * so we change its listType manually */

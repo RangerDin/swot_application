@@ -16,7 +16,6 @@
         display: inline-block;
         height: $header-height;
         line-height: $header-height;
-        padding: 0 20px;
 
         &:hover {
             background: $app-text-color;
@@ -30,5 +29,17 @@
         &_right {
             float: right;
         }
+    }
+
+    &__link {
+        color: inherit;
+        display: inline-block;
+        height: 100%;
+        text-decoration: none;
+        width: 100%;
+    }
+
+    &__content {
+        padding: 0 20px;
     }
 }

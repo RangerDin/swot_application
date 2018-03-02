@@ -10,19 +10,23 @@ import { ItemTypes } from 'constants/dnd';
 
 class Note extends PureComponent {
     deleteNote = () => {
-        this.props.onDelete(this.props.listType, this.props.note.id);
+        this.props.deleteNote(this.props.listType, this.props.note.id);
     };
 
     activateNote = () => {
-        this.props.setActive(this.props.listType, this.props.note.id, true);
+        this.props.setNoteActive(this.props.listType, this.props.note.id, true);
     };
 
     deactivateNote = () => {
-        this.props.setActive(this.props.listType, this.props.note.id, false);
+        this.props.setNoteActive(
+            this.props.listType,
+            this.props.note.id,
+            false
+        );
     };
 
-    changeNoteText = event => {
-        this.props.onChange(
+    setNoteText = event => {
+        this.props.setNoteText(
             this.props.listType,
             this.props.note.id,
             event.target.value
@@ -47,7 +51,7 @@ class Note extends PureComponent {
                             <EditableView
                                 listType={listType}
                                 onBlur={this.deactivateNote}
-                                onChange={this.changeNoteText}
+                                onChange={this.setNoteText}
                                 text={note.text}
                             />
                         ) : (
@@ -78,7 +82,7 @@ const target = {
             return;
         }
 
-        props.onMove(
+        props.moveNote(
             movingNote.listType,
             movingNote.id,
             props.listType,

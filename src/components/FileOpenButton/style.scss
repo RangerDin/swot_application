@@ -1,0 +1,8 @@
+.file-open-button {
+    cursor: pointer;
+    display: inline-block;
+
+    &__input {
+        display: none;
+    }
+}

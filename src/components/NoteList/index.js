@@ -7,27 +7,27 @@ import Note from 'components/Note';
 import { splitClasses } from 'utils/className';
 
 class NoteList extends PureComponent {
-    addNote = () => {
-        this.props.onAdd(this.props.type);
+    addNewNote = () => {
+        this.props.addNewNote(this.props.type);
     };
 
-    render({ type, notes, onDelete, setActive, onChange, onMove }) {
+    render({ type, notes, deleteNote, setNoteActive, setNoteText, moveNote }) {
         return (
             <div className={splitClasses([style['note-list'], style[type]])}>
                 <div className={style['note-list__container']}>
                     <h3 className={style['note-list__header']}>{type}</h3>
                     <div className={style['note-list__widget']}>
-                        <NoteListDropTarget type={type} onMove={onMove}>
+                        <NoteListDropTarget type={type} moveNote={moveNote}>
                             {notes.map((note, index) => (
                                 <Note
                                     key={note.id}
                                     listType={type}
                                     index={index}
                                     note={note}
-                                    onDelete={onDelete}
-                                    setActive={setActive}
-                                    onChange={onChange}
-                                    onMove={onMove}
+                                    deleteNote={deleteNote}
+                                    setNoteActive={setNoteActive}
+                                    setNoteText={setNoteText}
+                                    moveNote={moveNote}
                                 />
                             ))}
                         </NoteListDropTarget>
@@ -36,7 +36,7 @@ class NoteList extends PureComponent {
                                 style['note-list__add'],
                                 style[type]
                             ])}
-                            onClick={this.addNote}
+                            onClick={this.addNewNote}
                         >
                             +
                         </button>

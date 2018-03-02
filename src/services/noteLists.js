@@ -4,7 +4,7 @@ import { NOTE_LIST_TYPE } from 'constants/note';
 export default class NoteListsService {
     static getInitialState() {
         return {
-            notes: {
+            lists: {
                 [NOTE_LIST_TYPE.STRENGTHS]: [],
                 [NOTE_LIST_TYPE.THREATS]: [],
                 [NOTE_LIST_TYPE.OPPORTUNITIES]: [],
@@ -18,47 +18,47 @@ export default class NoteListsService {
         const newNote = new Note(state.idCounter);
         return {
             ...state,
-            notes: {
-                ...state.notes,
-                [noteListType]: state.notes[noteListType].concat([newNote])
+            lists: {
+                ...state.lists,
+                [noteListType]: state.lists[noteListType].concat([newNote])
             },
             idCounter: state.idCounter + 1
         };
     }
 
     static deleteNote(state, noteListType, noteId) {
-        const newNoteList = state.notes[noteListType].filter(
+        const newNoteList = state.lists[noteListType].filter(
             note => note.id !== noteId
         );
         return {
             ...state,
-            notes: {
-                ...state.notes,
+            lists: {
+                ...state.lists,
                 [noteListType]: newNoteList
             }
         };
     }
 
     static getNoteIndex(state, noteListType, noteId) {
-        return state.notes[noteListType].findIndex(note => note.id === noteId);
+        return state.lists[noteListType].findIndex(note => note.id === noteId);
     }
 
     static getNote(state, noteListType, noteId) {
-        return state.notes[noteListType].find(note => note.id === noteId);
+        return state.lists[noteListType].find(note => note.id === noteId);
     }
 
     static replaceNote(state, noteListType, noteId, newNote) {
         const noteIndex = this.getNoteIndex(state, noteListType, noteId);
         const newNoteList = [
-            ...state.notes[noteListType].slice(0, noteIndex),
+            ...state.lists[noteListType].slice(0, noteIndex),
             newNote,
-            ...state.notes[noteListType].slice(noteIndex + 1)
+            ...state.lists[noteListType].slice(noteIndex + 1)
         ];
 
         return {
             ...state,
-            notes: {
-                ...state.notes,
+            lists: {
+                ...state.lists,
                 [noteListType]: newNoteList
             }
         };
@@ -88,15 +88,15 @@ export default class NoteListsService {
 
     static insertNote(state, noteListType, noteIndex, newNote) {
         const newNoteList = [
-            ...state.notes[noteListType].slice(0, noteIndex),
+            ...state.lists[noteListType].slice(0, noteIndex),
             newNote,
-            ...state.notes[noteListType].slice(noteIndex)
+            ...state.lists[noteListType].slice(noteIndex)
         ];
 
         return {
             ...state,
-            notes: {
-                ...state.notes,
+            lists: {
+                ...state.lists,
                 [noteListType]: newNoteList
             }
         };
@@ -112,7 +112,7 @@ export default class NoteListsService {
         const sourceNote = this.getNote(state, sourceListType, sourceNoteId);
 
         if (targetIndex === undefined) {
-            const targetNoteListLength = state.notes[targetListType].length;
+            const targetNoteListLength = state.lists[targetListType].length;
             if (targetNoteListLength) {
                 targetIndex = targetNoteListLength - 1;
             } else {

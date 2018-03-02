@@ -4,7 +4,10 @@ import style from './style';
 import { splitClasses } from 'utils/className';
 
 const MenuItem = ({ children, onClick, className }) => (
-    <div className={splitClasses([style.menu__item, className])} onClick={onClick}>
+    <div
+        className={splitClasses([style.menu__item, className])}
+        onClick={onClick}
+    >
         {children}
     </div>
 );
