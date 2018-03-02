@@ -15,7 +15,6 @@ class NoteList extends PureComponent {
         return (
             <div className={splitClasses([style['note-list'], style[type]])}>
                 <div className={style['note-list__container']}>
-                    <h3 className={style['note-list__header']}>{type}</h3>
                     <div className={style['note-list__widget']}>
                         <NoteListDropTarget type={type} moveNote={moveNote}>
                             {notes.map((note, index) => (
@@ -31,15 +30,20 @@ class NoteList extends PureComponent {
                                 />
                             ))}
                         </NoteListDropTarget>
-                        <button
-                            className={splitClasses([
-                                style['note-list__add'],
-                                style[type]
-                            ])}
-                            onClick={this.addNewNote}
-                        >
-                            +
-                        </button>
+                    </div>
+                    <div className={style['note-list__footer']}>
+                        <h3 className={style['note-list__type']}>{type}</h3>
+                        <div className={style['note-list__button-block']}>
+                            <button
+                                className={splitClasses([
+                                    style['note-list__button'],
+                                    style[type]
+                                ])}
+                                onClick={this.addNewNote}
+                            >
+                                +
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
