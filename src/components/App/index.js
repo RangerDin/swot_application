@@ -1,6 +1,8 @@
 import { h, Component } from 'preact';
 import { DragDropContext } from 'preact-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
+import TouchBackend from 'react-dnd-touch-backend';
+import MultiBackend, { TouchTransition } from 'react-dnd-multi-backend';
 import 'normalize.css';
 
 import style from './style';
@@ -108,4 +110,17 @@ class App extends Component {
     }
 }
 
-export default DragDropContext(HTML5Backend)(App);
+const HTML5ToTouch = {
+    backends: [
+        {
+            backend: HTML5Backend
+        },
+        {
+            backend: TouchBackend({ enableMouseEvents: true }),
+            preview: true,
+            transition: TouchTransition
+        }
+    ]
+};
+
+export default DragDropContext(MultiBackend(HTML5ToTouch))(App);
