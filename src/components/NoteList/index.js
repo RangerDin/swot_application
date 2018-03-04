@@ -19,7 +19,9 @@ class NoteList extends PureComponent {
         setNoteText,
         moveNote,
         isActive,
-        activateNoteList
+        activateNoteList,
+        setNoteDragging,
+        isNoteDragging
     }) {
         const noteListClasses = [style['note-list'], style[type]];
         noteListClasses.push(
@@ -34,6 +36,7 @@ class NoteList extends PureComponent {
                             type={type}
                             moveNote={moveNote}
                             activateNoteList={activateNoteList}
+                            isHighlighted={!isActive && isNoteDragging}
                         >
                             {notes.map((note, index) => (
                                 <Note
@@ -45,6 +48,8 @@ class NoteList extends PureComponent {
                                     setNoteActive={setNoteActive}
                                     setNoteText={setNoteText}
                                     moveNote={moveNote}
+                                    setNoteDragging={setNoteDragging}
+                                    activateNoteList={activateNoteList}
                                 />
                             ))}
                         </NoteListDropTarget>

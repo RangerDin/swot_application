@@ -64,8 +64,19 @@ $note-list-header-content-height: 30px;
     }
 
     &__drop-target {
+        box-sizing: border-box;
         height: 100%;
         overflow: auto;
+        padding: 5px;
+        width: 100%;
+
+        &_draggable {
+            border: 1px solid #fff;
+        }
+    }
+
+    &__drop-target-container {
+        height: 100%;
         width: 100%;
     }
 
@@ -103,10 +114,22 @@ $note-list-header-content-height: 30px;
             }
 
             .note-list__drop-target {
+                cursor: pointer;
                 display: block;
-                opacity: 0;
                 position: absolute;
                 z-index: 1;
+
+                &:hover {
+                    border: 1px solid #fff;
+                }
+
+                &_draggable {
+                    border: 1px solid #fff;
+                }
+            }
+
+            .note-list__drop-target-container {
+                display: none;
             }
 
             .note-list__button-block {

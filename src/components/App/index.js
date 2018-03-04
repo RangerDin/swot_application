@@ -18,7 +18,8 @@ class App extends Component {
 
         this.state = {
             notes: NoteListsService.getInitialState(),
-            activeNoteList: NOTE_LIST_TYPE.STRENGTHS
+            activeNoteList: NOTE_LIST_TYPE.STRENGTHS,
+            isNoteDragging: false
         };
     }
 
@@ -100,6 +101,14 @@ class App extends Component {
         }
     };
 
+    setNoteDragging = isDragging => {
+        if (isDragging !== this.state.isNoteDragging) {
+            this.setState({
+                isNoteDragging: isDragging
+            });
+        }
+    };
+
     render() {
         return (
             <div className={style.app}>
@@ -113,6 +122,8 @@ class App extends Component {
                     setNoteText={this.setNoteText}
                     activeNoteList={this.state.activeNoteList}
                     activateNoteList={this.activateNoteList}
+                    setNoteDragging={this.setNoteDragging}
+                    isNoteDragging={this.state.isNoteDragging}
                 />
             </div>
         );

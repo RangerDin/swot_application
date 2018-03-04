@@ -4,19 +4,23 @@ import { DropTarget } from 'preact-dnd';
 
 import style from './style';
 import { ItemTypes } from 'constants/dnd';
+import { splitClasses } from 'utils/className';
 
 class NoteListsDropTarget extends PureComponent {
     onClick = () => {
         this.props.activateNoteList(this.props.type);
     };
 
-    render({ children, connectDropTarget }) {
+    render({ children, connectDropTarget, isHighlighted }) {
+        const classes = [style['note-list__drop-target']];
+        if (isHighlighted) {
+            classes.push(style['note-list__drop-target_draggable']);
+        }
         return connectDropTarget(
-            <div
-                className={style['note-list__drop-target']}
-                onClick={this.onClick}
-            >
-                {children}
+            <div className={splitClasses(classes)} onClick={this.onClick}>
+                <div className={style['note-list__drop-target-container']}>
+                    {children}
+                </div>
             </div>
         );
     }

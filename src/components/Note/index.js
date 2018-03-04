@@ -101,6 +101,9 @@ const collectTarget = connect => ({
 
 const source = {
     beginDrag(props) {
+        props.setNoteDragging(true);
+        props.activateNoteList(props.listType);
+
         return {
             id: props.note.id,
             listType: props.listType,
@@ -112,6 +115,9 @@ const source = {
     },
     isDragging(props, monitor) {
         return props.note.id === monitor.getItem().id;
+    },
+    endDrag(props) {
+        props.setNoteDragging(false);
     }
 };
 
