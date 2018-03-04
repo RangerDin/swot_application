@@ -4,6 +4,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import 'normalize.css';
 
 import style from './style';
+import { NOTE_LIST_TYPE } from 'constants/note';
 import Main from 'components/Main';
 import Menu from 'components/Menu';
 import NoteListsService from 'services/noteLists';
@@ -14,7 +15,8 @@ class App extends Component {
         super(props);
 
         this.state = {
-            notes: NoteListsService.getInitialState()
+            notes: NoteListsService.getInitialState(),
+            activeNoteList: NOTE_LIST_TYPE.STRENGTHS
         };
     }
 
@@ -79,6 +81,14 @@ class App extends Component {
         });
     };
 
+    activateNoteList = type => {
+        if (this.state.activeNoteList !== type) {
+            this.setState({
+                activeNoteList: type
+            });
+        }
+    };
+
     render() {
         return (
             <div className={style.app}>
@@ -90,6 +100,8 @@ class App extends Component {
                     moveNote={this.moveNote}
                     setNoteActive={this.setNoteActive}
                     setNoteText={this.setNoteText}
+                    activeNoteList={this.state.activeNoteList}
+                    activateNoteList={this.activateNoteList}
                 />
             </div>
         );

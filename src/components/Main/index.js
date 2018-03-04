@@ -17,6 +17,8 @@ class Main extends Component {
                         setNoteActive={props.setNoteActive}
                         setNoteText={props.setNoteText}
                         moveNote={props.moveNote}
+                        isActive={listType === props.activeNoteList}
+                        activateNoteList={props.activateNoteList}
                     />
                 ))}
             </div>

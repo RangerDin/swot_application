@@ -11,12 +11,30 @@ class NoteList extends PureComponent {
         this.props.addNewNote(this.props.type);
     };
 
-    render({ type, notes, deleteNote, setNoteActive, setNoteText, moveNote }) {
+    render({
+        type,
+        notes,
+        deleteNote,
+        setNoteActive,
+        setNoteText,
+        moveNote,
+        isActive,
+        activateNoteList
+    }) {
+        const noteListClasses = [style['note-list'], style[type]];
+        noteListClasses.push(
+            style[isActive ? 'note-list_active' : 'note-list_minimized']
+        );
+
         return (
-            <div className={splitClasses([style['note-list'], style[type]])}>
+            <div className={splitClasses(noteListClasses)}>
                 <div className={style['note-list__container']}>
                     <div className={style['note-list__widget']}>
-                        <NoteListDropTarget type={type} moveNote={moveNote}>
+                        <NoteListDropTarget
+                            type={type}
+                            moveNote={moveNote}
+                            activateNoteList={activateNoteList}
+                        >
                             {notes.map((note, index) => (
                                 <Note
                                     key={note.id}
@@ -32,7 +50,12 @@ class NoteList extends PureComponent {
                         </NoteListDropTarget>
                     </div>
                     <div className={style['note-list__footer']}>
-                        <h3 className={style['note-list__type']}>{type}</h3>
+                        <h3
+                            onClick={this.onListTypeClick}
+                            className={style['note-list__type']}
+                        >
+                            {type}
+                        </h3>
                         <div className={style['note-list__button-block']}>
                             <button
                                 className={splitClasses([

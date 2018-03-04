@@ -6,9 +6,18 @@ import style from './style';
 import { ItemTypes } from 'constants/dnd';
 
 class NoteListsDropTarget extends PureComponent {
+    onClick = () => {
+        this.props.activateNoteList(this.props.type);
+    };
+
     render({ children, connectDropTarget }) {
         return connectDropTarget(
-            <div className={style['note-list__drop-target']}>{children}</div>
+            <div
+                className={style['note-list__drop-target']}
+                onClick={this.onClick}
+            >
+                {children}
+            </div>
         );
     }
 }

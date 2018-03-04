@@ -11,8 +11,11 @@ html {
     box-sizing: border-box;
     color: $app-text-color;
     font-family: $app-text-font-family;
+    height: 100%;
     margin: 0 auto;
     max-width: $app-max-width;
     min-height: 100%;
+    min-height: $app-min-height;
+    min-width: $app-min-width;
     position: relative;
 }

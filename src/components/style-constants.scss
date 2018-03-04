@@ -4,6 +4,8 @@ $app-header-font-family: 'Rammetto One', cursive;
 $app-border-color: #3d3d55;
 $app-background-color: #2b2b37;
 $app-max-width: 1200px;
+$app-min-width: 300px;
+$app-min-height: 300px;
 $header-height: 40px;
 $made-by-text-color: #6a6a84;
 $main-max-width: 1000px;
@@ -16,3 +18,5 @@ $opportunities-background-color: #1d441d;
 $opportunities-background-color-light: #2e6c2e;
 $weaknesses-background-color: #562a69;
 $weaknesses-background-color-light: #904fad;
+
+$media-middle-width: 550px;
