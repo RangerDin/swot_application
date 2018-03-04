@@ -50,6 +50,15 @@ class App extends Component {
     };
 
     moveNote = (sourceListType, sourceNoteId, targetListType, targetIndex) => {
+        if (targetIndex === undefined && sourceListType === targetListType) {
+            return;
+        }
+
+        const targetNote = this.state.notes.lists[targetListType][targetIndex];
+        if (targetNote && targetNote.id === sourceNoteId) {
+            return;
+        }
+
         this.setState({
             notes: NoteListsService.moveNote(
                 this.state.notes,
