@@ -11,6 +11,34 @@ class NoteList extends PureComponent {
         this.props.addNewNote(this.props.type);
     };
 
+    scrollToBottom = () => {
+        this.dropTarget.base.scrollTop = this.dropTarget.base.scrollHeight;
+    };
+
+    saveLastAddedNoteRef = node => {
+        if (
+            this.props.lastAddedNote &&
+            this.props.lastAddedNote.id === node.props.note.id
+        ) {
+            this.lastAddedNoteRef = node;
+        }
+    };
+
+    componentWillUpdate() {
+        this.lastAddedNoteRef = null;
+    }
+
+    componentDidUpdate() {
+        if (this.props.lastAddedNote) {
+            this.scrollToBottom();
+            if (this.lastAddedNoteRef) {
+                const note = this.lastAddedNoteRef.props.note;
+                this.props.setNoteActive(this.props.type, note.id, true);
+            }
+            this.props.resetLastAddedNote();
+        }
+    }
+
     render({
         type,
         notes,
@@ -21,7 +49,8 @@ class NoteList extends PureComponent {
         isActive,
         activateNoteList,
         setNoteDragging,
-        isNoteDragging
+        isNoteDragging,
+        lastAddedNote
     }) {
         const noteListClasses = [style['note-list'], style[type]];
         noteListClasses.push(
@@ -33,6 +62,9 @@ class NoteList extends PureComponent {
                 <div className={style['note-list__container']}>
                     <div className={style['note-list__widget']}>
                         <NoteListDropTarget
+                            ref={node => {
+                                this.dropTarget = node;
+                            }}
                             type={type}
                             moveNote={moveNote}
                             activateNoteList={activateNoteList}
@@ -40,6 +72,7 @@ class NoteList extends PureComponent {
                         >
                             {notes.map((note, index) => (
                                 <Note
+                                    ref={this.saveLastAddedNoteRef}
                                     key={note.id}
                                     listType={type}
                                     index={index}
@@ -50,6 +83,7 @@ class NoteList extends PureComponent {
                                     moveNote={moveNote}
                                     setNoteDragging={setNoteDragging}
                                     activateNoteList={activateNoteList}
+                                    lastAddedNote={lastAddedNote}
                                 />
                             ))}
                         </NoteListDropTarget>

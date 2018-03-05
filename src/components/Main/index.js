@@ -21,6 +21,8 @@ class Main extends Component {
                         activateNoteList={props.activateNoteList}
                         setNoteDragging={props.setNoteDragging}
                         isNoteDragging={props.isNoteDragging}
+                        resetLastAddedNote={props.resetLastAddedNote}
+                        lastAddedNote={props.lastAddedNote}
                     />
                 ))}
             </div>

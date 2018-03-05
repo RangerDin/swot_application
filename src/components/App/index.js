@@ -12,6 +12,8 @@ import Menu from 'components/Menu';
 import NoteListsService from 'services/noteLists';
 import FileService from 'services/file';
 
+const lastAddedNoteInitialState = null;
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -19,13 +21,29 @@ class App extends Component {
         this.state = {
             notes: NoteListsService.getInitialState(),
             activeNoteList: NOTE_LIST_TYPE.STRENGTHS,
-            isNoteDragging: false
+            isNoteDragging: false,
+            lastAddedNote: lastAddedNoteInitialState
         };
     }
 
     addNewNote = listType => {
+        const newNotes = NoteListsService.addNewNote(
+            this.state.notes,
+            listType
+        );
+        const listToAdd = newNotes.lists[listType];
         this.setState({
-            notes: NoteListsService.addNewNote(this.state.notes, listType)
+            notes: newNotes,
+            lastAddedNote: {
+                id: listToAdd[listToAdd.length - 1].id,
+                listType: listType
+            }
+        });
+    };
+
+    resetLastAddedNote = () => {
+        this.setState({
+            lastAddedNote: lastAddedNoteInitialState
         });
     };
 
@@ -124,6 +142,8 @@ class App extends Component {
                     activateNoteList={this.activateNoteList}
                     setNoteDragging={this.setNoteDragging}
                     isNoteDragging={this.state.isNoteDragging}
+                    resetLastAddedNote={this.resetLastAddedNote}
+                    lastAddedNote={this.state.lastAddedNote}
                 />
             </div>
         );
