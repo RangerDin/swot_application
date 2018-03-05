@@ -100,6 +100,15 @@ class App extends Component {
         });
     };
 
+    deleteAllNotes = noteListType => {
+        this.setState({
+            notes: NoteListsService.deleteAllNotesFromList(
+                this.state.notes,
+                noteListType
+            )
+        });
+    };
+
     onLoadFile = fileContent => {
         const notes = FileService.loadSWOTFromFile(fileContent);
         if (!notes) {
@@ -144,6 +153,7 @@ class App extends Component {
                     isNoteDragging={this.state.isNoteDragging}
                     resetLastAddedNote={this.resetLastAddedNote}
                     lastAddedNote={this.state.lastAddedNote}
+                    deleteAllNotes={this.deleteAllNotes}
                 />
             </div>
         );

@@ -12,6 +12,10 @@ class NoteList extends PureComponent {
         this.props.addNewNote(this.props.type);
     };
 
+    deleteAllNotes = () => {
+        this.props.deleteAllNotes(this.props.type);
+    };
+
     scrollToBottom = () => {
         this.dropTarget.base.scrollTop = this.dropTarget.base.scrollHeight;
     };
@@ -51,7 +55,7 @@ class NoteList extends PureComponent {
         activateNoteList,
         setNoteDragging,
         isNoteDragging,
-        lastAddedNote
+        lastAddedNote,
     }) {
         const noteListClasses = [style['note-list'], style[type]];
         noteListClasses.push(
@@ -89,7 +93,11 @@ class NoteList extends PureComponent {
                             ))}
                         </NoteListDropTarget>
                     </div>
-                    <Footer type={type} addNewNote={this.addNewNote} />
+                    <Footer
+                        type={type}
+                        addNewNote={this.addNewNote}
+                        deleteAllNotes={this.deleteAllNotes}
+                    />
                 </div>
             </div>
         );
