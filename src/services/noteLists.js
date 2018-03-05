@@ -114,7 +114,7 @@ export default class NoteListsService {
         if (targetIndex === undefined) {
             const targetNoteListLength = state.lists[targetListType].length;
             if (targetNoteListLength) {
-                targetIndex = targetNoteListLength - 1;
+                targetIndex = targetNoteListLength;
             } else {
                 targetIndex = 0;
             }
