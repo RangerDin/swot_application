@@ -2,6 +2,7 @@
 @import 'components/style-constants';
 
 $note-button-width: 30px;
+$note-icon-size: 25px;
 
 .note {
     @include clearfix;
@@ -15,6 +16,11 @@ $note-button-width: 30px;
     &__view-container {
         padding-right: $note-button-width;
         position: relative;
+    }
+
+    &__view-icon {
+        height: $note-icon-size;
+        width: $note-icon-size;
     }
 
     &__view {

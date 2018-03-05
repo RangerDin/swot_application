@@ -42,33 +42,38 @@ class Note extends PureComponent {
         return splitClasses(noteClasses);
     };
 
-    render({ note, listType, isDragging }) {
+    renderEditableView = () => (
+        <EditableView
+            listType={this.props.listType}
+            deactivateNote={this.deactivateNote}
+            onChange={this.setNoteText}
+            text={this.props.note.text}
+        />
+    );
+
+    renderReadOnlyView = () => (
+        <ReadOnlyView
+            listType={this.props.listType}
+            activateNote={this.activateNote}
+            deleteNote={this.deleteNote}
+        >
+            {this.props.note.text}
+        </ReadOnlyView>
+    );
+
+    renderNoteView = () => {
+        if (this.props.note.isBeingEdited) {
+            return this.renderEditableView();
+        }
+
+        return this.renderReadOnlyView();
+    };
+
+    render({ isDragging }) {
         return this.props.connectDragSource(
             this.props.connectDropTarget(
                 <div className={this.getNoteClasses(isDragging)}>
-                    <div className={style['note__view-container']}>
-                        {note.isBeingEdited ? (
-                            <EditableView
-                                listType={listType}
-                                onBlur={this.deactivateNote}
-                                onChange={this.setNoteText}
-                                text={note.text}
-                            />
-                        ) : (
-                            <ReadOnlyView
-                                listType={listType}
-                                onClick={this.activateNote}
-                            >
-                                {note.text}
-                            </ReadOnlyView>
-                        )}
-                        <button
-                            className={style.note__close}
-                            onClick={this.deleteNote}
-                        >
-                            &times;
-                        </button>
-                    </div>
+                    {this.renderNoteView()}
                 </div>
             )
         );
