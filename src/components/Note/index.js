@@ -73,7 +73,9 @@ class Note extends PureComponent {
         return this.props.connectDragSource(
             this.props.connectDropTarget(
                 <div className={this.getNoteClasses(isDragging)}>
-                    {this.renderNoteView()}
+                    {this.props.connectDragPreview(
+                        <div>{this.renderNoteView()}</div>
+                    )}
                 </div>
             )
         );
@@ -128,6 +130,7 @@ const source = {
 
 const collectSource = (connect, monitor) => ({
     connectDragSource: connect.dragSource(),
+    connectDragPreview: connect.dragPreview(),
     isDragging: monitor.isDragging()
 });
 
