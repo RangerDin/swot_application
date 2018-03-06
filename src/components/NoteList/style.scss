@@ -4,6 +4,7 @@ $note-list-header-height: 35px;
 $note-list-header-content-height: 30px;
 
 .note-list {
+    box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.3);
     box-sizing: border-box;
     display: inline-block;
     height: 49.5%;
@@ -50,6 +51,7 @@ $note-list-header-content-height: 30px;
 
     &__button {
         border: 0;
+        box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.3);
         color: $app-text-color;
         cursor: pointer;
         float: right;
