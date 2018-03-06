@@ -63,6 +63,11 @@ $note-list-header-content-height: 30px;
         padding: 0;
         width: 50px;
 
+        &:focus,
+        &:hover {
+            box-shadow: $app-box-shadow;
+        }
+
         &:last-child {
             margin-left: 0;
         }
@@ -131,11 +136,11 @@ $note-list-header-content-height: 30px;
                 z-index: 1;
 
                 &:hover {
-                    border: 1px solid #fff;
+                    box-shadow: $app-box-shadow;
                 }
 
                 &_draggable {
-                    border: 1px solid #fff;
+                    box-shadow: $app-box-shadow;
                 }
             }
 
