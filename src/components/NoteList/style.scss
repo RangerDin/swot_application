@@ -58,9 +58,14 @@ $note-list-header-content-height: 30px;
         height: $note-list-header-content-height;
         line-height: $note-list-header-content-height;
         margin: 0;
+        margin-left: 10px;
         overflow: hidden;
         padding: 0;
         width: 50px;
+
+        &:last-child {
+            margin-left: 0;
+        }
     }
 
     &__drop-target {
@@ -78,6 +83,12 @@ $note-list-header-content-height: 30px;
     &__drop-target-container {
         height: 100%;
         width: 100%;
+    }
+
+    &__button-icon {
+        height: $note-list-header-content-height;
+        line-height: $note-list-header-content-height;
+        width: $note-list-header-content-height;
     }
 
     @media all and (max-width: $media-middle-width) {
@@ -104,7 +115,7 @@ $note-list-header-content-height: 30px;
             }
 
             .note-list__type {
-                font-size: 10px;
+                font-size: 11px;
                 text-align: center;
                 width: 100%;
             }
