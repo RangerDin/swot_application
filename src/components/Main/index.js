@@ -23,6 +23,7 @@ class Main extends Component {
                         isNoteDragging={props.isNoteDragging}
                         resetLastAddedNote={props.resetLastAddedNote}
                         lastAddedNote={props.lastAddedNote}
+                        deleteAllNotes={props.deleteAllNotes}
                     />
                 ))}
             </div>

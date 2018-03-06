@@ -3,12 +3,17 @@ import { PureComponent } from 'preact-compat';
 
 import style from './style';
 import NoteListDropTarget from './NoteListDropTarget';
+import Footer from './Footer';
 import Note from 'components/Note';
 import { splitClasses } from 'utils/className';
 
 class NoteList extends PureComponent {
     addNewNote = () => {
         this.props.addNewNote(this.props.type);
+    };
+
+    deleteAllNotes = () => {
+        this.props.deleteAllNotes(this.props.type);
     };
 
     scrollToBottom = () => {
@@ -50,7 +55,7 @@ class NoteList extends PureComponent {
         activateNoteList,
         setNoteDragging,
         isNoteDragging,
-        lastAddedNote
+        lastAddedNote,
     }) {
         const noteListClasses = [style['note-list'], style[type]];
         noteListClasses.push(
@@ -88,25 +93,11 @@ class NoteList extends PureComponent {
                             ))}
                         </NoteListDropTarget>
                     </div>
-                    <div className={style['note-list__footer']}>
-                        <h3
-                            onClick={this.onListTypeClick}
-                            className={style['note-list__type']}
-                        >
-                            {type}
-                        </h3>
-                        <div className={style['note-list__button-block']}>
-                            <button
-                                className={splitClasses([
-                                    style['note-list__button'],
-                                    style[type]
-                                ])}
-                                onClick={this.addNewNote}
-                            >
-                                +
-                            </button>
-                        </div>
-                    </div>
+                    <Footer
+                        type={type}
+                        addNewNote={this.addNewNote}
+                        deleteAllNotes={this.deleteAllNotes}
+                    />
                 </div>
             </div>
         );

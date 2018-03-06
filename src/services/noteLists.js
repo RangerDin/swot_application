@@ -39,6 +39,16 @@ export default class NoteListsService {
         };
     }
 
+    static deleteAllNotesFromList(state, noteListType) {
+        return {
+            ...state,
+            lists: {
+                ...state.lists,
+                [noteListType]: []
+            }
+        };
+    }
+
     static getNoteIndex(state, noteListType, noteId) {
         return state.lists[noteListType].findIndex(note => note.id === noteId);
     }
