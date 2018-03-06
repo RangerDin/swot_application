@@ -3,11 +3,12 @@
 
 $note-button-width: 30px;
 $note-icon-size: 25px;
+$note-view-height: 30px;
 
 .note {
     @include clearfix;
 
-    padding-top: 4px;
+    padding-top: 7px;
 
     &:first-child {
         padding-top: 0;
@@ -31,22 +32,22 @@ $note-icon-size: 25px;
         font-family: $app-text-font-family;
         font-size: 16px;
         line-height: 24px;
-        min-height: 30px;
+        min-height: $note-view-height;
         padding: 3px 8px;
+        position: relative;
+
+        &:focus {
+            box-shadow: $app-box-shadow;
+        }
 
         &_editable {
             height: 30px;
             resize: vertical;
             width: 100%;
-
-            &:focus {
-                border: 2px solid $app-text-color;
-                padding: 1px 6px;
-            }
         }
     }
 
-    &__close {
+    &__button {
         background: none;
         border: 0;
         box-sizing: border-box;
@@ -56,11 +57,18 @@ $note-icon-size: 25px;
         font-size: 30px;
         height: 30px;
         line-height: 30px;
+        margin: 0;
         overflow: hidden;
+        padding: 0;
         position: absolute;
         right: 0;
         top: 0;
         width: $note-button-width;
+
+        &:focus,
+        &:hover {
+            box-shadow: $app-box-shadow;
+        }
     }
 
     &_dragging {

@@ -2,8 +2,8 @@ import { h } from 'preact';
 
 import style from './style';
 
-const Button = ({ children, onClick }) => (
-    <button className={style.note__close} onClick={onClick}>
+const Button = ({ title, children, onClick }) => (
+    <button title={title} className={style.note__button} onClick={onClick}>
         {children}
     </button>
 );

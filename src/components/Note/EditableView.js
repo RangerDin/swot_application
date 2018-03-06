@@ -9,9 +9,22 @@ export default class EditableNote extends Component {
     componentDidMount() {
         this.noteInput.focus();
     }
+
+    onKeyDown = event => {
+        if (
+            (event.key === 'Enter' && event.ctrlKey) ||
+            event.key === 'Escape'
+        ) {
+            this.props.deactivateNote();
+        }
+    };
+
     render({ text, listType, deactivateNote, onChange }) {
         return (
-            <div className={style['note__view-container']}>
+            <div
+                onKeyDown={this.onKeyDown}
+                className={style['note__view-container']}
+            >
                 <textarea
                     className={splitClasses([
                         style[listType],
@@ -23,7 +36,10 @@ export default class EditableNote extends Component {
                     onChange={onChange}
                     value={text}
                 />
-                <Button onClick={deactivateNote}>
+                <Button
+                    title="Save note text (Ctrl + Enter)"
+                    onClick={deactivateNote}
+                >
                     <img className={style['note__view-icon']} src={SaveIcon} />
                 </Button>
             </div>

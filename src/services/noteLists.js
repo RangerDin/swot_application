@@ -30,6 +30,10 @@ export default class NoteListsService {
         const newNoteList = state.lists[noteListType].filter(
             note => note.id !== noteId
         );
+        if (!newNoteList) {
+            return state;
+        }
+
         return {
             ...state,
             lists: {
@@ -76,6 +80,11 @@ export default class NoteListsService {
 
     static setNoteActive(state, noteListType, noteId, isActive) {
         const noteToReplace = this.getNote(state, noteListType, noteId);
+
+        if (!noteToReplace) {
+            return state;
+        }
+
         const newNote = new Note(
             noteToReplace.id,
             noteToReplace.text,
@@ -87,6 +96,10 @@ export default class NoteListsService {
 
     static setNoteText(state, noteListType, noteId, newText) {
         const noteToReplace = this.getNote(state, noteListType, noteId);
+        if (!noteToReplace) {
+            return state;
+        }
+
         const newNote = new Note(
             noteToReplace.id,
             newText,
