@@ -9,4 +9,9 @@ $main-padding: 10px;
     position: absolute;
     right: 0;
     top: $header-height + $main-padding;
+
+    @media all and (max-width: $media-middle-width) {
+        bottom: 0;
+        margin: 0;
+    }
 }
