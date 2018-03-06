@@ -24,7 +24,7 @@ class Menu extends Component {
     render({ notes }) {
         return (
             <div className={style.menu}>
-                <LeftMenuItem>
+                <LeftMenuItem title="Open file">
                     <FileOpenButton
                         className={splitClasses([
                             style.menu__item_interactable,
@@ -35,7 +35,7 @@ class Menu extends Component {
                         Open
                     </FileOpenButton>
                 </LeftMenuItem>
-                <LeftMenuItem>
+                <LeftMenuItem title="Download file">
                     <MenuLink
                         className={splitClasses([
                             style.menu__item_interactable,
