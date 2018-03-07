@@ -1,8 +1,7 @@
 import { h, Component } from 'preact';
 
 import style from './style';
-import Button from './Button';
-import SaveIcon from 'asserts/icons/icons8-save-32.png';
+import SaveButton from './SaveButton';
 import { splitClasses } from 'utils/className';
 
 export default class EditableNote extends Component {
@@ -36,12 +35,10 @@ export default class EditableNote extends Component {
                     onChange={onChange}
                     value={text}
                 />
-                <Button
-                    title="Save note text (Ctrl + Enter)"
+                <SaveButton
+                    className={style.note__button}
                     onClick={deactivateNote}
-                >
-                    <img className={style['note__view-icon']} src={SaveIcon} />
-                </Button>
+                />
             </div>
         );
     }

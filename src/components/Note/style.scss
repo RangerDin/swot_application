@@ -2,6 +2,7 @@
 @import 'components/style-constants';
 
 $note-button-width: 30px;
+$note-button-padding: 5px;
 $note-icon-size: 25px;
 $note-view-height: 30px;
 
@@ -15,7 +16,7 @@ $note-view-height: 30px;
     }
 
     &__view-container {
-        padding-right: $note-button-width;
+        padding-right: $note-button-width + $note-button-padding;
         position: relative;
     }
 
@@ -48,31 +49,34 @@ $note-view-height: 30px;
     }
 
     &__button {
-        background: none;
-        border: 0;
-        box-sizing: border-box;
-        color: $app-text-color;
-        cursor: pointer;
         display: block;
-        font-size: 30px;
-        height: 30px;
-        line-height: 30px;
-        margin: 0;
-        overflow: hidden;
-        padding: 0;
         position: absolute;
         right: 0;
         top: 0;
-        width: $note-button-width;
-
-        &:focus,
-        &:hover {
-            box-shadow: $app-box-shadow;
-        }
     }
 
     &_dragging {
         opacity: 0.5;
+    }
+}
+
+.button {
+    background: none;
+    border: 0;
+    box-sizing: border-box;
+    color: $app-text-color;
+    cursor: pointer;
+    font-size: 30px;
+    height: 30px;
+    line-height: 30px;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    width: $note-button-width;
+
+    &:enabled:focus,
+    &:enabled:hover {
+        box-shadow: $app-box-shadow;
     }
 }
 

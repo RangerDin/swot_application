@@ -1,7 +1,9 @@
 @import 'components/style-constants';
+@import 'components/helpers';
 
 $note-list-header-height: 35px;
 $note-list-header-content-height: 30px;
+$note-list-placeholder-width: 400px;
 
 .note-list {
     box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.3);
@@ -46,32 +48,16 @@ $note-list-header-content-height: 30px;
     }
 
     &__button-block {
+        float: right;
         height: $note-list-header-content-height;
     }
 
     &__button {
-        border: 0;
-        box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.3);
-        color: $app-text-color;
-        cursor: pointer;
-        float: right;
-        font-family: $app-header-font-family;
-        font-size: 24px;
-        height: $note-list-header-content-height;
-        line-height: $note-list-header-content-height;
-        margin: 0;
-        margin-left: 10px;
-        overflow: hidden;
-        padding: 0;
-        width: 50px;
-
-        &:focus,
-        &:hover {
-            box-shadow: $app-box-shadow;
-        }
+        float: left;
+        margin-right: 10px;
 
         &:last-child {
-            margin-left: 0;
+            margin-right: 0;
         }
     }
 
@@ -92,10 +78,17 @@ $note-list-header-content-height: 30px;
         width: 100%;
     }
 
-    &__button-icon {
-        height: $note-list-header-content-height;
-        line-height: $note-list-header-content-height;
-        width: $note-list-header-content-height;
+    &__placeholder {
+        box-sizing: border-box;
+        font-size: 14px;
+        height: 100%;
+        margin: 0 auto;
+        max-width: $note-list-placeholder-width;
+        padding: 0 15px;
+
+        .placeholder__paragraph {
+            margin-top: 5px;
+        }
     }
 
     @media all and (max-width: $media-middle-width) {
@@ -116,10 +109,6 @@ $note-list-header-content-height: 30px;
             padding: 0;
             position: relative;
             width: 33.3%;
-
-            .note-list__button {
-                display: none;
-            }
 
             .note-list__type {
                 font-size: 11px;
@@ -159,6 +148,15 @@ $note-list-header-content-height: 30px;
                 padding: 0;
             }
         }
+
+        &__placeholder {
+            font-size: 20px;
+            padding: 0 20px;
+
+            .placeholder__paragraph {
+                margin-top: 10px;
+            }
+        }
     }
 
     @media all and (min-width: $media-middle-width) {
@@ -184,10 +182,57 @@ $note-list-header-content-height: 30px;
     }
 }
 
+.placeholder {
+    &__paragraph {
+        @include clearfix;
+
+        color: #fff;
+        line-height: 30px;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    &__button {
+        float: left;
+        margin-right: 10px;
+    }
+}
+
+.button {
+    border: 0;
+    box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.3);
+    color: $app-text-color;
+    cursor: pointer;
+    font-family: $app-header-font-family;
+    font-size: 24px;
+    height: $note-list-header-content-height;
+    line-height: $note-list-header-content-height;
+    overflow: hidden;
+    padding: 0;
+    width: 50px;
+
+    &:disabled {
+        cursor: default;
+    }
+
+    &:enabled:focus,
+    &:enabled:hover {
+        box-shadow: $app-box-shadow;
+    }
+
+    &__icon {
+        height: $note-list-header-content-height;
+        line-height: $note-list-header-content-height;
+        width: $note-list-header-content-height;
+    }
+}
+
 .strengths {
     background: $strengths-background-color;
 
-    .note-list__button {
+    .button {
         background: $strengths-background-color-light;
     }
 }
@@ -195,7 +240,7 @@ $note-list-header-content-height: 30px;
 .threats {
     background: $threats-background-color;
 
-    .note-list__button {
+    .button {
         background: $threats-background-color-light;
     }
 }
@@ -203,7 +248,7 @@ $note-list-header-content-height: 30px;
 .opportunities {
     background: $opportunities-background-color;
 
-    .note-list__button {
+    .button {
         background: $opportunities-background-color-light;
     }
 }
@@ -211,7 +256,7 @@ $note-list-header-content-height: 30px;
 .weaknesses {
     background: $weaknesses-background-color;
 
-    .note-list__button {
+    .button {
         background: $weaknesses-background-color-light;
     }
 }

@@ -2,7 +2,7 @@ import { h } from 'preact';
 import { PureComponent } from 'preact-compat';
 
 import style from './style';
-import Button from './Button';
+import DeleteButton from './DeleteButton';
 import { splitClasses } from 'utils/className';
 
 export default class ReadOnlyView extends PureComponent {
@@ -33,12 +33,10 @@ export default class ReadOnlyView extends PureComponent {
                 >
                     {children}
                 </div>
-                <Button
-                    title="Delete note (Ctrl + Delete)"
+                <DeleteButton
+                    className={style.note__button}
                     onClick={deleteNote}
-                >
-                    &times;
-                </Button>
+                />
             </div>
         );
     }

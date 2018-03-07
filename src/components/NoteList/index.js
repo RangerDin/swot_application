@@ -4,6 +4,7 @@ import { PureComponent } from 'preact-compat';
 import style from './style';
 import NoteListDropTarget from './NoteListDropTarget';
 import Footer from './Footer';
+import Placeholder from './Placeholder';
 import Note from 'components/Note';
 import { splitClasses } from 'utils/className';
 
@@ -29,6 +30,25 @@ class NoteList extends PureComponent {
         }
     };
 
+    renderNotes = () => {
+        return this.props.notes.map((note, index) => (
+            <Note
+                ref={this.saveLastAddedNoteRef}
+                key={note.id}
+                listType={this.props.type}
+                index={index}
+                note={note}
+                deleteNote={this.props.deleteNote}
+                setNoteActive={this.props.setNoteActive}
+                setNoteText={this.props.setNoteText}
+                moveNote={this.props.moveNote}
+                setNoteDragging={this.props.setNoteDragging}
+                activateNoteList={this.props.activateNoteList}
+                lastAddedNote={this.props.lastAddedNote}
+            />
+        ));
+    };
+
     componentWillUpdate() {
         this.lastAddedNoteRef = null;
     }
@@ -44,19 +64,7 @@ class NoteList extends PureComponent {
         }
     }
 
-    render({
-        type,
-        notes,
-        deleteNote,
-        setNoteActive,
-        setNoteText,
-        moveNote,
-        isActive,
-        activateNoteList,
-        setNoteDragging,
-        isNoteDragging,
-        lastAddedNote,
-    }) {
+    render({ type, moveNote, isActive, activateNoteList, isNoteDragging }) {
         const noteListClasses = [style['note-list'], style[type]];
         noteListClasses.push(
             style[isActive ? 'note-list_active' : 'note-list_minimized']
@@ -75,22 +83,11 @@ class NoteList extends PureComponent {
                             activateNoteList={activateNoteList}
                             isHighlighted={!isActive && isNoteDragging}
                         >
-                            {notes.map((note, index) => (
-                                <Note
-                                    ref={this.saveLastAddedNoteRef}
-                                    key={note.id}
-                                    listType={type}
-                                    index={index}
-                                    note={note}
-                                    deleteNote={deleteNote}
-                                    setNoteActive={setNoteActive}
-                                    setNoteText={setNoteText}
-                                    moveNote={moveNote}
-                                    setNoteDragging={setNoteDragging}
-                                    activateNoteList={activateNoteList}
-                                    lastAddedNote={lastAddedNote}
-                                />
-                            ))}
+                            {this.props.notes.length ? (
+                                this.renderNotes()
+                            ) : (
+                                <Placeholder listType={type} />
+                            )}
                         </NoteListDropTarget>
                     </div>
                     <Footer

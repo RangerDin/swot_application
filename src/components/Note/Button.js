@@ -1,9 +1,15 @@
 import { h } from 'preact';
 
 import style from './style';
+import { splitClasses } from 'utils/className';
 
-const Button = ({ title, children, onClick }) => (
-    <button title={title} className={style.note__button} onClick={onClick}>
+const Button = ({ title, disabled, children, className, onClick }) => (
+    <button
+        title={title}
+        className={splitClasses([style.button, className])}
+        disabled={disabled}
+        onClick={onClick}
+    >
         {children}
     </button>
 );
