@@ -229,6 +229,33 @@ $note-list-placeholder-width: 400px;
     }
 }
 
+.delete-all-dialog {
+    display: table;
+    height: 100%;
+    width: 100%;
+
+    &__container {
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+        width: 100%;
+    }
+
+    &__question {
+        font-size: 20px;
+    }
+
+    &__button-container {
+        margin-top: 10px;
+    }
+
+    &__button {
+        font-family: $app-text-font-family;
+        font-size: 16px;
+        margin-left: 10px;
+    }
+}
+
 .strengths {
     background: $strengths-background-color;
 

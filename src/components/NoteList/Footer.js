@@ -5,7 +5,7 @@ import ListType from './ListType';
 import AddButton from './AddButton';
 import DeleteButton from './DeleteButton';
 
-const Footer = ({ type, addNewNote, deleteAllNotes }) => (
+const Footer = ({ type, addNewNote, requestDeleteAllNotes }) => (
     <div className={style['note-list__footer']}>
         <ListType type={type} />
         <div className={style['note-list__button-block']}>
@@ -15,7 +15,7 @@ const Footer = ({ type, addNewNote, deleteAllNotes }) => (
             />
             <DeleteButton
                 className={style['note-list__button']}
-                onClick={deleteAllNotes}
+                onClick={requestDeleteAllNotes}
             />
         </div>
     </div>

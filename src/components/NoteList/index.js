@@ -5,16 +5,25 @@ import style from './style';
 import NoteListDropTarget from './NoteListDropTarget';
 import Footer from './Footer';
 import Placeholder from './Placeholder';
+import DeleteAllDialog from './DeleteAllDialog';
 import Note from 'components/Note';
 import { splitClasses } from 'utils/className';
 
 class NoteList extends PureComponent {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            isDeleteAllDialogShown: false
+        };
+    }
+
     addNewNote = () => {
         this.props.addNewNote(this.props.type);
     };
 
-    deleteAllNotes = () => {
-        this.props.deleteAllNotes(this.props.type);
+    requestDeleteAllNotes = () => {
+        this.showDeleteAllDialog();
     };
 
     scrollToBottom = () => {
@@ -28,6 +37,23 @@ class NoteList extends PureComponent {
         ) {
             this.lastAddedNoteRef = node;
         }
+    };
+
+    showDeleteAllDialog = () => {
+        this.setState({
+            isDeleteAllDialogShown: true
+        });
+    };
+
+    hideDeleteAllDialog = () => {
+        this.setState({
+            isDeleteAllDialogShown: false
+        });
+    };
+
+    deleteAllNotesAndCloseDialog = () => {
+        this.props.deleteAllNotes(this.props.type);
+        this.hideDeleteAllDialog();
     };
 
     renderNotes = () => {
@@ -47,6 +73,24 @@ class NoteList extends PureComponent {
                 lastAddedNote={this.props.lastAddedNote}
             />
         ));
+    };
+
+    renderContent = () => {
+        if (this.state.isDeleteAllDialogShown) {
+            return (
+                <DeleteAllDialog
+                    type={this.props.type}
+                    yesHandler={this.deleteAllNotesAndCloseDialog}
+                    noHandler={this.hideDeleteAllDialog}
+                />
+            );
+        }
+
+        if (!this.props.notes.length) {
+            return <Placeholder listType={this.props.type} />;
+        }
+
+        return this.renderNotes();
     };
 
     componentWillUpdate() {
@@ -83,18 +127,16 @@ class NoteList extends PureComponent {
                             activateNoteList={activateNoteList}
                             isHighlighted={!isActive && isNoteDragging}
                         >
-                            {this.props.notes.length ? (
-                                this.renderNotes()
-                            ) : (
-                                <Placeholder listType={type} />
-                            )}
+                            {this.renderContent()}
                         </NoteListDropTarget>
                     </div>
-                    <Footer
-                        type={type}
-                        addNewNote={this.addNewNote}
-                        deleteAllNotes={this.deleteAllNotes}
-                    />
+                    {!this.state.isDeleteAllDialogShown && (
+                        <Footer
+                            type={type}
+                            addNewNote={this.addNewNote}
+                            requestDeleteAllNotes={this.requestDeleteAllNotes}
+                        />
+                    )}
                 </div>
             </div>
         );
