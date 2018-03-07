@@ -9,6 +9,7 @@ import style from './style';
 import { NOTE_LIST_TYPE } from 'constants/note';
 import Main from 'components/Main';
 import Menu from 'components/Menu';
+import Message from 'components/Message';
 import NoteListsService from 'services/noteLists';
 import FileService from 'services/file';
 
@@ -22,7 +23,8 @@ class App extends Component {
             notes: NoteListsService.getInitialState(),
             activeNoteList: NOTE_LIST_TYPE.STRENGTHS,
             isNoteDragging: false,
-            lastAddedNote: lastAddedNoteInitialState
+            lastAddedNote: lastAddedNoteInitialState,
+            message: ''
         };
     }
 
@@ -112,6 +114,7 @@ class App extends Component {
     onLoadFile = fileContent => {
         const notes = FileService.loadSWOTFromFile(fileContent);
         if (!notes) {
+            this.showMessage('Incorrect file type.');
             return;
         }
 
@@ -136,10 +139,30 @@ class App extends Component {
         }
     };
 
+    showMessage = text => {
+        this.setState({
+            message: text
+        });
+    };
+
+    closeMessage = () => {
+        this.setState({
+            message: ''
+        });
+    };
+
     render() {
         return (
             <div className={style.app}>
-                <Menu notes={this.state.notes} onLoad={this.onLoadFile} />
+                <Message
+                    text={this.state.message}
+                    onClick={this.closeMessage}
+                />
+                <Menu
+                    notes={this.state.notes}
+                    onLoad={this.onLoadFile}
+                    showMessage={this.showMessage}
+                />
                 <Main
                     notes={this.state.notes}
                     addNewNote={this.addNewNote}

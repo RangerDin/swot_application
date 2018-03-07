@@ -1,0 +1,43 @@
+@import "components/style-constants";
+
+$message-height: 150px;
+$message-width: 300px;
+
+.message {
+    background: $app-background-color;
+    border: 2px solid $app-border-color;
+    bottom: 0;
+    color: #fff;
+    display: table;
+    height: $message-height;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: $message-width;
+    z-index: 1;
+
+    &__container {
+        display: table-cell;
+        height: 100%;
+        text-align: center;
+        vertical-align: middle;
+        width: 100%;
+    }
+
+    &__text {
+        text-align: center;
+    }
+
+    &__button {
+        background: $app-light-background-color;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        font-family: $app-text-font-family;
+        font-size: 20px;
+        margin-top: 20px;
+        padding: 5px 15px;
+    }
+}
