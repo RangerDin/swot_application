@@ -3,11 +3,11 @@ import { h } from 'preact';
 import style from './style';
 import { splitClasses } from 'utils/className';
 
-const MenuLink = ({ href, download, children, className }) => (
+const MenuLink = ({ href, onClick, children, className }) => (
     <a
         href={href}
-        download={download}
         className={splitClasses([style.menu__link, className])}
+        onClick={onClick}
     >
         {children}
     </a>

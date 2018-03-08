@@ -1,15 +1,13 @@
-import { h, Component } from 'preact';
+import { h } from 'preact';
+import { PureComponent } from 'preact-compat';
 
 import style from './style';
 import { LeftMenuItem } from './MenuItem';
 import MenuLink from './MenuLink';
 import FileOpenButton from 'components/FileOpenButton';
-import FileService from 'services/file';
 import { splitClasses } from 'utils/className';
 
-const SAVED_FILE_NAME = 'swot.json';
-
-class Menu extends Component {
+class Menu extends PureComponent {
     onChange = event => {
         if (!event.target.files[0]) {
             return;
@@ -21,7 +19,7 @@ class Menu extends Component {
         reader.readAsText(event.target.files[0]);
     };
 
-    render({ notes }) {
+    render({ onSave }) {
         return (
             <div className={style.menu}>
                 <LeftMenuItem title="Open file">
@@ -41,8 +39,7 @@ class Menu extends Component {
                             style.menu__item_interactable,
                             style.menu__item_padded
                         ])}
-                        href={FileService.getSaveLink(notes)}
-                        download={SAVED_FILE_NAME}
+                        onClick={onSave}
                     >
                         Save
                     </MenuLink>

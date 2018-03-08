@@ -1,4 +1,7 @@
 import { NOTE_LIST_TYPE } from 'constants/note';
+import FileSaver from 'file-saver';
+
+const FILE_NAME = 'swot.json';
 
 export default class FileService {
     static isSupported() {
@@ -6,8 +9,14 @@ export default class FileService {
         return FileAPIObjectNames.every(name => name in window);
     }
 
-    static getSaveLink(swot) {
-        return `data:application/json;base64,${btoa(JSON.stringify(swot))}`;
+    static getFile(swot) {
+        return new File([JSON.stringify(swot)], FILE_NAME, {
+            type: 'application/json;charset=utf-8'
+        });
+    }
+
+    static saveSWOTAsFile(swot) {
+        return FileSaver.saveAs(this.getFile(swot));
     }
 
     static checkNoteFormat(noteContent) {

@@ -123,6 +123,10 @@ class App extends Component {
         });
     };
 
+    onSaveFile = () => {
+        FileService.saveSWOTAsFile(this.state.notes);
+    };
+
     activateNoteList = type => {
         if (this.state.activeNoteList !== type) {
             this.setState({
@@ -158,11 +162,7 @@ class App extends Component {
                     text={this.state.message}
                     onClick={this.closeMessage}
                 />
-                <Menu
-                    notes={this.state.notes}
-                    onLoad={this.onLoadFile}
-                    showMessage={this.showMessage}
-                />
+                <Menu onLoad={this.onLoadFile} onSave={this.onSaveFile} />
                 <Main
                     notes={this.state.notes}
                     addNewNote={this.addNewNote}
