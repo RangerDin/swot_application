@@ -74,6 +74,10 @@ $note-view-height: 30px;
     padding: 0;
     width: $note-button-width;
 
+    &:disabled {
+        cursor: default;
+    }
+
     &:enabled:focus,
     &:enabled:hover {
         box-shadow: $app-box-shadow;
