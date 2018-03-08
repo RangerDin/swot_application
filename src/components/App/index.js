@@ -13,8 +13,6 @@ import Message from 'components/Message';
 import NoteListsService from 'services/noteLists';
 import FileService from 'services/file';
 
-const lastAddedNoteInitialState = null;
-
 class App extends Component {
     constructor(props) {
         super(props);
@@ -23,29 +21,23 @@ class App extends Component {
             notes: NoteListsService.getInitialState(),
             activeNoteList: NOTE_LIST_TYPE.STRENGTHS,
             isNoteDragging: false,
-            lastAddedNote: lastAddedNoteInitialState,
             message: ''
         };
     }
 
     addNewNote = listType => {
-        const newNotes = NoteListsService.addNewNote(
-            this.state.notes,
-            listType
-        );
+        let newNotes = NoteListsService.addNewNote(this.state.notes, listType);
         const listToAdd = newNotes.lists[listType];
-        this.setState({
-            notes: newNotes,
-            lastAddedNote: {
-                id: listToAdd[listToAdd.length - 1].id,
-                listType: listType
-            }
-        });
-    };
+        const addedNoteId = listToAdd[listToAdd.length - 1].id;
+        newNotes = NoteListsService.setNoteActive(
+            newNotes,
+            listType,
+            addedNoteId,
+            true
+        );
 
-    resetLastAddedNote = () => {
         this.setState({
-            lastAddedNote: lastAddedNoteInitialState
+            notes: newNotes
         });
     };
 
@@ -174,8 +166,6 @@ class App extends Component {
                     activateNoteList={this.activateNoteList}
                     setNoteDragging={this.setNoteDragging}
                     isNoteDragging={this.state.isNoteDragging}
-                    resetLastAddedNote={this.resetLastAddedNote}
-                    lastAddedNote={this.state.lastAddedNote}
                     deleteAllNotes={this.deleteAllNotes}
                 />
             </div>

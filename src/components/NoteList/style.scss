@@ -64,8 +64,6 @@ $note-list-placeholder-width: 400px;
     &__drop-target {
         box-sizing: border-box;
         height: 100%;
-        overflow: auto;
-        padding: 5px;
         width: 100%;
 
         &_draggable {
@@ -74,7 +72,10 @@ $note-list-placeholder-width: 400px;
     }
 
     &__drop-target-container {
+        box-sizing: border-box;
         height: 100%;
+        overflow: auto;
+        padding: 5px;
         width: 100%;
     }
 

@@ -30,15 +30,6 @@ class NoteList extends PureComponent {
         this.dropTarget.base.scrollTop = this.dropTarget.base.scrollHeight;
     };
 
-    saveLastAddedNoteRef = node => {
-        if (
-            this.props.lastAddedNote &&
-            this.props.lastAddedNote.id === node.props.note.id
-        ) {
-            this.lastAddedNoteRef = node;
-        }
-    };
-
     showDeleteAllDialog = () => {
         this.setState({
             isDeleteAllDialogShown: true
@@ -59,7 +50,6 @@ class NoteList extends PureComponent {
     renderNotes = () => {
         return this.props.notes.map((note, index) => (
             <Note
-                ref={this.saveLastAddedNoteRef}
                 key={note.id}
                 listType={this.props.type}
                 index={index}
@@ -70,7 +60,6 @@ class NoteList extends PureComponent {
                 moveNote={this.props.moveNote}
                 setNoteDragging={this.props.setNoteDragging}
                 activateNoteList={this.props.activateNoteList}
-                lastAddedNote={this.props.lastAddedNote}
             />
         ));
     };
@@ -92,21 +81,6 @@ class NoteList extends PureComponent {
 
         return this.renderNotes();
     };
-
-    componentWillUpdate() {
-        this.lastAddedNoteRef = null;
-    }
-
-    componentDidUpdate() {
-        if (this.props.lastAddedNote) {
-            this.scrollToBottom();
-            if (this.lastAddedNoteRef) {
-                const note = this.lastAddedNoteRef.props.note;
-                this.props.setNoteActive(this.props.type, note.id, true);
-            }
-            this.props.resetLastAddedNote();
-        }
-    }
 
     render({ type, moveNote, isActive, activateNoteList, isNoteDragging }) {
         const noteListClasses = [style['note-list'], style[type]];
