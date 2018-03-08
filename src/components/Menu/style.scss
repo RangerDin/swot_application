@@ -26,7 +26,8 @@
         }
 
         &_interactable {
-            &:hover {
+            &:hover,
+            &:focus {
                 background: $app-text-color;
                 color: $app-background-color;
             }

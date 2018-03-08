@@ -1,17 +1,32 @@
-import { h } from 'preact';
+import { h, Component } from 'preact';
 
 import style from './style';
 import { splitClasses } from 'utils/className';
 
-const FileOpenButton = ({ onChange, className, children }) => (
-    <label className={splitClasses([style['file-open-button'], className])}>
-        {children}
-        <input
-            className={style['file-open-button__input']}
-            type="file"
-            onChange={onChange}
-        />
-    </label>
-);
+export default class FileOpenButton extends Component {
+    onKeyDown = event => {
+        if (event.key === 'Enter') {
+            this.input.click();
+        }
+    };
 
-export default FileOpenButton;
+    saveInputRef = node => (this.input = node);
+
+    render({ onChange, className, children }) {
+        return (
+            <label
+                tabIndex="0"
+                onKeyDown={this.onKeyDown}
+                className={splitClasses([style['file-open-button'], className])}
+            >
+                {children}
+                <input
+                    ref={this.saveInputRef}
+                    className={style['file-open-button__input']}
+                    type="file"
+                    onChange={onChange}
+                />
+            </label>
+        );
+    }
+}

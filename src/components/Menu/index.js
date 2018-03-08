@@ -35,6 +35,7 @@ class Menu extends PureComponent {
                 </LeftMenuItem>
                 <LeftMenuItem title="Download file">
                     <MenuLink
+                        href="#"
                         className={splitClasses([
                             style.menu__item_interactable,
                             style.menu__item_padded
