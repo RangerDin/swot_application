@@ -109,6 +109,9 @@ class NoteList extends PureComponent {
                             type={type}
                             addNewNote={this.addNewNote}
                             requestDeleteAllNotes={this.requestDeleteAllNotes}
+                            isNoteListEmpty={
+                                !this.props.notes || !this.props.notes.length
+                            }
                         />
                     )}
                 </div>
