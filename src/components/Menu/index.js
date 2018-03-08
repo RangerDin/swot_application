@@ -2,7 +2,7 @@ import { h } from 'preact';
 import { PureComponent } from 'preact-compat';
 
 import style from './style';
-import { LeftMenuItem } from './MenuItem';
+import { LeftMenuItem, RightMenuItem } from './MenuItem';
 import MenuLink from './MenuLink';
 import FileOpenButton from 'components/FileOpenButton';
 import { splitClasses } from 'utils/className';
@@ -45,6 +45,18 @@ class Menu extends PureComponent {
                         Save
                     </MenuLink>
                 </LeftMenuItem>
+                <RightMenuItem>
+                    <MenuLink
+                        href="https://icons8.com"
+                        tabIndex="-1"
+                        className={splitClasses([
+                            style.menu__item_padded,
+                            style.menu__link_legal
+                        ])}
+                    >
+                        Icons by icons8
+                    </MenuLink>
+                </RightMenuItem>
             </div>
         );
     }
