@@ -1,7 +1,8 @@
 import { h, Component } from 'preact';
 
-import style from './style';
 import { splitClasses } from 'utils/className';
+
+import style from './style';
 
 export default class FileOpenButton extends Component {
     onKeyDown = event => {
