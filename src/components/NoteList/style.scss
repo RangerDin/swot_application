@@ -151,10 +151,11 @@ $note-list-placeholder-width: 400px;
         }
 
         &__placeholder {
-            font-size: 20px;
+            font-size: 18px;
             padding: 0 20px;
 
             .placeholder__paragraph {
+                line-height: 22px;
                 margin-top: 10px;
             }
         }
@@ -184,14 +185,25 @@ $note-list-placeholder-width: 400px;
 }
 
 .placeholder {
+    display: table;
+
+    &__container {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
     &__paragraph {
         @include clearfix;
 
         color: #fff;
-        line-height: 30px;
+        line-height: 18px;
 
         &:first-child {
             margin-top: 0;
+        }
+
+        &_with-illustration {
+            line-height: 30px;
         }
     }
 
