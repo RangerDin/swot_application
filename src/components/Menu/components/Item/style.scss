@@ -1,0 +1,29 @@
+@import 'components/style-constants';
+
+.item {
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    height: $header-height;
+    line-height: $header-height;
+
+    &_left {
+        float: left;
+    }
+
+    &_right {
+        float: right;
+    }
+
+    &_interactable {
+        &:hover,
+        &:focus {
+            background: $app-text-color;
+            color: $app-background-color;
+        }
+    }
+
+    &_padded {
+        padding: 0 20px;
+    }
+}

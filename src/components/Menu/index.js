@@ -1,11 +1,14 @@
 import { h } from 'preact';
 import { PureComponent } from 'preact-compat';
 
-import style from './style';
-import { LeftMenuItem, RightMenuItem } from './MenuItem';
-import MenuLink from './MenuLink';
 import FileOpenButton from 'components/FileOpenButton';
 import { splitClasses } from 'utils/className';
+
+import style from './style';
+import itemStyle from './components/Item/style';
+import linkStyle from './components/Link/style';
+import { LeftItem, RightItem } from './components/Item';
+import Link from './components/Link';
 
 class Menu extends PureComponent {
     onChange = event => {
@@ -22,41 +25,41 @@ class Menu extends PureComponent {
     render({ onSave }) {
         return (
             <div className={style.menu}>
-                <LeftMenuItem title="Open file">
+                <LeftItem title="Open file">
                     <FileOpenButton
                         className={splitClasses([
-                            style.menu__item_interactable,
-                            style.menu__item_padded
+                            itemStyle.item_interactable,
+                            itemStyle.item_padded
                         ])}
                         onChange={this.onChange}
                     >
                         Open
                     </FileOpenButton>
-                </LeftMenuItem>
-                <LeftMenuItem title="Download file">
-                    <MenuLink
+                </LeftItem>
+                <LeftItem title="Download file">
+                    <Link
                         href="#"
                         className={splitClasses([
-                            style.menu__item_interactable,
-                            style.menu__item_padded
+                            itemStyle.item_interactable,
+                            itemStyle.item_padded
                         ])}
                         onClick={onSave}
                     >
                         Save
-                    </MenuLink>
-                </LeftMenuItem>
-                <RightMenuItem>
-                    <MenuLink
+                    </Link>
+                </LeftItem>
+                <RightItem>
+                    <Link
                         href="https://icons8.com"
                         tabIndex="-1"
                         className={splitClasses([
-                            style.menu__item_padded,
-                            style.menu__link_legal
+                            itemStyle.item_padded,
+                            linkStyle.link_legal
                         ])}
                     >
                         Icons by icons8
-                    </MenuLink>
-                </RightMenuItem>
+                    </Link>
+                </RightItem>
             </div>
         );
     }

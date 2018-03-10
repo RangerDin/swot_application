@@ -1,12 +1,13 @@
 import { h } from 'preact';
 
-import style from './style';
 import { splitClasses } from 'utils/className';
 
-const MenuLink = ({ href, onClick, children, className, tabIndex }) => (
+import style from './style';
+
+const Link = ({ href, onClick, children, className, tabIndex }) => (
     <a
         href={href}
-        className={splitClasses([style.menu__link, className])}
+        className={splitClasses([style.link, className])}
         onClick={onClick}
         tabIndex={tabIndex}
     >
@@ -14,4 +15,4 @@ const MenuLink = ({ href, onClick, children, className, tabIndex }) => (
     </a>
 );
 
-export default MenuLink;
+export default Link;
