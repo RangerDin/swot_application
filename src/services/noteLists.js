@@ -1,4 +1,4 @@
-import Note from 'utils/note';
+import Note from 'services/note';
 import { NOTE_LIST_TYPE } from 'constants/note';
 
 export default class NoteListsService {
