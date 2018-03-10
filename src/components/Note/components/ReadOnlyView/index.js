@@ -1,9 +1,10 @@
 import { h } from 'preact';
 import { PureComponent } from 'preact-compat';
 
-import style from './style';
-import DeleteButton from './components/DeleteButton';
 import { splitClasses } from 'utils/className';
+
+import style from '../../style';
+import DeleteButton from '../DeleteButton';
 
 export default class ReadOnlyView extends PureComponent {
     onKeyDown = event => {
@@ -21,7 +22,7 @@ export default class ReadOnlyView extends PureComponent {
 
     render({ listType, children, activateNote, deleteNote }) {
         return (
-            <div className={style['note__view-container']}>
+            <div className={style['note__container']}>
                 <div
                     tabIndex="0"
                     onKeyDown={this.onKeyDown}

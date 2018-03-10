@@ -11,14 +11,9 @@
         padding-top: 0;
     }
 
-    &__view-container {
+    &__container {
         padding-right: $note-button-width + $note-button-padding;
         position: relative;
-    }
-
-    &__view-icon {
-        height: $note-icon-size;
-        width: $note-icon-size;
     }
 
     &__view {
@@ -53,30 +48,6 @@
 
     &_dragging {
         opacity: 0.5;
-    }
-}
-
-.button {
-    background: none;
-    border: 0;
-    box-sizing: border-box;
-    color: $app-text-color;
-    cursor: pointer;
-    font-size: 30px;
-    height: 30px;
-    line-height: 30px;
-    margin: 0;
-    overflow: hidden;
-    padding: 0;
-    width: $note-button-width;
-
-    &:disabled {
-        cursor: default;
-    }
-
-    &:enabled:focus,
-    &:enabled:hover {
-        box-shadow: $app-box-shadow;
     }
 }
 

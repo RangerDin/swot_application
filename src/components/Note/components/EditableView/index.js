@@ -1,8 +1,9 @@
 import { h, Component } from 'preact';
 
-import style from './style';
-import SaveButton from './components/SaveButton';
 import { splitClasses } from 'utils/className';
+
+import style from '../../style';
+import SaveButton from '../SaveButton';
 
 export default class EditableNote extends Component {
     componentDidMount() {
@@ -22,7 +23,7 @@ export default class EditableNote extends Component {
         return (
             <div
                 onKeyDown={this.onKeyDown}
-                className={style['note__view-container']}
+                className={style['note__container']}
             >
                 <textarea
                     className={splitClasses([

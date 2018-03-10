@@ -2,11 +2,12 @@ import { h } from 'preact';
 import { PureComponent } from 'preact-compat';
 import { DragSource, DropTarget } from 'preact-dnd';
 
-import style from './style';
-import EditableView from './EditableView';
-import ReadOnlyView from './ReadOnlyView';
-import { splitClasses } from 'utils/className';
 import { ItemTypes } from 'constants/dnd';
+import { splitClasses } from 'utils/className';
+
+import style from './style';
+import EditableView from './components/EditableView';
+import ReadOnlyView from './components/ReadOnlyView';
 
 class Note extends PureComponent {
     deleteNote = () => {
