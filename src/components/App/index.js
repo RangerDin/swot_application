@@ -5,13 +5,14 @@ import TouchBackend from 'react-dnd-touch-backend';
 import MultiBackend, { TouchTransition } from 'react-dnd-multi-backend';
 import 'normalize.css';
 
-import style from './style';
 import { NOTE_LIST_TYPE } from 'constants/note';
 import Main from 'components/Main';
 import Menu from 'components/Menu';
 import Message from 'components/Message';
 import NoteListsService from 'services/noteLists';
 import FileService from 'services/file';
+
+import style from './style';
 
 class App extends Component {
     constructor(props) {
