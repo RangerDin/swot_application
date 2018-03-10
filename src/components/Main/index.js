@@ -1,6 +1,7 @@
 import { h, Component } from 'preact';
 
 import NoteList from 'components/NoteList';
+
 import style from './style';
 
 class Main extends Component {
