@@ -1,9 +1,6 @@
 @import 'components/style-constants';
 @import 'components/helpers';
-
-$note-list-header-height: 35px;
-$note-list-header-content-height: 30px;
-$note-list-placeholder-width: 400px;
+@import './style-constants';
 
 .note-list {
     box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.3);
@@ -36,6 +33,14 @@ $note-list-placeholder-width: 400px;
         width: 100%;
     }
 
+    &__footer-button {
+        margin-right: 10px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
     &__type {
         float: left;
         font-family: $app-header-font-family;
@@ -50,15 +55,6 @@ $note-list-placeholder-width: 400px;
     &__button-block {
         float: right;
         height: $note-list-header-content-height;
-    }
-
-    &__button {
-        float: left;
-        margin-right: 10px;
-
-        &:last-child {
-            margin-right: 0;
-        }
     }
 
     &__drop-target {
@@ -213,35 +209,6 @@ $note-list-placeholder-width: 400px;
     }
 }
 
-.button {
-    border: 0;
-    box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.3);
-    color: $app-text-color;
-    cursor: pointer;
-    font-family: $app-header-font-family;
-    font-size: 24px;
-    height: $note-list-header-content-height;
-    line-height: $note-list-header-content-height;
-    overflow: hidden;
-    padding: 0;
-    width: 50px;
-
-    &:disabled {
-        cursor: default;
-    }
-
-    &:enabled:focus,
-    &:enabled:hover {
-        box-shadow: $app-box-shadow;
-    }
-
-    &__icon {
-        height: $note-list-header-content-height;
-        line-height: $note-list-header-content-height;
-        width: $note-list-header-content-height;
-    }
-}
-
 .delete-all-dialog {
     display: table;
     height: 100%;
@@ -271,48 +238,16 @@ $note-list-placeholder-width: 400px;
 
 .strengths {
     background: $strengths-background-color;
-
-    .button {
-        background: $strengths-background-color-light;
-
-        &:disabled {
-            background: $strengths-background-color-disabled;
-        }
-    }
 }
 
 .threats {
     background: $threats-background-color;
-
-    .button {
-        background: $threats-background-color-light;
-
-        &:disabled {
-            background: $threats-background-color-disabled;
-        }
-    }
 }
 
 .opportunities {
     background: $opportunities-background-color;
-
-    .button {
-        background: $opportunities-background-color-light;
-
-        &:disabled {
-            background: $opportunities-background-color-disabled;
-        }
-    }
 }
 
 .weaknesses {
     background: $weaknesses-background-color;
-
-    .button {
-        background: $weaknesses-background-color-light;
-
-        &:disabled {
-            background: $weaknesses-background-color-disabled;
-        }
-    }
 }

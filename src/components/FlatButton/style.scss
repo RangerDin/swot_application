@@ -1,0 +1,18 @@
+@import 'components/style-constants';
+@import './themes';
+
+.flat-button {
+    box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+
+    &:enabled:focus,
+    &:enabled:hover {
+        box-shadow: $app-box-shadow;
+    }
+
+    &__icon {
+        height: 100%;
+        line-height: 100%;
+        width: auto;
+    }
+}

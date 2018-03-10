@@ -1,0 +1,25 @@
+@import 'components/style-constants';
+@import '../../style-constants';
+
+.button {
+    background: none;
+    box-sizing: border-box;
+    font-size: 30px;
+    height: 30px;
+    line-height: 30px;
+    width: $note-button-width;
+
+    &:disabled {
+        cursor: default;
+    }
+
+    &:enabled:focus,
+    &:enabled:hover {
+        box-shadow: $app-box-shadow;
+    }
+
+    &__icon {
+        height: $note-icon-size;
+        width: $note-icon-size;
+    }
+}

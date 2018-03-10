@@ -1,0 +1,10 @@
+@import '../../style-constants';
+
+.button {
+    float: left;
+    font-size: 24px;
+    height: $note-list-header-content-height;
+    line-height: $note-list-header-content-height;
+    overflow: hidden;
+    width: 50px;
+}

@@ -1,10 +1,6 @@
 @import 'components/helpers';
 @import 'components/style-constants';
-
-$note-button-width: 30px;
-$note-button-padding: 5px;
-$note-icon-size: 25px;
-$note-view-height: 30px;
+@import './style-constants';
 
 .note {
     @include clearfix;

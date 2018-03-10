@@ -1,7 +1,7 @@
 import { h, Component } from 'preact';
 
 import style from './style';
-import SaveButton from './SaveButton';
+import SaveButton from './components/SaveButton';
 import { splitClasses } from 'utils/className';
 
 export default class EditableNote extends Component {

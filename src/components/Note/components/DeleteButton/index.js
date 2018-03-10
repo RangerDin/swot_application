@@ -1,6 +1,6 @@
 import { h } from 'preact';
 
-import Button from './Button';
+import Button from '../Button';
 
 const DeleteButton = ({ className, onClick, disabled }) => (
     <Button

@@ -1,7 +1,7 @@
 import { h } from 'preact';
 
 import style from './style';
-import Button from './FooterButton';
+import Button from './components/Button';
 
 const DeleteAllDialog = ({ type, yesHandler, noHandler }) => (
     <div className={style['delete-all-dialog']}>

@@ -1,0 +1,13 @@
+@import 'components/style-constants';
+
+.button {
+    border: 0;
+    color: $app-text-color;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 0;
+
+    &:disabled {
+        cursor: default;
+    }
+}

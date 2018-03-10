@@ -2,7 +2,7 @@ import { h } from 'preact';
 import { PureComponent } from 'preact-compat';
 
 import style from './style';
-import DeleteButton from './DeleteButton';
+import DeleteButton from './components/DeleteButton';
 import { splitClasses } from 'utils/className';
 
 export default class ReadOnlyView extends PureComponent {

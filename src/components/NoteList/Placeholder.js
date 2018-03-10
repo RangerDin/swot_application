@@ -1,10 +1,10 @@
 import { h } from 'preact';
 
 import style from './style';
-import AddButton from './AddButton';
-import DeleteNoteButton from 'components/Note/DeleteButton';
-import SaveNoteButton from 'components/Note/SaveButton';
-import DeleteNoteAllButton from 'components/NoteList/DeleteButton';
+import AddButton from './components/AddButton';
+import DeleteNoteButton from 'components/Note/components/DeleteButton';
+import SaveNoteButton from 'components/Note/components/SaveButton';
+import DeleteNoteAllButton from 'components/NoteList/components/DeleteButton';
 import { splitClasses } from 'utils/className';
 
 const Paragraph = ({ children }) => (
@@ -34,16 +34,15 @@ const Placeholder = ({ listType }) => (
             <Paragraph>You can use buttons:</Paragraph>
             <ParagraphWithIllustration>
                 <AddButton
-                    className={splitClasses([
-                        style[listType],
-                        style.placeholder__button
-                    ])}
+                    type={listType}
+                    className={style.placeholder__button}
                     disabled
                 />{' '}
                 - to create note;
             </ParagraphWithIllustration>
             <ParagraphWithIllustration>
                 <DeleteNoteAllButton
+                    type={listType}
                     className={style.placeholder__button}
                     disabled
                 />{' '}
