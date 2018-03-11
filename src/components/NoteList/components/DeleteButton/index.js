@@ -1,8 +1,8 @@
 import { h } from 'preact';
 
 import IconTrash from 'asserts/icons/icons8-trash-32.png';
-
 import style from 'components/FlatButton/style';
+
 import Button from '../Button';
 
 const DeleteButton = ({ type, className, disabled, onClick }) => (

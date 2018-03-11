@@ -1,0 +1,35 @@
+@import 'components/style-constants';
+@import '../../style-constants';
+
+.footer {
+    bottom: 0;
+    box-sizing: border-box;
+    height: $note-list-header-height;
+    padding-top: $note-list-header-height - $note-list-header-content-height;
+    position: absolute;
+    width: 100%;
+
+    &__button {
+        margin-right: 10px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    &__button-block {
+        float: right;
+        height: $note-list-header-content-height;
+    }
+
+    @media all and (max-width: $media-middle-width) {
+        &_minimized {
+            height: 100%;
+            padding: 0;
+
+            .footer__button-block {
+                display: none;
+            }
+        }
+    }
+}

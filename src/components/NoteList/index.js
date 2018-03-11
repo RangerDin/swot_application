@@ -1,13 +1,14 @@
 import { h } from 'preact';
 import { PureComponent } from 'preact-compat';
 
-import style from './style';
-import NoteListDropTarget from './NoteListDropTarget';
-import Footer from './Footer';
-import Placeholder from './Placeholder';
-import DeleteAllDialog from './DeleteAllDialog';
 import Note from 'components/Note';
 import { splitClasses } from 'utils/className';
+
+import style from './style';
+import DropTarget from './components/DropTarget';
+import Footer from './components/Footer';
+import Placeholder from './components/Placeholder';
+import DeleteAllDialog from './components/DeleteAllDialog';
 
 class NoteList extends PureComponent {
     constructor(props) {
@@ -24,10 +25,6 @@ class NoteList extends PureComponent {
 
     requestDeleteAllNotes = () => {
         this.showDeleteAllDialog();
-    };
-
-    scrollToBottom = () => {
-        this.dropTarget.base.scrollTop = this.dropTarget.base.scrollHeight;
     };
 
     showDeleteAllDialog = () => {
@@ -92,20 +89,19 @@ class NoteList extends PureComponent {
             <div className={splitClasses(noteListClasses)}>
                 <div className={style['note-list__container']}>
                     <div className={style['note-list__widget']}>
-                        <NoteListDropTarget
-                            ref={node => {
-                                this.dropTarget = node;
-                            }}
+                        <DropTarget
                             type={type}
                             moveNote={moveNote}
                             activateNoteList={activateNoteList}
                             isHighlighted={!isActive && isNoteDragging}
+                            isMinimized={!isActive}
                         >
                             {this.renderContent()}
-                        </NoteListDropTarget>
+                        </DropTarget>
                     </div>
                     {!this.state.isDeleteAllDialogShown && (
                         <Footer
+                            isMinimized={!isActive}
                             type={type}
                             addNewNote={this.addNewNote}
                             requestDeleteAllNotes={this.requestDeleteAllNotes}

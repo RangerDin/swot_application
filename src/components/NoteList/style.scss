@@ -24,23 +24,6 @@
         width: 100%;
     }
 
-    &__footer {
-        bottom: 0;
-        box-sizing: border-box;
-        height: $note-list-header-height;
-        padding-top: $note-list-header-height - $note-list-header-content-height;
-        position: absolute;
-        width: 100%;
-    }
-
-    &__footer-button {
-        margin-right: 10px;
-
-        &:last-child {
-            margin-right: 0;
-        }
-    }
-
     &__type {
         float: left;
         font-family: $app-header-font-family;
@@ -50,42 +33,6 @@
         margin: 0;
         padding: 0;
         text-transform: capitalize;
-    }
-
-    &__button-block {
-        float: right;
-        height: $note-list-header-content-height;
-    }
-
-    &__drop-target {
-        box-sizing: border-box;
-        height: 100%;
-        width: 100%;
-
-        &_draggable {
-            border: 1px solid #fff;
-        }
-    }
-
-    &__drop-target-container {
-        box-sizing: border-box;
-        height: 100%;
-        overflow: auto;
-        padding: 5px;
-        width: 100%;
-    }
-
-    &__placeholder {
-        box-sizing: border-box;
-        font-size: 14px;
-        height: 100%;
-        margin: 0 auto;
-        max-width: $note-list-placeholder-width;
-        padding: 0 15px;
-
-        .placeholder__paragraph {
-            margin-top: 5px;
-        }
     }
 
     @media all and (max-width: $media-middle-width) {
@@ -116,44 +63,6 @@
             .note-list__widget {
                 padding-bottom: 0;
             }
-
-            .note-list__drop-target {
-                cursor: pointer;
-                display: block;
-                position: absolute;
-                z-index: 1;
-
-                &:hover {
-                    box-shadow: $app-box-shadow;
-                }
-
-                &_draggable {
-                    box-shadow: $app-box-shadow;
-                }
-            }
-
-            .note-list__drop-target-container {
-                display: none;
-            }
-
-            .note-list__button-block {
-                display: none;
-            }
-
-            .note-list__footer {
-                height: 100%;
-                padding: 0;
-            }
-        }
-
-        &__placeholder {
-            font-size: 18px;
-            padding: 0 20px;
-
-            .placeholder__paragraph {
-                line-height: 22px;
-                margin-top: 10px;
-            }
         }
     }
 
@@ -177,62 +86,6 @@
             bottom: 0;
             right: 0;
         }
-    }
-}
-
-.placeholder {
-    display: table;
-
-    &__container {
-        display: table-cell;
-        vertical-align: middle;
-    }
-
-    &__paragraph {
-        @include clearfix;
-
-        color: #fff;
-        line-height: 18px;
-
-        &:first-child {
-            margin-top: 0;
-        }
-
-        &_with-illustration {
-            line-height: 30px;
-        }
-    }
-
-    &__button {
-        float: left;
-        margin-right: 10px;
-    }
-}
-
-.delete-all-dialog {
-    display: table;
-    height: 100%;
-    width: 100%;
-
-    &__container {
-        display: table-cell;
-        text-align: center;
-        vertical-align: middle;
-        width: 100%;
-    }
-
-    &__question {
-        font-size: 20px;
-    }
-
-    &__button-container {
-        margin-top: 10px;
-    }
-
-    &__button {
-        font-family: $app-text-font-family;
-        font-size: 16px;
-        margin-left: 10px;
     }
 }
 

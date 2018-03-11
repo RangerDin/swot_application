@@ -1,11 +1,12 @@
 import { h } from 'preact';
 
-import style from './style';
-import AddButton from './components/AddButton';
 import DeleteNoteButton from 'components/Note/components/DeleteButton';
 import SaveNoteButton from 'components/Note/components/SaveButton';
-import DeleteNoteAllButton from 'components/NoteList/components/DeleteButton';
 import { splitClasses } from 'utils/className';
+
+import style from './style';
+import AddButton from '../AddButton';
+import DeleteAllNotesButton from '../DeleteButton';
 
 const Paragraph = ({ children }) => (
     <div className={style.placeholder__paragraph}>{children}</div>
@@ -22,13 +23,8 @@ const ParagraphWithIllustration = ({ children }) => (
     </div>
 );
 
-const Placeholder = ({ listType }) => (
-    <div
-        className={splitClasses([
-            style['note-list__placeholder'],
-            style.placeholder
-        ])}
-    >
+const Placeholder = ({ className, listType }) => (
+    <div className={splitClasses([style.placeholder, className])}>
         <div className={style.placeholder__container}>
             <Paragraph>There are no notes yet.</Paragraph>
             <Paragraph>You can use buttons:</Paragraph>
@@ -41,7 +37,7 @@ const Placeholder = ({ listType }) => (
                 - to create note;
             </ParagraphWithIllustration>
             <ParagraphWithIllustration>
-                <DeleteNoteAllButton
+                <DeleteAllNotesButton
                     type={listType}
                     className={style.placeholder__button}
                     disabled

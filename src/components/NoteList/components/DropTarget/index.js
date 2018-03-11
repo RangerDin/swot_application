@@ -11,14 +11,18 @@ class NoteListsDropTarget extends PureComponent {
         this.props.activateNoteList(this.props.type);
     };
 
-    render({ children, connectDropTarget, isHighlighted }) {
-        const classes = [style['note-list__drop-target']];
+    render({ children, connectDropTarget, isHighlighted, isMinimized }) {
+        const classes = [style['drop-target']];
         if (isHighlighted) {
-            classes.push(style['note-list__drop-target_draggable']);
+            classes.push(style['drop-target_draggable']);
         }
+        if (isMinimized) {
+            classes.push(style['drop-target_minimized']);
+        }
+
         return connectDropTarget(
             <div className={splitClasses(classes)} onClick={this.onClick}>
-                <div className={style['note-list__drop-target-container']}>
+                <div className={style['drop-target__container']}>
                     {children}
                 </div>
             </div>

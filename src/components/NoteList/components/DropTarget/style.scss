@@ -1,0 +1,40 @@
+@import 'components/style-constants';
+
+.drop-target {
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+
+    &_draggable {
+        border: 1px solid #fff;
+    }
+
+    &__container {
+        box-sizing: border-box;
+        height: 100%;
+        overflow: auto;
+        padding: 5px;
+        width: 100%;
+    }
+
+    @media all and (max-width: $media-middle-width) {
+        &_minimized {
+            cursor: pointer;
+            display: block;
+            position: absolute;
+            z-index: 1;
+
+            &:hover {
+                box-shadow: $app-box-shadow;
+            }
+
+            .drop-target_draggable {
+                box-shadow: $app-box-shadow;
+            }
+
+            .drop-target__container {
+                display: none;
+            }
+        }
+    }
+}
