@@ -13,12 +13,14 @@ const DeleteAllDialog = ({ type, yesHandler, noHandler }) => (
                 <Button
                     className={style['delete-all-dialog__button']}
                     onClick={yesHandler}
+                    type={type}
                 >
                     Yes
                 </Button>
                 <Button
                     className={style['delete-all-dialog__button']}
                     onClick={noHandler}
+                    type={type}
                 >
                     No
                 </Button>
