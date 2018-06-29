@@ -15,37 +15,26 @@ export default class FileService {
         });
     }
 
-    static saveSWOTAsFile(swot) {
-        return FileSaver.saveAs(this.getFile(swot));
+    static saveSWOTAsFile(objectOfStudy, notes) {
+        return FileSaver.saveAs(
+            this.getFile({
+                objectOfStudy,
+                notes
+            })
+        );
     }
 
-    static checkNoteFormat(noteContent) {
-        const necessaryNoteKeys = ['id', 'isBeingEdited', 'text'];
-        const noteContentKeys = Object.keys(noteContent);
-        if (
-            necessaryNoteKeys.length === noteContentKeys.length &&
-            necessaryNoteKeys.some(key => !(key in noteContent))
-        ) {
+    static checkObjectKeys(object, keys) {
+        if (Object.keys(object).length !== keys.length) {
             return false;
         }
 
         if (
-            typeof noteContent['id'] !== 'number' ||
-            typeof noteContent['isBeingEdited'] !== 'boolean' ||
-            typeof noteContent['text'] !== 'string'
+            keys.some(
+                ({ name, type }) =>
+                    !(name in object && typeof object[name] === type)
+            )
         ) {
-            return false;
-        }
-
-        return true;
-    }
-
-    static checkNoteListFormat(noteListContent) {
-        if (!Array.isArray(noteListContent)) {
-            return false;
-        }
-
-        if (noteListContent.some(note => !this.checkNoteFormat(note))) {
             return false;
         }
 
@@ -56,18 +45,26 @@ export default class FileService {
         if (typeof content !== 'object') {
             return false;
         }
-        const topContentKeys = Object.keys(content);
-        const topNecessaryKeys = ['lists', 'idCounter'];
-        if (
-            topContentKeys.length !== topNecessaryKeys.length ||
-            topNecessaryKeys.some(key => !(key in content))
-        ) {
+
+        const fileFormat = [
+            { name: 'objectOfStudy', type: 'string' },
+            { name: 'notes', type: 'object' }
+        ];
+
+        if (!this.checkObjectKeys(content, fileFormat)) {
             return false;
         }
-        if (
-            typeof content['idCounter'] !== 'number' ||
-            typeof content['lists'] !== 'object'
-        ) {
+
+        return this.checkNotesFormat(content['notes']);
+    }
+
+    static checkNotesFormat(content) {
+        const notesFormat = [
+            { name: 'idCounter', type: 'number' },
+            { name: 'lists', type: 'object' }
+        ];
+
+        if (!this.checkObjectKeys(content, notesFormat)) {
             return false;
         }
 
@@ -87,6 +84,37 @@ export default class FileService {
         }
 
         return true;
+    }
+
+    static checkNoteListFormat(content) {
+        if (!Array.isArray(content)) {
+            return false;
+        }
+
+        if (content.some(note => !this.checkNoteFormat(note))) {
+            return false;
+        }
+
+        return true;
+    }
+
+    static checkNoteFormat(noteContent) {
+        const noteFormat = [
+            {
+                name: 'id',
+                type: 'number'
+            },
+            {
+                name: 'isBeingEdited',
+                type: 'boolean'
+            },
+            {
+                name: 'text',
+                type: 'string'
+            }
+        ];
+
+        return this.checkObjectKeys(noteContent, noteFormat);
     }
 
     static loadSWOTFromFile(fileContent) {

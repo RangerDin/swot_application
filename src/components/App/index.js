@@ -106,19 +106,20 @@ class App extends Component {
     };
 
     onLoadFile = fileContent => {
-        const notes = FileService.loadSWOTFromFile(fileContent);
-        if (!notes) {
+        const swot = FileService.loadSWOTFromFile(fileContent);
+        if (!swot) {
             this.showMessage('Incorrect file type.');
             return;
         }
 
         this.setState({
-            notes
+            objectOfStudy: swot.objectOfStudy,
+            notes: swot.notes
         });
     };
 
     onSaveFile = () => {
-        FileService.saveSWOTAsFile(this.state.notes);
+        FileService.saveSWOTAsFile(this.state.objectOfStudy, this.state.notes);
     };
 
     activateNoteList = type => {
