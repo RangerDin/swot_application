@@ -7,8 +7,9 @@ import { splitClasses } from 'utils/className';
 import style from './style';
 import itemStyle from './components/Item/style';
 import linkStyle from './components/Link/style';
-import { LeftItem, RightItem } from './components/Item';
+import { LeftItem, RightItem, Item } from './components/Item';
 import Link from './components/Link';
+import ObjectOfStudy from './components/ObjectOfStudy';
 
 class Menu extends PureComponent {
     onChange = event => {
@@ -48,6 +49,9 @@ class Menu extends PureComponent {
                         Save
                     </Link>
                 </LeftItem>
+                <Item>
+                    <ObjectOfStudy />
+                </Item>
                 <RightItem>
                     <Link
                         href="https://icons8.com"
