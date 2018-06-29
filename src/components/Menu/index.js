@@ -23,7 +23,7 @@ class Menu extends PureComponent {
         reader.readAsText(event.target.files[0]);
     };
 
-    render({ onSave }) {
+    render({ onSave, objectOfStudy, setObjectOfStudy }) {
         return (
             <div className={style.menu}>
                 <LeftItem title="Open file">
@@ -50,7 +50,10 @@ class Menu extends PureComponent {
                     </Link>
                 </LeftItem>
                 <Item>
-                    <ObjectOfStudy />
+                    <ObjectOfStudy
+                        value={objectOfStudy}
+                        onChange={setObjectOfStudy}
+                    />
                 </Item>
                 <RightItem>
                     <Link

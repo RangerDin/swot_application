@@ -19,6 +19,7 @@ class App extends Component {
         super(props);
 
         this.state = {
+            objectOfStudy: null,
             notes: NoteListsService.getInitialState(),
             activeNoteList: NOTE_LIST_TYPE.STRENGTHS,
             isNoteDragging: false,
@@ -148,6 +149,12 @@ class App extends Component {
         });
     };
 
+    setObjectOfStudy = event => {
+        this.setState({
+            objectOfStudy: event.target.value
+        });
+    };
+
     render() {
         return (
             <div className={style.app}>
@@ -155,7 +162,12 @@ class App extends Component {
                     text={this.state.message}
                     onClick={this.closeMessage}
                 />
-                <Menu onLoad={this.onLoadFile} onSave={this.onSaveFile} />
+                <Menu
+                    onLoad={this.onLoadFile}
+                    onSave={this.onSaveFile}
+                    objectOfStudy={this.state.objectOfStudy}
+                    setObjectOfStudy={this.setObjectOfStudy}
+                />
                 <Main
                     notes={this.state.notes}
                     addNewNote={this.addNewNote}
