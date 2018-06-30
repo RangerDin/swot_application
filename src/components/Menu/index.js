@@ -112,6 +112,7 @@ class Menu extends PureComponent {
                             href="https://icons8.com"
                             tabIndex="-1"
                             target="_blank"
+                            rel="nofollow"
                             className={splitClasses([
                                 linkStyle.link_legal,
                                 itemStyle.item_content
