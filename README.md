@@ -2,6 +2,7 @@
 
 Application for [SWOT analysis](https://en.wikipedia.org/wiki/SWOT_analysis) done with [Webpack](https://github.com/webpack/webpack), [Preact](https://github.com/developit/preact) and [Redux](https://github.com/rackt/redux).
 
+Application screenshot with SWOT board from ‘Silicon Valley’:
 ![Application screenshot](img/screenshot.png?raw=true)
 
 ## Live demo
