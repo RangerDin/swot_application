@@ -13,6 +13,13 @@ import ObjectOfStudy from './components/ObjectOfStudy';
 import MenuIcon from './components/MenuIcon';
 
 class Menu extends PureComponent {
+    constructor(props) {
+        super(props);
+
+        this.setWrapperRef = this.setWrapperRef.bind(this);
+        this.handleClickOutside = this.handleClickOutside.bind(this);
+    }
+
     onChange = event => {
         if (!event.target.files[0]) {
             return;
@@ -24,9 +31,31 @@ class Menu extends PureComponent {
         reader.readAsText(event.target.files[0]);
     };
 
+    setWrapperRef(node) {
+        this.wrapperRef = node;
+    }
+
+    handleClickOutside(event) {
+        if (
+            this.wrapperRef &&
+            !this.wrapperRef.contains(event.target) &&
+            !this.props.isFolded
+        ) {
+            this.props.toggleMenu();
+        }
+    }
+
+    componentDidMount() {
+        document.addEventListener('mousedown', this.handleClickOutside);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.handleClickOutside);
+    }
+
     render({ onSave, objectOfStudy, setObjectOfStudy, isFolded, toggleMenu }) {
         return (
-            <div className={style.menu}>
+            <div ref={this.setWrapperRef} className={style.menu}>
                 <MenuIcon isFolded={isFolded} toggleMenu={toggleMenu} />
                 <nav
                     className={splitClasses([
