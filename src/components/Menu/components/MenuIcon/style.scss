@@ -1,0 +1,62 @@
+@import 'components/style-constants';
+
+$menu-icon-background: #fff;
+
+.icon {
+    cursor: pointer;
+    display: block;
+    height: 40px;
+    transition: background 0.3s linear;
+    width: 40px;
+
+    @media all and (min-width: $media-menu-folded) {
+        display: none;
+    }
+
+    &:hover {
+        background: #434367;
+    }
+}
+
+.folded {
+    position: relative;
+
+    &::before {
+        background: $menu-icon-background;
+        border-radius: 10px;
+        box-shadow: 0 6px $menu-icon-background, 0 12px $menu-icon-background;
+        content: '';
+        height: 3px;
+        left: 5px;
+        margin: 0 auto;
+        position: absolute;
+        top: 12.5px;
+        transition: all 0.3s linear;
+        width: 30px;
+    }
+}
+
+.unfolded {
+    position: relative;
+
+    &::before,
+    &::after {
+        background: $menu-icon-background;
+        border-radius: 10px;
+        content: '';
+        height: 3px;
+        left: 5px;
+        position: absolute;
+        top: 20px;
+        transition: all 0.3s linear;
+        width: 30px;
+    }
+
+    &::before {
+        transform: rotate(45deg);
+    }
+
+    &::after {
+        transform: rotate(135deg);
+    }
+}

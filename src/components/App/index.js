@@ -22,8 +22,9 @@ class App extends Component {
             objectOfStudy: null,
             notes: NoteListsService.getInitialState(),
             activeNoteList: NOTE_LIST_TYPE.STRENGTHS,
+            message: '',
             isNoteDragging: false,
-            message: ''
+            isMenuFolded: true
         };
     }
 
@@ -156,6 +157,12 @@ class App extends Component {
         });
     };
 
+    toggleMenu = () => {
+        this.setState({
+            isMenuFolded: !this.state.isMenuFolded
+        });
+    };
+
     render() {
         return (
             <div className={style.app}>
@@ -168,6 +175,8 @@ class App extends Component {
                     onSave={this.onSaveFile}
                     objectOfStudy={this.state.objectOfStudy}
                     setObjectOfStudy={this.setObjectOfStudy}
+                    toggleMenu={this.toggleMenu}
+                    isFolded={this.state.isMenuFolded}
                 />
                 <Main
                     notes={this.state.notes}
