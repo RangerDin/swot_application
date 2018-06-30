@@ -3,16 +3,15 @@
 .item {
     box-sizing: border-box;
     cursor: pointer;
-    display: inline-block;
+    display: block;
     height: $header-height;
     line-height: $header-height;
 
-    &_left {
-        float: left;
-    }
-
-    &_right {
-        float: right;
+    &:nth-child(3) {
+        left: 50px;
+        position: absolute;
+        top: -40px;
+        z-index: 20;
     }
 
     &_interactable {
@@ -25,5 +24,26 @@
 
     &_padded {
         padding: 0 20px;
+    }
+
+    &_content {
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    @media all and (min-width: $media-menu-folded) {
+        display: inline-block;
+
+        &:nth-child(3) {
+            position: static;
+        }
+
+        &_left {
+            float: left;
+        }
+
+        &_right {
+            float: right;
+        }
     }
 }

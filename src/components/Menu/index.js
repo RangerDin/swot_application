@@ -28,12 +28,18 @@ class Menu extends PureComponent {
         return (
             <div className={style.menu}>
                 <MenuIcon isFolded={isFolded} toggleMenu={toggleMenu} />
-                <nav className={style.menu__items}>
+                <nav
+                    className={splitClasses([
+                        style.menu__items,
+                        isFolded ? style.menu__items_folded : ''
+                    ])}
+                >
                     <LeftItem title="Open file">
                         <FileOpenButton
                             className={splitClasses([
                                 itemStyle.item_interactable,
-                                itemStyle.item_padded
+                                itemStyle.item_padded,
+                                itemStyle.item_content
                             ])}
                             onChange={this.onChange}
                         >
@@ -45,7 +51,8 @@ class Menu extends PureComponent {
                             href="#"
                             className={splitClasses([
                                 itemStyle.item_interactable,
-                                itemStyle.item_padded
+                                itemStyle.item_padded,
+                                itemStyle.item_content
                             ])}
                             onClick={onSave}
                         >
@@ -60,14 +67,26 @@ class Menu extends PureComponent {
                     </Item>
                     <RightItem>
                         <Link
+                            href="https://htype.me"
+                            tabIndex="-1"
+                            className={splitClasses([
+                                linkStyle.link_legal,
+                                itemStyle.item_content
+                            ])}
+                        >
+                            Made by h_type.
+                        </Link>
+                    </RightItem>
+                    <RightItem>
+                        <Link
                             href="https://icons8.com"
                             tabIndex="-1"
                             className={splitClasses([
-                                itemStyle.item_padded,
-                                linkStyle.link_legal
+                                linkStyle.link_legal,
+                                itemStyle.item_content
                             ])}
                         >
-                            Icons by icons8
+                            Icons by icons8.
                         </Link>
                     </RightItem>
                 </nav>

@@ -12,10 +12,14 @@ $placeholder-color: #b0b2c1;
     font-size: 0.9em;
     line-height: 1em;
     padding: 5px;
-    width: 200px;
+    width: 250px;
 
     &::placeholder {
         color: $placeholder-color;
+    }
+
+    @media all and (min-width: 500px) {
+        width: 155px;
     }
 
     @media all and (min-width: 700px) {

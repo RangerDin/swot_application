@@ -4,11 +4,8 @@
 .menu {
     @include clearfix;
 
-    border: solid $app-border-color;
-    border-width: 0 0 1px;
     box-sizing: border-box;
     font-size: 16px;
-    height: $header-height;
 
     &__made-by {
         color: $made-by-text-color;
@@ -17,6 +14,28 @@
     }
 
     &__items {
+        background: $app-background-color;
+        border: solid $app-border-color;
+        border-width: 0 0 1px;
+        max-height: 500px;
+        position: relative;
         text-align: center;
+        transition: max-height 0.3s linear;
+        z-index: 10;
+
+        &_folded {
+            max-height: 0;
+            transition: max-height 0.3s linear;
+            z-index: 0;
+        }
+    }
+
+    @media all and (min-width: $media-menu-folded) {
+        height: $header-height;
+
+        &__items {
+            max-height: none;
+            z-index: 0;
+        }
     }
 }
