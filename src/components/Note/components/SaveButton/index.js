@@ -1,6 +1,6 @@
 import { h } from 'preact';
 
-import SaveIcon from 'asserts/icons/icons8-save-32.png';
+import SaveIcon from 'assets/icons/icons8-save-32.png';
 
 import style from '../Button/style';
 import Button from '../Button';
