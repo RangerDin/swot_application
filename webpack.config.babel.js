@@ -51,7 +51,9 @@ const commonConfig = {
                                     autoprefixer({
                                         browsers: ['last 2 versions']
                                     }),
-                                    cssnano()
+                                    cssnano({
+                                        zindex: false
+                                    })
                                 ]
                             }
                         },
