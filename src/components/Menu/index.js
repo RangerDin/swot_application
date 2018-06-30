@@ -98,6 +98,7 @@ class Menu extends PureComponent {
                         <Link
                             href="https://htype.me"
                             tabIndex="-1"
+                            target="_blank"
                             className={splitClasses([
                                 linkStyle.link_legal,
                                 itemStyle.item_content
@@ -110,6 +111,7 @@ class Menu extends PureComponent {
                         <Link
                             href="https://icons8.com"
                             tabIndex="-1"
+                            target="_blank"
                             className={splitClasses([
                                 linkStyle.link_legal,
                                 itemStyle.item_content
