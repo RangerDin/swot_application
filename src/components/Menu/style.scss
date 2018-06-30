@@ -8,6 +8,8 @@
     border-width: 0 0 1px;
     box-sizing: border-box;
     font-size: 16px;
+    position: relative;
+    z-index: 1;
 
     &__made-by {
         color: $made-by-text-color;
@@ -18,13 +20,13 @@
     &__items {
         background: $app-background-color;
         max-height: 500px;
-        position: relative;
         text-align: center;
         transition: max-height 0.3s linear;
         z-index: 10;
 
         &_folded {
             max-height: 0;
+            overflow: hidden;
             transition: max-height 0.3s linear;
             z-index: 0;
         }
