@@ -78,6 +78,12 @@ const commonConfig = {
                         options: {
                             name: '[path][name].[ext]'
                         }
+                    },
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {
+                            disable: true
+                        }
                     }
                 ]
             }
@@ -114,18 +120,17 @@ const developmentConfig = {
         historyApiFallback: true,
         contentBase: './src'
     },
-    devtool: 'inline-source-map'
+    devtool: 'inline-source-map',
+    mode: 'development'
 };
 
 const productionConfig = {
     output: {
         filename: 'bundle.js'
     },
-    plugins: [
-        new webpack.optimize.UglifyJsPlugin(),
-        new BundleAnalyzerPlugin()
-    ],
-    devtool: 'source-map'
+    plugins: [new BundleAnalyzerPlugin()],
+    devtool: 'source-map',
+    mode: 'production'
 };
 
 let configToExport;
