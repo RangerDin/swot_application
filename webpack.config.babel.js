@@ -82,7 +82,7 @@ const commonConfig = {
                     {
                         loader: 'image-webpack-loader',
                         options: {
-                            disable: true
+                            disable: isModeDevelopment
                         }
                     }
                 ]
