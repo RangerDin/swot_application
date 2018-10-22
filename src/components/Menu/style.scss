@@ -7,7 +7,8 @@
     border: solid $app-border-color;
     border-width: 0 0 1px;
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 14px;
+    padding: 0;
     position: relative;
     z-index: 10;
 
@@ -32,7 +33,9 @@
         }
     }
 
-    @media all and (min-width: $media-menu-folded) {
+    @media all and (min-width: $media-small) {
+        padding: 0 5px;
+
         &__items {
             max-height: none;
             z-index: 0;

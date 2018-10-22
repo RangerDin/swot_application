@@ -13,10 +13,11 @@ export default class FileOpenButton extends Component {
 
     saveInputRef = node => (this.input = node);
 
-    render({ onChange, className, children }) {
+    render({ title, onChange, className, children }) {
         return (
             <label
                 tabIndex="0"
+                title={title}
                 onKeyDown={this.onKeyDown}
                 className={splitClasses([style['file-open-button'], className])}
             >

@@ -5,11 +5,11 @@ $menu-icon-background: #fff;
 .icon {
     cursor: pointer;
     display: block;
-    height: 40px;
+    height: $header-height;
     transition: background 0.3s linear;
-    width: 40px;
+    width: 30px;
 
-    @media all and (min-width: $media-menu-folded) {
+    @media all and (min-width: $media-small) {
         display: none;
     }
 
@@ -30,9 +30,9 @@ $menu-icon-background: #fff;
         left: 5px;
         margin: 0 auto;
         position: absolute;
-        top: 12.5px;
+        top: 7.5px;
         transition: all 0.3s linear;
-        width: 30px;
+        width: 20px;
     }
 }
 
@@ -47,9 +47,9 @@ $menu-icon-background: #fff;
         height: 3px;
         left: 5px;
         position: absolute;
-        top: 20px;
+        top: 15px;
         transition: all 0.3s linear;
-        width: 30px;
+        width: 20px;
     }
 
     &::before {

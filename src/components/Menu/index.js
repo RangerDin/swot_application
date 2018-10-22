@@ -7,10 +7,16 @@ import { splitClasses } from 'utils/className';
 import style from './style';
 import itemStyle from './components/Item/style';
 import linkStyle from './components/Link/style';
-import { LeftItem, RightItem, Item } from './components/Item';
+import { Item } from './components/Item';
 import Link from './components/Link';
 import ObjectOfStudy from './components/ObjectOfStudy';
 import MenuIcon from './components/MenuIcon';
+
+const FileOpenMenuItem = Item(FileOpenButton);
+const SaveMenuItem = Item(Link);
+const ObjectOfStudyItem = Item(ObjectOfStudy);
+const LinkToMySite = Item(Link);
+const LinkToIcons8 = Item(Link);
 
 class Menu extends PureComponent {
     constructor(props) {
@@ -63,64 +69,60 @@ class Menu extends PureComponent {
                         isFolded ? style.menu__items_folded : ''
                     ])}
                 >
-                    <LeftItem title="Open file">
-                        <FileOpenButton
-                            className={splitClasses([
-                                itemStyle.item_interactable,
-                                itemStyle.item_padded,
-                                itemStyle.item_content
-                            ])}
-                            onChange={this.onChange}
-                        >
-                            Open
-                        </FileOpenButton>
-                    </LeftItem>
-                    <LeftItem title="Download file">
-                        <Link
-                            href="#"
-                            className={splitClasses([
-                                itemStyle.item_interactable,
-                                itemStyle.item_padded,
-                                itemStyle.item_content
-                            ])}
-                            onClick={onSave}
-                        >
-                            Save
-                        </Link>
-                    </LeftItem>
-                    <Item>
-                        <ObjectOfStudy
-                            value={objectOfStudy}
-                            onChange={setObjectOfStudy}
-                        />
-                    </Item>
-                    <RightItem>
-                        <Link
-                            href="https://htype.me"
-                            tabIndex="-1"
-                            target="_blank"
-                            className={splitClasses([
-                                linkStyle.link_legal,
-                                itemStyle.item_content
-                            ])}
-                        >
-                            Made by h_type.
-                        </Link>
-                    </RightItem>
-                    <RightItem>
-                        <Link
-                            href="https://icons8.com"
-                            tabIndex="-1"
-                            target="_blank"
-                            rel="nofollow"
-                            className={splitClasses([
-                                linkStyle.link_legal,
-                                itemStyle.item_content
-                            ])}
-                        >
-                            Icons by icons8.
-                        </Link>
-                    </RightItem>
+                    <FileOpenMenuItem
+                        className={splitClasses([
+                            itemStyle.item_interactable,
+                            itemStyle.item_padded,
+                            itemStyle.item_content
+                        ])}
+                        title="Open file"
+                        position="left"
+                        onChange={this.onChange}
+                    >
+                        Open
+                    </FileOpenMenuItem>
+                    <SaveMenuItem
+                        href="#"
+                        className={splitClasses([
+                            itemStyle.item_interactable,
+                            itemStyle.item_padded,
+                            itemStyle.item_content
+                        ])}
+                        title="Save file"
+                        position="left"
+                        onClick={onSave}
+                    >
+                        Save
+                    </SaveMenuItem>
+                    <ObjectOfStudyItem
+                        value={objectOfStudy}
+                        onChange={setObjectOfStudy}
+                    />
+                    <LinkToMySite
+                        href="https://htype.me"
+                        tabIndex="-1"
+                        target="_blank"
+                        className={splitClasses([
+                            linkStyle.link_legal,
+                            itemStyle.item_content
+                        ])}
+                        position="right"
+                    >
+                        Made by h_type.
+                    </LinkToMySite>
+                    <LinkToIcons8
+                        href="https://icons8.com"
+                        tabIndex="-1"
+                        target="_blank"
+                        rel="nofollow"
+                        className={splitClasses([
+                            linkStyle.link_legal,
+                            itemStyle.item_content
+                        ])}
+                        position="right"
+                    >
+                        Icons by icons8.
+                    </LinkToIcons8>
                 </nav>
             </div>
         );

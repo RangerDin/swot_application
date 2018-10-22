@@ -2,17 +2,9 @@
 
 .item {
     box-sizing: border-box;
-    cursor: pointer;
     display: block;
     height: $header-height;
     line-height: $header-height;
-
-    &:nth-child(3) {
-        left: 50px;
-        position: absolute;
-        top: 0;
-        z-index: 20;
-    }
 
     &_interactable {
         &:hover,
@@ -28,22 +20,28 @@
 
     &_content {
         box-sizing: border-box;
-        width: 100%;
     }
 
-    @media all and (min-width: $media-menu-folded) {
+    @media all and (min-width: $media-small) {
         display: inline-block;
 
-        &:nth-child(3) {
-            position: static;
-        }
-
-        &_left {
+        &_position_left {
             float: left;
         }
 
-        &_right {
+        &_position_right {
             float: right;
+        }
+    }
+
+    @media all and (max-width: $media-small) {
+        &:nth-child(3) {
+            left: 0;
+            margin: 0 auto;
+            position: absolute;
+            right: 0;
+            top: 1px;
+            width: 250px;
         }
     }
 }

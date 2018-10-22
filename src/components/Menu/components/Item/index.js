@@ -4,24 +4,32 @@ import { splitClasses } from 'utils/className';
 
 import style from './style';
 
-export const Item = ({ title, children, onClick, className }) => (
-    <div
-        className={splitClasses([style.item, className])}
-        onClick={onClick}
-        title={title}
-    >
-        {children}
-    </div>
-);
+export const Item = Component => ({
+    title,
+    children,
+    position,
+    onClick,
+    className,
+    ...props
+}) => {
+    const classNames = [style.item];
 
-export const LeftItem = ({ title, children, onClick }) => (
-    <Item title={title} className={style.item_left} onClick={onClick}>
-        {children}
-    </Item>
-);
+    if (className) {
+        classNames.push(className);
+    }
 
-export const RightItem = ({ title, children, onClick }) => (
-    <Item title={title} className={style.item_right} onClick={onClick}>
-        {children}
-    </Item>
-);
+    if (position) {
+        classNames.push(style[`item_position_${position}`]);
+    }
+
+    return (
+        <Component
+            className={splitClasses(classNames)}
+            onClick={onClick}
+            title={title}
+            {...props}
+        >
+            {children}
+        </Component>
+    );
+};
