@@ -7,7 +7,6 @@ import { splitClasses } from 'utils/className';
 import style from './style';
 import DropTarget from './components/DropTarget';
 import Footer from './components/Footer';
-import Placeholder from './components/Placeholder';
 import DeleteAllDialog from './components/DeleteAllDialog';
 
 class NoteList extends PureComponent {
@@ -70,10 +69,6 @@ class NoteList extends PureComponent {
                     noHandler={this.hideDeleteAllDialog}
                 />
             );
-        }
-
-        if (!this.props.notes.length) {
-            return <Placeholder listType={this.props.type} />;
         }
 
         return this.renderNotes();
