@@ -3,47 +3,29 @@
 @import '../../style-constants';
 
 .placeholder {
-    box-sizing: border-box;
     display: table;
-    font-size: 14px;
+    font-size: 20px;
     height: 100%;
     margin: 0 auto;
-    max-width: $note-list-placeholder-width;
-    padding: 0 15px;
 
     &__container {
         display: table-cell;
         vertical-align: middle;
     }
+}
 
-    &__paragraph {
-        @include clearfix;
+.strengths {
+    color: $strengths-background-color-disabled;
+}
 
-        color: #fff;
-        line-height: 18px;
-        margin-top: 5px;
+.threats {
+    color: $threats-background-color-disabled;
+}
 
-        &:first-child {
-            margin-top: 0;
-        }
+.opportunities {
+    color: $opportunities-background-color-disabled;
+}
 
-        &_with-illustration {
-            line-height: 30px;
-        }
-    }
-
-    &__button {
-        float: left;
-        margin-right: 10px;
-    }
-
-    @media all and (max-width: $media-middle-width) {
-        font-size: 18px;
-        padding: 0 20px;
-
-        .placeholder__paragraph {
-            line-height: 22px;
-            margin-top: 10px;
-        }
-    }
+.weaknesses {
+    color: $weaknesses-background-color-disabled;
 }
