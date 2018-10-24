@@ -4,8 +4,6 @@
 .menu {
     @include clearfix;
 
-    border: solid $app-border-color;
-    border-width: 0 0 1px;
     box-sizing: border-box;
     font-size: 14px;
     padding: 0;
