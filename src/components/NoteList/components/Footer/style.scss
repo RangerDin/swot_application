@@ -1,13 +1,11 @@
-@import 'components/style-constants';
-@import '../../style-constants';
+@import 'styles/constants';
 
 .footer {
-    bottom: 0;
-    box-sizing: border-box;
-    height: $note-list-header-height;
-    padding-top: $note-list-header-height - $note-list-header-content-height;
+    bottom: 5px;
+    height: $note-list-title-height;
+    left: 5px;
     position: absolute;
-    width: 100%;
+    right: 5px;
 
     &__button {
         float: left;
@@ -20,13 +18,14 @@
 
     &__button-block {
         float: right;
-        height: $note-list-header-content-height;
+        height: $note-list-title-height;
     }
 
     @media all and (max-width: $media-middle-width) {
         &_minimized {
             height: 100%;
             padding: 0;
+            position: static;
 
             .footer__button-block {
                 display: none;

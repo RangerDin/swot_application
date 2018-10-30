@@ -1,24 +1,27 @@
 import { h } from 'preact';
 
-import flatButtonStyle from 'components/FlatButton/style';
-import FlatButton from 'components/FlatButton';
+import Button from 'components/Button';
 import { splitClasses } from 'utils/className';
 
 import style from './style';
 
-const Button = ({ type, title, onClick, className, disabled, children }) => (
-    <FlatButton
-        className={splitClasses([
-            flatButtonStyle[type],
-            style.button,
-            className
-        ])}
+const NoteListButton = ({
+    type,
+    title,
+    onClick,
+    className,
+    disabled,
+    children,
+    icon
+}) => (
+    <Button
+        className={splitClasses([style[type], style.button, className])}
         title={title}
         onClick={onClick}
         disabled={disabled}
     >
-        {children}
-    </FlatButton>
+        {icon ? <img className={style['button__icon']} src={icon} /> : children}
+    </Button>
 );
 
-export default Button;
+export default NoteListButton;

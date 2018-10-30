@@ -1,6 +1,6 @@
-@import 'components/helpers';
-@import 'components/style-constants';
-@import './style-constants';
+@import 'styles/helpers';
+@import 'styles/constants';
+@import 'styles/note-list-colors';
 
 .note {
     @include clearfix;
@@ -20,6 +20,7 @@
         border: 0;
         box-sizing: border-box;
         color: $app-text-color;
+        cursor: pointer;
         display: block;
         font-family: $app-text-font-family;
         font-size: 16px;
@@ -29,10 +30,13 @@
         position: relative;
 
         &:focus {
-            box-shadow: $app-box-shadow;
+            border: 2px solid #fff;
+            line-height: 20px;
+            padding: 3px 6px;
         }
 
         &_editable {
+            cursor: text;
             height: 30px;
             resize: vertical;
             width: 100%;

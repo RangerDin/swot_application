@@ -14,6 +14,7 @@ class Main extends Component {
                         type={listType}
                         notes={props.notes.lists[listType]}
                         addNewNote={props.addNewNote}
+                        addNoteToList={props.addNoteToList}
                         deleteNote={props.deleteNote}
                         setNoteActive={props.setNoteActive}
                         setNoteText={props.setNoteText}

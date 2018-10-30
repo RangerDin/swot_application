@@ -1,26 +1,28 @@
-@import 'components/style-constants';
-@import 'components/helpers';
-@import './style-constants';
+@import 'styles/constants';
+@import 'styles/helpers';
+@import 'styles/note-list-colors';
 
 .note-list {
     box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.3);
     box-sizing: border-box;
     display: inline-block;
     height: 49.5%;
-    padding: 10px;
     position: absolute;
     width: 49.5%;
 
     &__container {
-        height: 100%;
-        position: relative;
-        width: 100%;
+        bottom: 40px;
+        left: 5px;
+        overflow: auto;
+        position: absolute;
+        right: 5px;
+        top: 5px;
     }
 
     &__widget {
         box-sizing: border-box;
         height: 100%;
-        padding-bottom: $note-list-header-height;
+        padding-bottom: $note-list-title-height;
         width: 100%;
     }
 
@@ -28,15 +30,15 @@
         float: left;
         font-family: $app-header-font-family;
         font-size: 24px;
-        height: $note-list-header-content-height;
-        line-height: $note-list-header-content-height;
+        height: $note-list-title-height;
+        line-height: $note-list-title-height;
         margin: 0;
         padding: 0;
         text-transform: capitalize;
     }
 
     @media all and (max-width: $media-middle-width) {
-        height: $note-list-header-content-height;
+        height: $note-list-title-height;
 
         &_active {
             bottom: 0;
@@ -44,12 +46,12 @@
             left: 0;
             position: absolute;
             right: 0;
-            top: $note-list-header-height;
+            top: $note-list-title-height;
             width: auto;
         }
 
         &_minimized {
-            line-height: $note-list-header-content-height;
+            line-height: $note-list-title-height;
             padding: 0;
             position: relative;
             width: 33.3%;
@@ -62,6 +64,18 @@
 
             .note-list__widget {
                 padding-bottom: 0;
+            }
+
+            .note-list__container {
+                bottom: 0;
+                left: 0;
+                overflow: hidden;
+                right: 0;
+                top: 0;
+
+                :global(.smooth-dnd-draggable-wrapper) {
+                    visibility: hidden;
+                }
             }
         }
     }

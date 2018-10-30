@@ -1,11 +1,9 @@
-@import 'components/style-constants';
+@import 'styles/constants';
 
 .button {
     border: 0;
     color: $app-text-color;
     cursor: pointer;
-    overflow: hidden;
-    padding: 0;
 
     &:disabled {
         cursor: default;

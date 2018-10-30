@@ -1,12 +1,11 @@
-@import 'components/style-constants';
-@import '../../style-constants';
+@import 'styles/constants';
 
 .button {
     background: none;
-    box-sizing: border-box;
     font-size: 30px;
     height: 30px;
-    line-height: 30px;
+    line-height: 26px;
+    padding: 2px;
     width: $note-button-width;
 
     &:disabled {
@@ -15,7 +14,8 @@
 
     &:enabled:focus,
     &:enabled:hover {
-        box-shadow: $app-box-shadow;
+        border: 2px solid #fff;
+        padding: 0;
     }
 
     &__icon {

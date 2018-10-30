@@ -1,4 +1,4 @@
-@import 'components/style-constants';
+@import 'styles/constants';
 
 .drop-target {
     box-sizing: border-box;
@@ -7,14 +7,6 @@
 
     &_draggable {
         border: 1px solid #fff;
-    }
-
-    &__container {
-        box-sizing: border-box;
-        height: 100%;
-        overflow: auto;
-        padding: 5px;
-        width: 100%;
     }
 
     @media all and (max-width: $media-middle-width) {
@@ -30,10 +22,6 @@
 
             .drop-target_draggable {
                 box-shadow: $app-box-shadow;
-            }
-
-            .drop-target__container {
-                display: none;
             }
         }
     }

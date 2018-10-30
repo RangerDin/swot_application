@@ -109,10 +109,10 @@ export default class NoteListsService {
         return this.replaceNote(state, noteListType, noteId, newNote);
     }
 
-    static insertNote(state, noteListType, noteIndex, newNote) {
+    static insertNote(state, noteListType, noteIndex, note) {
         const newNoteList = [
             ...state.lists[noteListType].slice(0, noteIndex),
-            newNote,
+            note,
             ...state.lists[noteListType].slice(noteIndex)
         ];
 

@@ -1,50 +1,78 @@
 import { h } from 'preact';
 import { PureComponent } from 'preact-compat';
-import { DropTarget } from 'preact-dnd';
+import { Container } from 'react-smooth-dnd';
 
 import style from './style';
-import { ItemTypes } from 'constants/dnd';
 import { splitClasses } from 'utils/className';
 
-class NoteListsDropTarget extends PureComponent {
+const DNDClasses = 'smooth-dnd-container vertical';
+
+const renderContainer = function(setRef) {
+    return (
+        <div onClick={this.onClick} className={this.className} ref={setRef}>
+            {this.children}
+        </div>
+    );
+};
+
+class DropTarget extends PureComponent {
     onClick = () => {
         this.props.activateNoteList(this.props.type);
     };
 
-    render({ children, connectDropTarget, isHighlighted, isMinimized }) {
-        const classes = [style['drop-target']];
-        if (isHighlighted) {
-            classes.push(style['drop-target_draggable']);
-        }
-        if (isMinimized) {
-            classes.push(style['drop-target_minimized']);
+    onDrop = ({ removedIndex, addedIndex, payload: note }) => {
+        if (removedIndex !== null) {
+            this.props.deleteNote(this.props.type, note.id);
         }
 
-        return connectDropTarget(
-            <div className={splitClasses(classes)} onClick={this.onClick}>
-                <div className={style['drop-target__container']}>
-                    {children}
-                </div>
-            </div>
+        if (addedIndex !== null) {
+            this.props.addNoteToList(this.props.type, addedIndex, note);
+        }
+    };
+
+    getChildPayload = index => {
+        return this.props.notes[index];
+    };
+
+    onDragStart = ({ isSource }) => {
+        this.props.setNoteDragging(true);
+
+        if (isSource) {
+            this.props.activateNoteList(this.props.type);
+        }
+    };
+
+    onDragEnd = () => {
+        this.props.setNoteDragging(false);
+    };
+
+    render({ className, children, isHighlighted, isMinimized }) {
+        const classNames = [style['drop-target'], DNDClasses, className];
+
+        if (isHighlighted) {
+            classNames.push(style['drop-target_draggable']);
+        }
+
+        if (isMinimized) {
+            classNames.push(style['drop-target_minimized']);
+        }
+
+        return (
+            <Container
+                className={splitClasses(classNames)}
+                groupName="note-list"
+                onClick={this.onClick}
+                nonDragAreaSelector=".non-draggable"
+                onDrop={this.onDrop}
+                onDragStart={this.onDragStart}
+                onDragEnd={this.onDragEnd}
+                getChildPayload={this.getChildPayload}
+                render={renderContainer}
+            >
+                {children}
+            </Container>
         );
     }
 }
 
-const target = {
-    hover(props, monitor) {
-        if (monitor.isOver({ shallow: true })) {
-            const draggingNote = monitor.getItem();
-            props.moveNote(draggingNote.listType, draggingNote.id, props.type);
-
-            /* note in "drag" state is not updated by itself,
-             * so we change its listType manually */
-            draggingNote.listType = props.type;
-        }
-    }
-};
-
-const collect = connect => ({
-    connectDropTarget: connect.dropTarget()
-});
-
-export default DropTarget(ItemTypes.NOTE, target, collect)(NoteListsDropTarget);
+export default DropTarget;

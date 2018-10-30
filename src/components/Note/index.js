@@ -1,8 +1,7 @@
 import { h } from 'preact';
 import { PureComponent } from 'preact-compat';
-import { DragSource, DropTarget } from 'preact-dnd';
+import { Draggable } from 'react-smooth-dnd';
 
-import { ItemTypes } from 'constants/dnd';
 import { splitClasses } from 'utils/className';
 
 import style from './style';
@@ -34,10 +33,15 @@ class Note extends PureComponent {
         );
     };
 
-    getNoteClasses = isDragging => {
+    getNoteClasses = (isDragging, isBeingEdited) => {
         let noteClasses = [style.note];
+
         if (isDragging) {
-            noteClasses = [style.note, style.note_dragging];
+            noteClasses.push(style.note_dragging);
+        }
+
+        if (isBeingEdited) {
+            noteClasses.push('non-draggable');
         }
 
         return splitClasses(noteClasses);
@@ -70,71 +74,16 @@ class Note extends PureComponent {
         return this.renderReadOnlyView();
     };
 
-    render({ isDragging }) {
-        return this.props.connectDragSource(
-            this.props.connectDropTarget(
-                <div className={this.getNoteClasses(isDragging)}>
-                    {this.props.connectDragPreview(
-                        <div>{this.renderNoteView()}</div>
-                    )}
-                </div>
-            )
+    render({ isDragging, listType, note: { id, isBeingEdited } }) {
+        return (
+            <Draggable
+                key={`${id} ${listType}`}
+                className={this.getNoteClasses(isDragging, isBeingEdited)}
+            >
+                {this.renderNoteView()}
+            </Draggable>
         );
     }
 }
 
-const target = {
-    hover(props, monitor) {
-        const movingNote = monitor.getItem();
-        if (movingNote.id === props.note.id) {
-            return;
-        }
-
-        props.moveNote(
-            movingNote.listType,
-            movingNote.id,
-            props.listType,
-            props.index
-        );
-
-        /* note in "drag" state is not updated by itself,
-         * so we change its listType manually */
-        movingNote.listType = props.listType;
-    }
-};
-
-const collectTarget = connect => ({
-    connectDropTarget: connect.dropTarget()
-});
-
-const source = {
-    beginDrag(props) {
-        props.setNoteDragging(true);
-        props.activateNoteList(props.listType);
-
-        return {
-            id: props.note.id,
-            listType: props.listType,
-            index: props.index
-        };
-    },
-    canDrag(props) {
-        return !props.note.isBeingEdited;
-    },
-    isDragging(props, monitor) {
-        return props.note.id === monitor.getItem().id;
-    },
-    endDrag(props) {
-        props.setNoteDragging(false);
-    }
-};
-
-const collectSource = (connect, monitor) => ({
-    connectDragSource: connect.dragSource(),
-    connectDragPreview: connect.dragPreview(),
-    isDragging: monitor.isDragging()
-});
-
-export default DropTarget(ItemTypes.NOTE, target, collectTarget)(
-    DragSource(ItemTypes.NOTE, source, collectSource)(Note)
-);
+export default Note;

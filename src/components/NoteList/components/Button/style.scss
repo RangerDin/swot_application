@@ -1,9 +1,61 @@
-@import '../../style-constants';
+@import 'styles/constants';
+@import 'styles/note-list-colors';
 
 .button {
+    box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.3);
     font-size: 24px;
-    height: $note-list-header-content-height;
-    line-height: $note-list-header-content-height;
+    height: $note-list-title-height;
+    line-height: $note-list-title-height;
     overflow: hidden;
     width: 50px;
+
+    &__icon {
+        height: $note-icon-size;
+        line-height: $note-icon-size;
+        padding: 2px;
+        width: auto;
+    }
+
+    &:enabled:focus,
+    &:enabled:hover {
+        border: $interactive-elements-border-width solid #fff;
+        box-shadow: 0;
+        line-height: $note-list-title-height - 2 * $interactive-elements-border-width;
+
+        .button__icon {
+            padding: 0;
+        }
+    }
+}
+
+.strengths {
+    background: $strengths-background-color-light;
+
+    &:disabled {
+        background: $strengths-background-color-disabled;
+    }
+}
+
+.threats {
+    background: $threats-background-color-light;
+
+    &:disabled {
+        background: $threats-background-color-disabled;
+    }
+}
+
+.opportunities {
+    background: $opportunities-background-color-light;
+
+    &:disabled {
+        background: $opportunities-background-color-disabled;
+    }
+}
+
+.weaknesses {
+    background: $weaknesses-background-color-light;
+
+    &:disabled {
+        background: $weaknesses-background-color-disabled;
+    }
 }

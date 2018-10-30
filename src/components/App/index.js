@@ -1,8 +1,4 @@
 import { h, Component } from 'preact';
-import { DragDropContext } from 'preact-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
-import TouchBackend from 'react-dnd-touch-backend';
-import MultiBackend, { TouchTransition } from 'react-dnd-multi-backend';
 import 'normalize.css';
 
 import { NOTE_LIST_TYPE } from 'constants/note';
@@ -37,6 +33,19 @@ class App extends Component {
             listType,
             addedNoteId,
             true
+        );
+
+        this.setState({
+            notes: newNotes
+        });
+    };
+
+    addNoteToList = (targetListType, targetIndex, note) => {
+        const newNotes = NoteListsService.insertNote(
+            this.state.notes,
+            targetListType,
+            targetIndex,
+            note
         );
 
         this.setState({
@@ -181,6 +190,7 @@ class App extends Component {
                 <Main
                     notes={this.state.notes}
                     addNewNote={this.addNewNote}
+                    addNoteToList={this.addNoteToList}
                     deleteNote={this.deleteNote}
                     moveNote={this.moveNote}
                     setNoteActive={this.setNoteActive}
@@ -196,17 +206,4 @@ class App extends Component {
     }
 }
 
-const HTML5ToTouch = {
-    backends: [
-        {
-            backend: HTML5Backend
-        },
-        {
-            backend: TouchBackend({ enableMouseEvents: true }),
-            preview: true,
-            transition: TouchTransition
-        }
-    ]
-};
-
-export default DragDropContext(MultiBackend(HTML5ToTouch))(App);
+export default App;
