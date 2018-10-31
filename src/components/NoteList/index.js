@@ -74,9 +74,14 @@ class NoteList extends PureComponent {
 
     render({ type, moveNote, isActive, activateNoteList, isNoteDragging }) {
         const noteListClasses = [style['note-list'], style[type]];
+
         noteListClasses.push(
             style[isActive ? 'note-list_active' : 'note-list_minimized']
         );
+
+        if (!isActive && isNoteDragging) {
+            noteListClasses.push(style['note-list_able-to-drop']);
+        }
 
         return (
             <div className={splitClasses(noteListClasses)}>

@@ -12,11 +12,19 @@
 
     &__container {
         bottom: 40px;
-        left: 5px;
+        left: 0;
         overflow: auto;
         position: absolute;
-        right: 5px;
-        top: 5px;
+        right: 0;
+        top: 0;
+    }
+
+    &_able-to-drop {
+        box-shadow: unset;
+
+        .note-list__container {
+            outline: 1px solid #fff;
+        }
     }
 
     &__widget {
@@ -38,6 +46,7 @@
     }
 
     @media all and (max-width: $media-middle-width) {
+        box-shadow: unset;
         height: $note-list-title-height;
 
         &_active {
@@ -46,7 +55,7 @@
             left: 0;
             position: absolute;
             right: 0;
-            top: $note-list-title-height;
+            top: $note-list-title-height + 1px;
             width: auto;
         }
 
@@ -68,9 +77,9 @@
 
             .note-list__container {
                 bottom: 0;
-                left: 0;
+                left: 2px;
                 overflow: hidden;
-                right: 0;
+                right: 2px;
                 top: 0;
 
                 :global(.smooth-dnd-draggable-wrapper) {

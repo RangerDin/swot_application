@@ -5,15 +5,8 @@ import { splitClasses } from 'utils/className';
 
 import style from './style';
 
-const NoteButton = ({ title, disabled, children, className, onClick }) => (
-    <Button
-        title={title}
-        className={splitClasses([style.button, className])}
-        disabled={disabled}
-        onClick={onClick}
-    >
-        {children}
-    </Button>
+const NoteButton = ({ className, ...props }) => (
+    <Button className={splitClasses([style.button, className])} {...props} />
 );
 
 export default NoteButton;

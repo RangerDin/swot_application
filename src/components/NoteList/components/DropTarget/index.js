@@ -46,12 +46,8 @@ class DropTarget extends PureComponent {
         this.props.setNoteDragging(false);
     };
 
-    render({ className, children, isHighlighted, isMinimized }) {
+    render({ className, children, isMinimized }) {
         const classNames = [style['drop-target'], DNDClasses, className];
-
-        if (isHighlighted) {
-            classNames.push(style['drop-target_draggable']);
-        }
 
         if (isMinimized) {
             classNames.push(style['drop-target_minimized']);

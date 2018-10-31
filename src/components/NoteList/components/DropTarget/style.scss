@@ -3,11 +3,8 @@
 .drop-target {
     box-sizing: border-box;
     height: 100%;
+    padding: 5px;
     width: 100%;
-
-    &_draggable {
-        border: 1px solid #fff;
-    }
 
     @media all and (max-width: $media-middle-width) {
         &_minimized {
@@ -15,14 +12,6 @@
             display: block;
             position: absolute;
             z-index: 1;
-
-            &:hover {
-                border: 1px solid #fff;
-            }
-
-            .drop-target_draggable {
-                box-shadow: $app-box-shadow;
-            }
         }
     }
 }
