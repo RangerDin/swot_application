@@ -18,6 +18,7 @@ class App extends Component {
             objectOfStudy: null,
             notes: NoteListsService.getInitialState(),
             activeNoteList: NOTE_LIST_TYPE.STRENGTHS,
+            activeDropTarget: null,
             message: '',
             isNoteDragging: false,
             isMenuFolded: true
@@ -148,6 +149,12 @@ class App extends Component {
         }
     };
 
+    setActiveDropTarget = type => {
+        this.setState({
+            activeDropTarget: type
+        });
+    };
+
     showMessage = text => {
         this.setState({
             message: text
@@ -196,8 +203,10 @@ class App extends Component {
                     setNoteActive={this.setNoteActive}
                     setNoteText={this.setNoteText}
                     activeNoteList={this.state.activeNoteList}
+                    activeDropTarget={this.state.activeDropTarget}
                     activateNoteList={this.activateNoteList}
                     setNoteDragging={this.setNoteDragging}
+                    setActiveDropTarget={this.setActiveDropTarget}
                     isNoteDragging={this.state.isNoteDragging}
                     deleteAllNotes={this.deleteAllNotes}
                 />

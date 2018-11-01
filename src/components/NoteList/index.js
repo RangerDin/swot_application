@@ -83,6 +83,10 @@ class NoteList extends PureComponent {
             noteListClasses.push(style['note-list_able-to-drop']);
         }
 
+        if (this.props.isActiveDropTarget) {
+            noteListClasses.push(style['note-list_active-drop-target']);
+        }
+
         return (
             <div className={splitClasses(noteListClasses)}>
                 <div className={style['note-list__container']}>
@@ -92,6 +96,7 @@ class NoteList extends PureComponent {
                         addNewNote={this.addNewNote}
                         addNoteToList={this.props.addNoteToList}
                         setNoteDragging={this.props.setNoteDragging}
+                        setActiveDropTarget={this.props.setActiveDropTarget}
                         deleteNote={this.props.deleteNote}
                         notes={this.props.notes}
                         moveNote={moveNote}

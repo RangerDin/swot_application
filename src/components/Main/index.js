@@ -20,8 +20,10 @@ class Main extends Component {
                         setNoteText={props.setNoteText}
                         moveNote={props.moveNote}
                         isActive={listType === props.activeNoteList}
+                        isActiveDropTarget={listType === props.activeDropTarget}
                         activateNoteList={props.activateNoteList}
                         setNoteDragging={props.setNoteDragging}
+                        setActiveDropTarget={props.setActiveDropTarget}
                         isNoteDragging={props.isNoteDragging}
                         deleteAllNotes={props.deleteAllNotes}
                     />

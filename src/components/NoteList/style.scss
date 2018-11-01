@@ -86,6 +86,26 @@
                     visibility: hidden;
                 }
             }
+
+            &.note-list_active-drop-target {
+                background: #fff;
+
+                &.strengths {
+                    color: $strengths-background-color;
+                }
+
+                &.threats {
+                    color: $threats-background-color;
+                }
+
+                &.opportunities {
+                    color: $opportunities-background-color;
+                }
+
+                &.weaknesses {
+                    color: $weaknesses-background-color;
+                }
+            }
         }
     }
 

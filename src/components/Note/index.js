@@ -36,10 +36,6 @@ class Note extends PureComponent {
     getNoteClasses = (isDragging, isBeingEdited) => {
         let noteClasses = [style.note];
 
-        if (isDragging) {
-            noteClasses.push(style.note_dragging);
-        }
-
         if (isBeingEdited) {
             noteClasses.push('non-draggable');
         }

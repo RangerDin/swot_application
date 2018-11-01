@@ -25,6 +25,7 @@ export default class ReadOnlyView extends PureComponent {
             <div className={style['note__container']}>
                 <div
                     tabIndex="0"
+                    title="Click to edit. Drag and drop to move."
                     onKeyDown={this.onKeyDown}
                     className={splitClasses([
                         style[listType],

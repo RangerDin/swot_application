@@ -3,6 +3,7 @@ import { PureComponent } from 'preact-compat';
 import { Container } from 'react-smooth-dnd';
 
 import style from './style';
+import noteStyle from 'components/Note/style';
 import { splitClasses } from 'utils/className';
 
 const DNDClasses = 'smooth-dnd-container vertical';
@@ -30,20 +31,28 @@ class DropTarget extends PureComponent {
         }
     };
 
+    onDropReady = ({ addedIndex }) => {
+        if (addedIndex !== null) {
+            this.props.setActiveDropTarget(this.props.type);
+        }
+    };
+
     getChildPayload = index => {
         return this.props.notes[index];
     };
 
     onDragStart = ({ isSource }) => {
-        this.props.setNoteDragging(true);
-
         if (isSource) {
+            this.props.setNoteDragging(true);
             this.props.activateNoteList(this.props.type);
         }
     };
 
-    onDragEnd = () => {
-        this.props.setNoteDragging(false);
+    onDragEnd = ({ isSource }) => {
+        if (isSource) {
+            this.props.setNoteDragging(false);
+            this.props.setActiveDropTarget(null);
+        }
     };
 
     render({ className, children, isMinimized }) {
@@ -59,9 +68,12 @@ class DropTarget extends PureComponent {
                 groupName="note-list"
                 onClick={this.onClick}
                 nonDragAreaSelector=".non-draggable"
+                dragHandleSelector={'.' + noteStyle.note__view}
                 onDrop={this.onDrop}
+                onDropReady={this.onDropReady}
                 onDragStart={this.onDragStart}
                 onDragEnd={this.onDragEnd}
+                dragClass={noteStyle.note_drag}
                 getChildPayload={this.getChildPayload}
                 render={renderContainer}
             >
