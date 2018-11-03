@@ -48,7 +48,7 @@ class Note extends PureComponent {
             listType={this.props.listType}
             text={this.props.note.text}
             deactivateNote={this.deactivateNote}
-            onChange={this.setNoteText}
+            onInput={this.setNoteText}
             deleteNote={this.deleteNote}
         />
     );

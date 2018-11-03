@@ -111,6 +111,7 @@ class NoteList extends PureComponent {
                     <Footer
                         isMinimized={!isActive}
                         type={type}
+                        notes={this.props.notes}
                         addNewNote={this.addNewNote}
                         requestDeleteAllNotes={this.requestDeleteAllNotes}
                         isNoteListEmpty={

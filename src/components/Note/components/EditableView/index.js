@@ -27,11 +27,17 @@ export default class EditableNote extends Component {
         }
     };
 
-    render({ text, listType, deactivateNote, onChange }) {
+    render({ text, listType, deactivateNote, onInput }) {
+        const containerClassNames = [style.note__container];
+
+        if (!text) {
+            containerClassNames.push(style.note__container_new);
+        }
+
         return (
             <div
                 onKeyDown={this.onKeyDown}
-                className={style['note__container']}
+                className={splitClasses(containerClassNames)}
             >
                 <textarea
                     className={splitClasses([
@@ -41,11 +47,14 @@ export default class EditableNote extends Component {
                     ])}
                     ref={input => (this.noteInput = input)}
                     onBlur={this.onBlur}
-                    onChange={onChange}
+                    onInput={onInput}
                     value={text}
                 />
                 <SaveButton
-                    className={style.note__button}
+                    className={splitClasses([
+                        style.note__button,
+                        style.note__button_save
+                    ])}
                     onClick={deactivateNote}
                 />
             </div>

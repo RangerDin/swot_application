@@ -10,11 +10,14 @@ import DeleteButton from '../DeleteButton';
 const Footer = ({
     isMinimized,
     type,
+    notes,
     addNewNote,
     requestDeleteAllNotes,
     isNoteListEmpty
 }) => {
     const classes = [style.footer];
+    const hasNewNote = notes.some(note => !note.text);
+
     if (isMinimized) {
         classes.push(style.footer_minimized);
     }
@@ -27,6 +30,7 @@ const Footer = ({
                     className={style['footer__button']}
                     type={type}
                     onClick={addNewNote}
+                    disabled={hasNewNote}
                 />
                 <DeleteButton
                     className={style['footer__button']}

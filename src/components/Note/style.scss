@@ -11,9 +11,24 @@
         padding-top: 0;
     }
 
+    &__button {
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
     &__container {
         padding-right: $note-button-width + $note-button-padding;
         position: relative;
+
+        &_new {
+            padding-right: 0;
+
+            .note__button_save {
+                display: none;
+            }
+        }
     }
 
     &__view {
@@ -43,13 +58,6 @@
             resize: vertical;
             width: 100%;
         }
-    }
-
-    &__button {
-        display: block;
-        position: absolute;
-        right: 0;
-        top: 0;
     }
 
     &_drag {
