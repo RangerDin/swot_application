@@ -46,9 +46,10 @@ class Note extends PureComponent {
     renderEditableView = () => (
         <EditableView
             listType={this.props.listType}
+            text={this.props.note.text}
             deactivateNote={this.deactivateNote}
             onChange={this.setNoteText}
-            text={this.props.note.text}
+            deleteNote={this.deleteNote}
         />
     );
 

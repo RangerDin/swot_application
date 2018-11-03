@@ -19,6 +19,14 @@ export default class EditableNote extends Component {
         }
     };
 
+    onBlur = event => {
+        if (!event.target.value) {
+            this.props.deleteNote();
+        } else {
+            this.props.deactivateNote();
+        }
+    };
+
     render({ text, listType, deactivateNote, onChange }) {
         return (
             <div
@@ -32,7 +40,7 @@ export default class EditableNote extends Component {
                         style.note__view_editable
                     ])}
                     ref={input => (this.noteInput = input)}
-                    onBlur={deactivateNote}
+                    onBlur={this.onBlur}
                     onChange={onChange}
                     value={text}
                 />
