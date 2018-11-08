@@ -2,29 +2,26 @@
 @import 'styles/note-list-colors';
 
 .button {
+    border: $interactive-elements-border-width solid transparent;
     box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.3);
     font-size: 24px;
     height: $note-list-title-height;
-    line-height: $note-list-title-height;
+    line-height: $note-list-title-height - 2 * $interactive-elements-border-width;
     overflow: hidden;
+    transition: border-color 0.5s;
     width: 50px;
 
     &__icon {
         height: $note-icon-size;
         line-height: $note-icon-size;
-        padding: 2px;
         width: auto;
     }
 
     &:enabled:focus,
     &:enabled:hover {
-        border: $interactive-elements-border-width solid #fff;
+        border-color: #fff;
         box-shadow: 0;
-        line-height: $note-list-title-height - 2 * $interactive-elements-border-width;
-
-        .button__icon {
-            padding: 0;
-        }
+        transition: border-color 0.5s;
     }
 }
 
