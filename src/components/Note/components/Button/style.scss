@@ -2,20 +2,19 @@
 
 .button {
     background: none;
-    font-size: 30px;
-    height: 30px;
-    line-height: 26px;
-    padding: 2px;
+    border: $interactive-elements-border-width solid transparent;
+    font-size: $note-view-height;
+    height: $note-view-height;
+    line-height: $note-view-height - 2 * $interactive-elements-border-width;
+    padding: 0;
     width: $note-button-width;
 
     &:disabled {
         cursor: default;
     }
 
-    &:enabled:focus,
     &:enabled:hover {
-        border: 2px solid #fff;
-        padding: 0;
+        border-color: $border-color;
     }
 
     &__icon {

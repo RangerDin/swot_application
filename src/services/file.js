@@ -4,11 +4,6 @@ import FileSaver from 'file-saver';
 const FILE_NAME = 'swot.json';
 
 export default class FileService {
-    static isSupported() {
-        const FileAPIObjectNames = ['File', 'FileReader', 'Blob', 'FileList'];
-        return FileAPIObjectNames.every(name => name in window);
-    }
-
     static getFile(swot) {
         return new File([JSON.stringify(swot)], FILE_NAME, {
             type: 'application/json;charset=utf-8'

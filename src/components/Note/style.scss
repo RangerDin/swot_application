@@ -12,61 +12,76 @@
     }
 
     &__button {
-        display: block;
+        opacity: 0;
         position: absolute;
         right: 0;
         top: 0;
-    }
-
-    &__container {
-        padding-right: $note-button-width + $note-button-padding;
-        position: relative;
-
-        &_new {
-            padding-right: 0;
-
-            .note__button_save {
-                display: none;
-            }
-        }
-    }
-
-    &__view {
-        border: 0;
-        box-sizing: border-box;
-        color: $app-text-color;
-        cursor: pointer;
-        display: block;
-        font-family: $app-text-font-family;
-        font-size: 16px;
-        line-height: 24px;
-        min-height: $note-view-height;
-        padding: 3px 8px;
-        position: relative;
-
-        &:focus,
-        &:hover {
-            border: 2px solid #fff;
-            line-height: 20px;
-            outline: none;
-            padding: 3px 6px;
-        }
-
-        &_editable {
-            cursor: text;
-            height: 30px;
-            resize: vertical;
-            width: 100%;
-        }
+        transition: all $interactive-elements-animation-time;
     }
 
     &_drag {
+        cursor: grabbing;
         display: inline;
         opacity: 0.5;
 
         .note {
             &__button {
                 display: none;
+            }
+        }
+    }
+
+    &__container {
+        position: relative;
+    }
+
+    &__view {
+        border: $interactive-elements-border-width solid transparent;
+        box-sizing: border-box;
+        color: $text-color;
+        cursor: pointer;
+        display: block;
+        font-family: $main-font-family;
+        font-size: 16px;
+        height: $note-view-height;
+        line-height: 20px;
+        min-height: $note-view-height;
+        padding: 3px 8px;
+        resize: none;
+        transition-delay: $interactive-elements-animation-time;
+        transition-duration: $interactive-elements-animation-time;
+        transition-property: width, border-color;
+        width: 100%;
+
+        &_editable {
+            cursor: text;
+            resize: vertical;
+        }
+    }
+
+    &_animated {
+        .note__view:focus,
+        .note__container:hover .note__view,
+        .note__view_with-button {
+            border-color: $border-color;
+            outline: none;
+            transition-delay: 0s;
+            transition-duration: $interactive-elements-animation-time;
+            transition-property: width, border-color;
+
+            &.note__view_not-empty {
+                width: calc(100% - 35px);
+
+                & ~ .note__button {
+                    opacity: 1;
+                    transition: all $interactive-elements-animation-time ease $interactive-elements-animation-time;
+                    visibility: visible;
+
+                    &_hidden {
+                        opacity: 0;
+                        visibility: hidden;
+                    }
+                }
             }
         }
     }

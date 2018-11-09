@@ -8,7 +8,7 @@
     height: $note-list-title-height;
     line-height: $note-list-title-height - 2 * $interactive-elements-border-width;
     overflow: hidden;
-    transition: border-color 0.5s;
+    transition: border-color $interactive-elements-animation-time;
     width: 50px;
 
     &__icon {
@@ -21,7 +21,7 @@
     &:enabled:hover {
         border-color: #fff;
         box-shadow: 0;
-        transition: border-color 0.5s;
+        transition: border-color $interactive-elements-animation-time;
     }
 }
 

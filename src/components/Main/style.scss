@@ -10,7 +10,7 @@ $main-padding: 5px;
     right: 0;
     top: $header-height + $main-padding;
 
-    @media all and (max-width: $media-middle-width) {
+    @media all and (max-width: $media-medium) {
         bottom: 0;
         margin: 0;
     }

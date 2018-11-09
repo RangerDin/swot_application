@@ -2,14 +2,14 @@
 
 body,
 html {
-    background: $app-background-color;
+    background: $background-color;
     height: 100%;
 }
 
 .app {
     box-sizing: border-box;
-    color: $app-text-color;
-    font-family: $app-text-font-family;
+    color: $text-color;
+    font-family: $main-font-family;
     height: 100%;
     margin: 0 auto;
     max-width: $app-max-width;

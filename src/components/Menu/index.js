@@ -22,7 +22,9 @@ class Menu extends PureComponent {
     constructor(props) {
         super(props);
 
-        this.setWrapperRef = this.setWrapperRef.bind(this);
+        this.onFocusIn = this.onFocusIn.bind(this);
+        this.onFocusOut = this.onFocusOut.bind(this);
+        this.setMenuRef = this.setMenuRef.bind(this);
         this.handleClickOutside = this.handleClickOutside.bind(this);
     }
 
@@ -37,17 +39,34 @@ class Menu extends PureComponent {
         reader.readAsText(event.target.files[0]);
     };
 
-    setWrapperRef(node) {
-        this.wrapperRef = node;
+    onFocusIn() {
+        if (this.props.isFolded) {
+            this.props.openMenu(true);
+        }
+    }
+
+    onFocusOut(event) {
+        if (
+            !this.props.isFolded &&
+            (!this.menuRef.contains(event.relatedTarget) ||
+                !event.relatedTarget)
+        ) {
+            this.props.closeMenu(true);
+        }
+        this.props.resetMenuProccessedByFocusFlag();
+    }
+
+    setMenuRef(node) {
+        this.menuRef = node;
     }
 
     handleClickOutside(event) {
         if (
-            this.wrapperRef &&
-            !this.wrapperRef.contains(event.target) &&
+            this.menuRef &&
+            !this.menuRef.contains(event.target) &&
             !this.props.isFolded
         ) {
-            this.props.toggleMenu();
+            this.props.closeMenu();
         }
     }
 
@@ -59,10 +78,32 @@ class Menu extends PureComponent {
         document.removeEventListener('mousedown', this.handleClickOutside);
     }
 
-    render({ onSave, objectOfStudy, setObjectOfStudy, isFolded, toggleMenu }) {
+    render({
+        onSave,
+        objectOfStudy,
+        setObjectOfStudy,
+        isFolded,
+        isProccessedByFocus,
+        openMenu,
+        closeMenu,
+        resetMenuProccessedByFocusFlag
+    }) {
         return (
-            <div ref={this.setWrapperRef} className={style.menu}>
-                <MenuIcon isFolded={isFolded} toggleMenu={toggleMenu} />
+            <div
+                className={style.menu}
+                ref={this.setMenuRef}
+                onFocusIn={this.onFocusIn}
+                onFocusOut={this.onFocusOut}
+            >
+                <MenuIcon
+                    isFolded={isFolded}
+                    openMenu={openMenu}
+                    closeMenu={closeMenu}
+                    resetMenuProccessedByFocusFlag={
+                        resetMenuProccessedByFocusFlag
+                    }
+                    isProccessedByFocus={isProccessedByFocus}
+                />
                 <nav
                     className={splitClasses([
                         style.menu__items,

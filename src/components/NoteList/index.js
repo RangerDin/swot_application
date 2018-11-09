@@ -54,6 +54,7 @@ class NoteList extends PureComponent {
                 setNoteActive={this.props.setNoteActive}
                 setNoteText={this.props.setNoteText}
                 moveNote={this.props.moveNote}
+                isDragging={this.props.isNoteDragging}
             />
         ));
     };
@@ -72,14 +73,16 @@ class NoteList extends PureComponent {
         return this.renderNotes();
     };
 
-    render({ type, moveNote, isActive, activateNoteList, isNoteDragging }) {
-        const noteListClasses = [style['note-list'], style[type]];
+    render() {
+        const noteListClasses = [style['note-list'], style[this.props.type]];
 
         noteListClasses.push(
-            style[isActive ? 'note-list_active' : 'note-list_minimized']
+            style[
+                this.props.isActive ? 'note-list_active' : 'note-list_minimized'
+            ]
         );
 
-        if (!isActive && isNoteDragging) {
+        if (!this.props.isActive && this.props.isNoteDragging) {
             noteListClasses.push(style['note-list_able-to-drop']);
         }
 
@@ -92,25 +95,27 @@ class NoteList extends PureComponent {
                 <div className={style['note-list__container']}>
                     <DropTarget
                         className={style['note-list__widget']}
-                        type={type}
+                        type={this.props.type}
                         addNewNote={this.addNewNote}
                         addNoteToList={this.props.addNoteToList}
                         setNoteDragging={this.props.setNoteDragging}
                         setActiveDropTarget={this.props.setActiveDropTarget}
                         deleteNote={this.props.deleteNote}
                         notes={this.props.notes}
-                        moveNote={moveNote}
-                        activateNoteList={activateNoteList}
-                        isHighlighted={!isActive && isNoteDragging}
-                        isMinimized={!isActive}
+                        moveNote={this.props.moveNote}
+                        activateNoteList={this.props.activateNoteList}
+                        isHighlighted={
+                            !this.props.isActive && this.props.isNoteDragging
+                        }
+                        isMinimized={!this.props.isActive}
                     >
                         {this.renderContent()}
                     </DropTarget>
                 </div>
                 {!this.state.isDeleteAllDialogShown && (
                     <Footer
-                        isMinimized={!isActive}
-                        type={type}
+                        isMinimized={!this.props.isActive}
+                        type={this.props.type}
                         notes={this.props.notes}
                         addNewNote={this.addNewNote}
                         requestDeleteAllNotes={this.requestDeleteAllNotes}

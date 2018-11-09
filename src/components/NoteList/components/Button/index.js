@@ -5,20 +5,10 @@ import { splitClasses } from 'utils/className';
 
 import style from './style';
 
-const NoteListButton = ({
-    type,
-    title,
-    onClick,
-    className,
-    disabled,
-    children,
-    icon
-}) => (
+const NoteListButton = ({ type, className, children, icon, ...props }) => (
     <Button
-        className={splitClasses([style[type], style.button, className])}
-        title={title}
-        onClick={onClick}
-        disabled={disabled}
+        className={splitClasses([style[type], style['button'], className])}
+        {...props}
     >
         {icon ? <img className={style['button__icon']} src={icon} /> : children}
     </Button>

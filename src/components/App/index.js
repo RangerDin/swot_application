@@ -21,7 +21,8 @@ class App extends Component {
             activeDropTarget: null,
             message: '',
             isNoteDragging: false,
-            isMenuFolded: true
+            isMenuFolded: true,
+            isMenuProccessedByFocus: false
         };
     }
 
@@ -173,9 +174,23 @@ class App extends Component {
         });
     };
 
-    toggleMenu = () => {
+    openMenu = isMenuProccessedByFocus => {
         this.setState({
-            isMenuFolded: !this.state.isMenuFolded
+            isMenuFolded: false,
+            isMenuProccessedByFocus
+        });
+    };
+
+    closeMenu = isMenuProccessedByFocus => {
+        this.setState({
+            isMenuFolded: true,
+            isMenuProccessedByFocus
+        });
+    };
+
+    resetMenuProccessedByFocusFlag = () => {
+        this.setState({
+            isMenuProccessedByFocus: false
         });
     };
 
@@ -191,8 +206,13 @@ class App extends Component {
                     onSave={this.onSaveFile}
                     objectOfStudy={this.state.objectOfStudy}
                     setObjectOfStudy={this.setObjectOfStudy}
-                    toggleMenu={this.toggleMenu}
+                    openMenu={this.openMenu}
+                    closeMenu={this.closeMenu}
+                    resetMenuProccessedByFocusFlag={
+                        this.resetMenuProccessedByFocusFlag
+                    }
                     isFolded={this.state.isMenuFolded}
+                    isProccessedByFocus={this.state.isMenuProccessedByFocus}
                 />
                 <Main
                     notes={this.state.notes}

@@ -4,10 +4,10 @@ $message-height: 150px;
 $message-width: 300px;
 
 .message {
-    background: $app-background-color;
-    border: 2px solid $app-border-color;
+    background: $background-color;
+    border: $interactive-elements-border-width solid $border-color;
     bottom: 0;
-    color: #fff;
+    color: $text-color;
     display: table;
     height: $message-height;
     left: 0;
@@ -31,12 +31,12 @@ $message-width: 300px;
     }
 
     &__button {
-        background: $app-light-background-color;
+        background: $light-background-color;
         border: none;
         color: #fff;
         cursor: pointer;
-        font-family: $app-text-font-family;
-        font-size: 20px;
+        font-family: $main-font-family;
+        font-size: 16px;
         margin-top: 20px;
         padding: 5px 15px;
     }

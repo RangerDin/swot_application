@@ -1,30 +1,23 @@
-$app-text-color: #fff;
-$app-text-font-family: Arial, Helvetica, Roboto, sans-serif;
-$app-header-font-family: Arial, Helvetica, Roboto, sans-serif;
-$app-border-color: #3d3d55;
-$app-background-color: #2b2b37;
-$app-light-background-color: #56566f;
-$app-box-shadow: 0 0 1px 3px #fff;
+$main-font-family: Arial, Helvetica, Roboto, sans-serif;
+$header-font-family: Arial, Helvetica, Roboto, sans-serif;
+$text-color: #fff;
+$border-color: #fff;
+$background-color: #2b2b37;
+$light-background-color: #56566f;
+$made-by-text-color: #6a6a84;
 
 $media-small: 550px;
-$media-medium: 750px;
+$media-medium: 650px;
+$media-large: 750px;
 
 $app-max-width: 1200px;
 $app-min-width: 320px;
 $app-min-height: 300px;
 $header-height: 30px;
-$made-by-text-color: #6a6a84;
-$main-max-width: 1000px;
-
-$media-middle-width: 650px;
-$media-menu-folded: 500px;
-
 $note-list-title-height: 30px;
-$note-list-placeholder-width: 400px;
-
 $note-button-width: 30px;
-$note-button-padding: 5px;
 $note-icon-size: 26px;
 $note-view-height: 30px;
 
 $interactive-elements-border-width: 2px;
+$interactive-elements-animation-time: 0.2s;

@@ -21,7 +21,7 @@
         height: $note-list-title-height;
     }
 
-    @media all and (max-width: $media-middle-width) {
+    @media all and (max-width: $media-medium) {
         &_minimized {
             height: 100%;
             padding: 0;

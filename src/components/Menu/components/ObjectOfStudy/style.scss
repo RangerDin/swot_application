@@ -5,21 +5,29 @@ $placeholder-color: #b0b2c1;
 
 .object-of-study {
     background: $background-color;
-    border: 0;
+    border: 2px solid transparent;
     box-sizing: border-box;
     color: #fff;
-    font-family: $app-text-font-family;
+    font-family: $main-font-family;
     font-size: 14px;
     height: $header-height - 2px;
     line-height: $header-height - 2px;
+    outline: unset;
     padding: 0 10px;
+    transition: border-color 0.5s;
     width: 200px;
+
+    &:focus,
+    &:hover {
+        border-color: #fff;
+        transition: border-color 0.5s;
+    }
 
     &::placeholder {
         color: $placeholder-color;
     }
 
-    @media all and (min-width: $media-medium) {
+    @media all and (min-width: $media-large) {
         width: 400px;
     }
 }

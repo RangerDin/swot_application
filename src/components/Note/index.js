@@ -5,8 +5,7 @@ import { Draggable } from 'react-smooth-dnd';
 import { splitClasses } from 'utils/className';
 
 import style from './style';
-import EditableView from './components/EditableView';
-import ReadOnlyView from './components/ReadOnlyView';
+import View from './components/View';
 
 class Note extends PureComponent {
     deleteNote = () => {
@@ -40,44 +39,31 @@ class Note extends PureComponent {
             noteClasses.push('non-draggable');
         }
 
+        if (!isDragging) {
+            noteClasses.push(style.note_animated);
+        }
+
         return splitClasses(noteClasses);
     };
 
-    renderEditableView = () => (
-        <EditableView
-            listType={this.props.listType}
-            text={this.props.note.text}
-            deactivateNote={this.deactivateNote}
-            onInput={this.setNoteText}
-            deleteNote={this.deleteNote}
-        />
-    );
-
-    renderReadOnlyView = () => (
-        <ReadOnlyView
-            listType={this.props.listType}
-            activateNote={this.activateNote}
-            deleteNote={this.deleteNote}
-        >
-            {this.props.note.text}
-        </ReadOnlyView>
-    );
-
-    renderNoteView = () => {
-        if (this.props.note.isBeingEdited) {
-            return this.renderEditableView();
-        }
-
-        return this.renderReadOnlyView();
-    };
-
-    render({ isDragging, listType, note: { id, isBeingEdited } }) {
+    render() {
         return (
             <Draggable
-                key={`${id} ${listType}`}
-                className={this.getNoteClasses(isDragging, isBeingEdited)}
+                key={`${this.props.note.id} ${this.props.listType}`}
+                className={this.getNoteClasses(
+                    this.props.isDragging,
+                    this.props.isBeingEdited
+                )}
             >
-                {this.renderNoteView()}
+                <View
+                    listType={this.props.listType}
+                    text={this.props.note.text}
+                    activateNote={this.activateNote}
+                    deactivateNote={this.deactivateNote}
+                    deleteNote={this.deleteNote}
+                    setNoteText={this.setNoteText}
+                    readOnly={!this.props.note.isBeingEdited}
+                />
             </Draggable>
         );
     }

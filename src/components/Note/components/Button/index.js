@@ -5,8 +5,10 @@ import { splitClasses } from 'utils/className';
 
 import style from './style';
 
-const NoteButton = ({ className, ...props }) => (
-    <Button className={splitClasses([style.button, className])} {...props} />
+const NoteButton = ({ className, children, icon, ...props }) => (
+    <Button className={splitClasses([style['button'], className])} {...props}>
+        {icon ? <img className={style['button__icon']} src={icon} /> : children}
+    </Button>
 );
 
 export default NoteButton;

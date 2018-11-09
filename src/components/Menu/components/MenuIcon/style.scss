@@ -13,8 +13,10 @@ $menu-icon-background: #fff;
         display: none;
     }
 
+    &:focus,
     &:hover {
         background: #434367;
+        outline: 0;
     }
 }
 

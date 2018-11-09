@@ -1,8 +1,7 @@
 @import 'styles/constants';
 
 .button {
-    border: 0;
-    color: $app-text-color;
+    color: $text-color;
     cursor: pointer;
 
     &:disabled {
