@@ -6,7 +6,6 @@ import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 const ENV = process.env.NODE_ENV || 'development';
 const isModeDevelopment = ENV === 'development';
@@ -128,7 +127,6 @@ const productionConfig = {
     output: {
         filename: 'bundle.js'
     },
-    plugins: [new BundleAnalyzerPlugin()],
     devtool: 'source-map',
     mode: 'production'
 };
