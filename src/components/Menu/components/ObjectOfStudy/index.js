@@ -4,11 +4,11 @@ import { splitClasses } from 'utils/className';
 
 import style from './style';
 
-const ObjectOfStudy = ({ value, className, onChange }) => (
+const ObjectOfStudy = ({ value, className, onInput }) => (
     <input
         className={splitClasses([style['object-of-study'], className])}
         type="text"
-        onChange={onChange}
+        onInput={onInput}
         placeholder="Enter object of study"
         value={value}
     />

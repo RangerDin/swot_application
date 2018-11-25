@@ -137,7 +137,7 @@ class Menu extends PureComponent {
                     </SaveMenuItem>
                     <ObjectOfStudyItem
                         value={objectOfStudy}
-                        onChange={setObjectOfStudy}
+                        onInput={setObjectOfStudy}
                     />
                     <LinkToMySite
                         href="https://htype.me"
