@@ -7,6 +7,7 @@ import Menu from 'components/Menu';
 import Message from 'components/Message';
 import NoteListsService from 'services/noteLists';
 import FileService from 'services/file';
+import 'assets/icons/favicon.ico';
 
 import style from './style';
 
